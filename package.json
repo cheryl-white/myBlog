@@ -1,10 +1,22 @@
 {
   "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
+    "prettier": "^3.8.4",
     "vitepress": "^2.0.0-alpha.17"
   },
   "scripts": {
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:preview": "vitepress preview docs",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{js,ts,jsx,tsx,md,json,html,css,scss,vue}": [
+      "prettier --write --cache"
+    ],
+    "*.{yml,yaml}": [
+      "prettier --write --cache"
+    ]
   }
 }

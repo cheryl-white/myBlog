@@ -2,7 +2,7 @@ import { defineConfig } from "vitepress";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  base: "/myBlog/", // ← 添加这一行！注意仓库名大小写
+  base: "/myBlog/docs/", // ← 添加这一行！注意仓库名大小写
   title: "My Awesome Project",
   description: "A VitePress Site",
   themeConfig: {
