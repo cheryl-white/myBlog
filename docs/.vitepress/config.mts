@@ -3,8 +3,9 @@ import { defineConfig } from "vitepress";
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   base: "/myBlog/", // ← 添加这一行！注意仓库名大小写
-  title: "My Awesome Project",
-  description: "A VitePress Site",
+  title: "cheryl's blog",
+  description: "This is my personal site",
+  
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
@@ -23,7 +24,7 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: "github", link: "https://github.com/vuejs/vitepress" },
+      { icon: "github", link: "http://cheryl-white.github.io/myBlog" },
     ],
   },
 });

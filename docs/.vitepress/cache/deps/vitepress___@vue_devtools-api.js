@@ -1,164 +1,254 @@
-// node_modules/@vue/devtools-shared/dist/index.js
+// node_modules/.pnpm/@vue+devtools-shared@8.1.3/node_modules/@vue/devtools-shared/dist/index.js
 var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __commonJSMin = (cb, mod) => () => (mod || cb((mod = { exports: {} }).exports, mod), mod.exports);
+var __commonJSMin = (cb, mod) => () => (
+  mod || cb((mod = { exports: {} }).exports, mod),
+  mod.exports
+);
 var __copyProps = (to, from, except, desc) => {
-  if (from && typeof from === "object" || typeof from === "function") for (var keys = __getOwnPropNames(from), i = 0, n = keys.length, key; i < n; i++) {
-    key = keys[i];
-    if (!__hasOwnProp.call(to, key) && key !== except) __defProp(to, key, {
-      get: ((k) => from[k]).bind(null, key),
-      enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable
-    });
-  }
+  if ((from && typeof from === "object") || typeof from === "function")
+    for (
+      var keys = __getOwnPropNames(from), i = 0, n = keys.length, key;
+      i < n;
+      i++
+    ) {
+      key = keys[i];
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, {
+          get: ((k) => from[k]).bind(null, key),
+          enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable,
+        });
+    }
   return to;
 };
-var __toESM = (mod, isNodeMode, target2) => (target2 = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(isNodeMode || !mod || !mod.__esModule ? __defProp(target2, "default", {
-  value: mod,
-  enumerable: true
-}) : target2, mod));
+var __toESM = (mod, isNodeMode, target2) => (
+  (target2 = mod != null ? __create(__getProtoOf(mod)) : {}),
+  __copyProps(
+    isNodeMode || !mod || !mod.__esModule
+      ? __defProp(target2, "default", {
+          value: mod,
+          enumerable: true,
+        })
+      : target2,
+    mod,
+  )
+);
 var isBrowser = typeof navigator !== "undefined";
-var target = typeof window !== "undefined" ? window : typeof globalThis !== "undefined" ? globalThis : typeof global !== "undefined" ? global : {};
-var isInChromePanel = typeof target.chrome !== "undefined" && !!target.chrome.devtools;
+var target =
+  typeof window !== "undefined"
+    ? window
+    : typeof globalThis !== "undefined"
+      ? globalThis
+      : typeof global !== "undefined"
+        ? global
+        : {};
+var isInChromePanel =
+  typeof target.chrome !== "undefined" && !!target.chrome.devtools;
 var isInIframe = isBrowser && target.self !== target.top;
-var isInElectron = typeof navigator !== "undefined" && navigator.userAgent?.toLowerCase().includes("electron");
+var isInElectron =
+  typeof navigator !== "undefined" &&
+  navigator.userAgent?.toLowerCase().includes("electron");
 var isNuxtApp = typeof window !== "undefined" && !!window.__NUXT__;
-var import_rfdc = __toESM(__commonJSMin(((exports, module) => {
-  module.exports = rfdc;
-  function copyBuffer(cur) {
-    if (cur instanceof Buffer) return Buffer.from(cur);
-    return new cur.constructor(cur.buffer.slice(), cur.byteOffset, cur.length);
-  }
-  function rfdc(opts) {
-    opts = opts || {};
-    if (opts.circles) return rfdcCircles(opts);
-    const constructorHandlers = /* @__PURE__ */ new Map();
-    constructorHandlers.set(Date, (o) => new Date(o));
-    constructorHandlers.set(Map, (o, fn) => new Map(cloneArray(Array.from(o), fn)));
-    constructorHandlers.set(Set, (o, fn) => new Set(cloneArray(Array.from(o), fn)));
-    if (opts.constructorHandlers) for (const handler2 of opts.constructorHandlers) constructorHandlers.set(handler2[0], handler2[1]);
-    let handler = null;
-    return opts.proto ? cloneProto : clone;
-    function cloneArray(a, fn) {
-      const keys = Object.keys(a);
-      const a2 = new Array(keys.length);
-      for (let i = 0; i < keys.length; i++) {
-        const k = keys[i];
-        const cur = a[k];
-        if (typeof cur !== "object" || cur === null) a2[k] = cur;
-        else if (cur.constructor !== Object && (handler = constructorHandlers.get(cur.constructor))) a2[k] = handler(cur, fn);
-        else if (ArrayBuffer.isView(cur)) a2[k] = copyBuffer(cur);
-        else a2[k] = fn(cur);
-      }
-      return a2;
+var import_rfdc = __toESM(
+  __commonJSMin((exports, module) => {
+    module.exports = rfdc;
+    function copyBuffer(cur) {
+      if (cur instanceof Buffer) return Buffer.from(cur);
+      return new cur.constructor(
+        cur.buffer.slice(),
+        cur.byteOffset,
+        cur.length,
+      );
     }
-    function clone(o) {
-      if (typeof o !== "object" || o === null) return o;
-      if (Array.isArray(o)) return cloneArray(o, clone);
-      if (o.constructor !== Object && (handler = constructorHandlers.get(o.constructor))) return handler(o, clone);
-      const o2 = {};
-      for (const k in o) {
-        if (Object.hasOwnProperty.call(o, k) === false) continue;
-        const cur = o[k];
-        if (typeof cur !== "object" || cur === null) o2[k] = cur;
-        else if (cur.constructor !== Object && (handler = constructorHandlers.get(cur.constructor))) o2[k] = handler(cur, clone);
-        else if (ArrayBuffer.isView(cur)) o2[k] = copyBuffer(cur);
-        else o2[k] = clone(cur);
-      }
-      return o2;
-    }
-    function cloneProto(o) {
-      if (typeof o !== "object" || o === null) return o;
-      if (Array.isArray(o)) return cloneArray(o, cloneProto);
-      if (o.constructor !== Object && (handler = constructorHandlers.get(o.constructor))) return handler(o, cloneProto);
-      const o2 = {};
-      for (const k in o) {
-        const cur = o[k];
-        if (typeof cur !== "object" || cur === null) o2[k] = cur;
-        else if (cur.constructor !== Object && (handler = constructorHandlers.get(cur.constructor))) o2[k] = handler(cur, cloneProto);
-        else if (ArrayBuffer.isView(cur)) o2[k] = copyBuffer(cur);
-        else o2[k] = cloneProto(cur);
-      }
-      return o2;
-    }
-  }
-  function rfdcCircles(opts) {
-    const refs = [];
-    const refsNew = [];
-    const constructorHandlers = /* @__PURE__ */ new Map();
-    constructorHandlers.set(Date, (o) => new Date(o));
-    constructorHandlers.set(Map, (o, fn) => new Map(cloneArray(Array.from(o), fn)));
-    constructorHandlers.set(Set, (o, fn) => new Set(cloneArray(Array.from(o), fn)));
-    if (opts.constructorHandlers) for (const handler2 of opts.constructorHandlers) constructorHandlers.set(handler2[0], handler2[1]);
-    let handler = null;
-    return opts.proto ? cloneProto : clone;
-    function cloneArray(a, fn) {
-      const keys = Object.keys(a);
-      const a2 = new Array(keys.length);
-      for (let i = 0; i < keys.length; i++) {
-        const k = keys[i];
-        const cur = a[k];
-        if (typeof cur !== "object" || cur === null) a2[k] = cur;
-        else if (cur.constructor !== Object && (handler = constructorHandlers.get(cur.constructor))) a2[k] = handler(cur, fn);
-        else if (ArrayBuffer.isView(cur)) a2[k] = copyBuffer(cur);
-        else {
-          const index = refs.indexOf(cur);
-          if (index !== -1) a2[k] = refsNew[index];
+    function rfdc(opts) {
+      opts = opts || {};
+      if (opts.circles) return rfdcCircles(opts);
+      const constructorHandlers = /* @__PURE__ */ new Map();
+      constructorHandlers.set(Date, (o) => new Date(o));
+      constructorHandlers.set(
+        Map,
+        (o, fn) => new Map(cloneArray(Array.from(o), fn)),
+      );
+      constructorHandlers.set(
+        Set,
+        (o, fn) => new Set(cloneArray(Array.from(o), fn)),
+      );
+      if (opts.constructorHandlers)
+        for (const handler2 of opts.constructorHandlers)
+          constructorHandlers.set(handler2[0], handler2[1]);
+      let handler = null;
+      return opts.proto ? cloneProto : clone;
+      function cloneArray(a, fn) {
+        const keys = Object.keys(a);
+        const a2 = new Array(keys.length);
+        for (let i = 0; i < keys.length; i++) {
+          const k = keys[i];
+          const cur = a[k];
+          if (typeof cur !== "object" || cur === null) a2[k] = cur;
+          else if (
+            cur.constructor !== Object &&
+            (handler = constructorHandlers.get(cur.constructor))
+          )
+            a2[k] = handler(cur, fn);
+          else if (ArrayBuffer.isView(cur)) a2[k] = copyBuffer(cur);
           else a2[k] = fn(cur);
         }
+        return a2;
       }
-      return a2;
-    }
-    function clone(o) {
-      if (typeof o !== "object" || o === null) return o;
-      if (Array.isArray(o)) return cloneArray(o, clone);
-      if (o.constructor !== Object && (handler = constructorHandlers.get(o.constructor))) return handler(o, clone);
-      const o2 = {};
-      refs.push(o);
-      refsNew.push(o2);
-      for (const k in o) {
-        if (Object.hasOwnProperty.call(o, k) === false) continue;
-        const cur = o[k];
-        if (typeof cur !== "object" || cur === null) o2[k] = cur;
-        else if (cur.constructor !== Object && (handler = constructorHandlers.get(cur.constructor))) o2[k] = handler(cur, clone);
-        else if (ArrayBuffer.isView(cur)) o2[k] = copyBuffer(cur);
-        else {
-          const i = refs.indexOf(cur);
-          if (i !== -1) o2[k] = refsNew[i];
+      function clone(o) {
+        if (typeof o !== "object" || o === null) return o;
+        if (Array.isArray(o)) return cloneArray(o, clone);
+        if (
+          o.constructor !== Object &&
+          (handler = constructorHandlers.get(o.constructor))
+        )
+          return handler(o, clone);
+        const o2 = {};
+        for (const k in o) {
+          if (Object.hasOwnProperty.call(o, k) === false) continue;
+          const cur = o[k];
+          if (typeof cur !== "object" || cur === null) o2[k] = cur;
+          else if (
+            cur.constructor !== Object &&
+            (handler = constructorHandlers.get(cur.constructor))
+          )
+            o2[k] = handler(cur, clone);
+          else if (ArrayBuffer.isView(cur)) o2[k] = copyBuffer(cur);
           else o2[k] = clone(cur);
         }
+        return o2;
       }
-      refs.pop();
-      refsNew.pop();
-      return o2;
-    }
-    function cloneProto(o) {
-      if (typeof o !== "object" || o === null) return o;
-      if (Array.isArray(o)) return cloneArray(o, cloneProto);
-      if (o.constructor !== Object && (handler = constructorHandlers.get(o.constructor))) return handler(o, cloneProto);
-      const o2 = {};
-      refs.push(o);
-      refsNew.push(o2);
-      for (const k in o) {
-        const cur = o[k];
-        if (typeof cur !== "object" || cur === null) o2[k] = cur;
-        else if (cur.constructor !== Object && (handler = constructorHandlers.get(cur.constructor))) o2[k] = handler(cur, cloneProto);
-        else if (ArrayBuffer.isView(cur)) o2[k] = copyBuffer(cur);
-        else {
-          const i = refs.indexOf(cur);
-          if (i !== -1) o2[k] = refsNew[i];
+      function cloneProto(o) {
+        if (typeof o !== "object" || o === null) return o;
+        if (Array.isArray(o)) return cloneArray(o, cloneProto);
+        if (
+          o.constructor !== Object &&
+          (handler = constructorHandlers.get(o.constructor))
+        )
+          return handler(o, cloneProto);
+        const o2 = {};
+        for (const k in o) {
+          const cur = o[k];
+          if (typeof cur !== "object" || cur === null) o2[k] = cur;
+          else if (
+            cur.constructor !== Object &&
+            (handler = constructorHandlers.get(cur.constructor))
+          )
+            o2[k] = handler(cur, cloneProto);
+          else if (ArrayBuffer.isView(cur)) o2[k] = copyBuffer(cur);
           else o2[k] = cloneProto(cur);
         }
+        return o2;
       }
-      refs.pop();
-      refsNew.pop();
-      return o2;
     }
-  }
-}))(), 1);
+    function rfdcCircles(opts) {
+      const refs = [];
+      const refsNew = [];
+      const constructorHandlers = /* @__PURE__ */ new Map();
+      constructorHandlers.set(Date, (o) => new Date(o));
+      constructorHandlers.set(
+        Map,
+        (o, fn) => new Map(cloneArray(Array.from(o), fn)),
+      );
+      constructorHandlers.set(
+        Set,
+        (o, fn) => new Set(cloneArray(Array.from(o), fn)),
+      );
+      if (opts.constructorHandlers)
+        for (const handler2 of opts.constructorHandlers)
+          constructorHandlers.set(handler2[0], handler2[1]);
+      let handler = null;
+      return opts.proto ? cloneProto : clone;
+      function cloneArray(a, fn) {
+        const keys = Object.keys(a);
+        const a2 = new Array(keys.length);
+        for (let i = 0; i < keys.length; i++) {
+          const k = keys[i];
+          const cur = a[k];
+          if (typeof cur !== "object" || cur === null) a2[k] = cur;
+          else if (
+            cur.constructor !== Object &&
+            (handler = constructorHandlers.get(cur.constructor))
+          )
+            a2[k] = handler(cur, fn);
+          else if (ArrayBuffer.isView(cur)) a2[k] = copyBuffer(cur);
+          else {
+            const index = refs.indexOf(cur);
+            if (index !== -1) a2[k] = refsNew[index];
+            else a2[k] = fn(cur);
+          }
+        }
+        return a2;
+      }
+      function clone(o) {
+        if (typeof o !== "object" || o === null) return o;
+        if (Array.isArray(o)) return cloneArray(o, clone);
+        if (
+          o.constructor !== Object &&
+          (handler = constructorHandlers.get(o.constructor))
+        )
+          return handler(o, clone);
+        const o2 = {};
+        refs.push(o);
+        refsNew.push(o2);
+        for (const k in o) {
+          if (Object.hasOwnProperty.call(o, k) === false) continue;
+          const cur = o[k];
+          if (typeof cur !== "object" || cur === null) o2[k] = cur;
+          else if (
+            cur.constructor !== Object &&
+            (handler = constructorHandlers.get(cur.constructor))
+          )
+            o2[k] = handler(cur, clone);
+          else if (ArrayBuffer.isView(cur)) o2[k] = copyBuffer(cur);
+          else {
+            const i = refs.indexOf(cur);
+            if (i !== -1) o2[k] = refsNew[i];
+            else o2[k] = clone(cur);
+          }
+        }
+        refs.pop();
+        refsNew.pop();
+        return o2;
+      }
+      function cloneProto(o) {
+        if (typeof o !== "object" || o === null) return o;
+        if (Array.isArray(o)) return cloneArray(o, cloneProto);
+        if (
+          o.constructor !== Object &&
+          (handler = constructorHandlers.get(o.constructor))
+        )
+          return handler(o, cloneProto);
+        const o2 = {};
+        refs.push(o);
+        refsNew.push(o2);
+        for (const k in o) {
+          const cur = o[k];
+          if (typeof cur !== "object" || cur === null) o2[k] = cur;
+          else if (
+            cur.constructor !== Object &&
+            (handler = constructorHandlers.get(cur.constructor))
+          )
+            o2[k] = handler(cur, cloneProto);
+          else if (ArrayBuffer.isView(cur)) o2[k] = copyBuffer(cur);
+          else {
+            const i = refs.indexOf(cur);
+            if (i !== -1) o2[k] = refsNew[i];
+            else o2[k] = cloneProto(cur);
+          }
+        }
+        refs.pop();
+        refsNew.pop();
+        return o2;
+      }
+    }
+  })(),
+  1,
+);
 var classifyRE = /(?:^|[-_/])(\w)/g;
 function toUpper(_, c) {
   return c ? c.toUpperCase() : "";
@@ -168,7 +258,8 @@ function classify(str) {
 }
 function basename(filename, ext) {
   let normalizedFilename = filename.replace(/^[a-z]:/i, "").replace(/\\/g, "/");
-  if (normalizedFilename.endsWith(`index${ext}`)) normalizedFilename = normalizedFilename.replace(`/index${ext}`, ext);
+  if (normalizedFilename.endsWith(`index${ext}`))
+    normalizedFilename = normalizedFilename.replace(`/index${ext}`, ext);
   const lastSlashIndex = normalizedFilename.lastIndexOf("/");
   const baseNameWithExt = normalizedFilename.substring(lastSlashIndex + 1);
   if (ext) {
@@ -183,14 +274,15 @@ function isUrlString(str) {
 }
 var deepClone = (0, import_rfdc.default)({ circles: true });
 
-// node_modules/perfect-debounce/dist/index.mjs
+// node_modules/.pnpm/perfect-debounce@2.1.0/node_modules/perfect-debounce/dist/index.mjs
 var DEBOUNCE_DEFAULTS = { trailing: true };
 function debounce(fn, wait = 25, options = {}) {
   options = {
     ...DEBOUNCE_DEFAULTS,
-    ...options
+    ...options,
   };
-  if (!Number.isFinite(wait)) throw new TypeError("Expected `wait` to be a finite number");
+  if (!Number.isFinite(wait))
+    throw new TypeError("Expected `wait` to be a finite number");
   let leadingValue;
   let timeout;
   let resolveList = [];
@@ -208,7 +300,7 @@ function debounce(fn, wait = 25, options = {}) {
     });
     return currentPromise;
   };
-  const debounced = function(...args) {
+  const debounced = function (...args) {
     if (options.trailing) trailingArgs = args;
     if (currentPromise) return currentPromise;
     return new Promise((resolve) => {
@@ -252,7 +344,7 @@ async function _applyPromised(fn, _this, args) {
   return await fn.apply(_this, args);
 }
 
-// node_modules/hookable/dist/index.mjs
+// node_modules/.pnpm/hookable@5.5.3/node_modules/hookable/dist/index.mjs
 function flatHooks(configHooks, hooks2 = {}, parentName) {
   for (const key in configHooks) {
     const subHook = configHooks[key];
@@ -267,13 +359,15 @@ function flatHooks(configHooks, hooks2 = {}, parentName) {
 }
 var defaultTask = { run: (function_) => function_() };
 var _createTask = () => defaultTask;
-var createTask = typeof console.createTask !== "undefined" ? console.createTask : _createTask;
+var createTask =
+  typeof console.createTask !== "undefined" ? console.createTask : _createTask;
 function serialTaskCaller(hooks2, args) {
   const name = args.shift();
   const task = createTask(name);
   return hooks2.reduce(
-    (promise, hookFunction) => promise.then(() => task.run(() => hookFunction(...args))),
-    Promise.resolve()
+    (promise, hookFunction) =>
+      promise.then(() => task.run(() => hookFunction(...args))),
+    Promise.resolve(),
   );
 }
 function parallelTaskCaller(hooks2, args) {
@@ -299,8 +393,7 @@ var Hookable = class {
   }
   hook(name, function_, options = {}) {
     if (!name || typeof function_ !== "function") {
-      return () => {
-      };
+      return () => {};
     }
     const originalName = name;
     let dep;
@@ -311,7 +404,9 @@ var Hookable = class {
     if (dep && !options.allowDeprecated) {
       let message = dep.message;
       if (!message) {
-        message = `${originalName} hook has been deprecated` + (dep.to ? `, please use ${dep.to}` : "");
+        message =
+          `${originalName} hook has been deprecated` +
+          (dep.to ? `, please use ${dep.to}` : "");
       }
       if (!this._deprecatedMessages) {
         this._deprecatedMessages = /* @__PURE__ */ new Set();
@@ -325,10 +420,9 @@ var Hookable = class {
       try {
         Object.defineProperty(function_, "name", {
           get: () => "_" + name.replace(/\W+/g, "_") + "_hook_cb",
-          configurable: true
+          configurable: true,
         });
-      } catch {
-      }
+      } catch {}
     }
     this._hooks[name] = this._hooks[name] || [];
     this._hooks[name].push(function_);
@@ -364,7 +458,8 @@ var Hookable = class {
     }
   }
   deprecateHook(name, deprecated) {
-    this._deprecatedHooks[name] = typeof deprecated === "string" ? { to: deprecated } : deprecated;
+    this._deprecatedHooks[name] =
+      typeof deprecated === "string" ? { to: deprecated } : deprecated;
     const _hooks = this._hooks[name] || [];
     delete this._hooks[name];
     for (const hook2 of _hooks) {
@@ -379,8 +474,8 @@ var Hookable = class {
   }
   addHooks(configHooks) {
     const hooks2 = flatHooks(configHooks);
-    const removeFns = Object.keys(hooks2).map(
-      (key) => this.hook(key, hooks2[key])
+    const removeFns = Object.keys(hooks2).map((key) =>
+      this.hook(key, hooks2[key]),
     );
     return () => {
       for (const unreg of removeFns.splice(0, removeFns.length)) {
@@ -408,13 +503,16 @@ var Hookable = class {
     return this.callHookWith(parallelTaskCaller, name, ...arguments_);
   }
   callHookWith(caller, name, ...arguments_) {
-    const event = this._before || this._after ? { name, args: arguments_, context: {} } : void 0;
+    const event =
+      this._before || this._after
+        ? { name, args: arguments_, context: {} }
+        : void 0;
     if (this._before) {
       callEachWith(this._before, event);
     }
     const result = caller(
       name in this._hooks ? [...this._hooks[name]] : [],
-      arguments_
+      arguments_,
     );
     if (result instanceof Promise) {
       return result.finally(() => {
@@ -457,35 +555,62 @@ function createHooks() {
   return new Hookable();
 }
 
-// node_modules/birpc/dist/index.mjs
+// node_modules/.pnpm/birpc@2.6.1/node_modules/birpc/dist/index.mjs
 var { clearTimeout: clearTimeout2, setTimeout: setTimeout2 } = globalThis;
 var random = Math.random.bind(Math);
 
-// node_modules/@vue/devtools-kit/dist/index.js
+// node_modules/.pnpm/@vue+devtools-kit@8.1.3/node_modules/@vue/devtools-kit/dist/index.js
 var __create2 = Object.create;
 var __defProp2 = Object.defineProperty;
 var __getOwnPropDesc2 = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames2 = Object.getOwnPropertyNames;
 var __getProtoOf2 = Object.getPrototypeOf;
 var __hasOwnProp2 = Object.prototype.hasOwnProperty;
-var __commonJSMin2 = (cb, mod) => () => (mod || cb((mod = { exports: {} }).exports, mod), mod.exports);
+var __commonJSMin2 = (cb, mod) => () => (
+  mod || cb((mod = { exports: {} }).exports, mod),
+  mod.exports
+);
 var __copyProps2 = (to, from, except, desc) => {
-  if (from && typeof from === "object" || typeof from === "function") for (var keys = __getOwnPropNames2(from), i = 0, n = keys.length, key; i < n; i++) {
-    key = keys[i];
-    if (!__hasOwnProp2.call(to, key) && key !== except) __defProp2(to, key, {
-      get: ((k) => from[k]).bind(null, key),
-      enumerable: !(desc = __getOwnPropDesc2(from, key)) || desc.enumerable
-    });
-  }
+  if ((from && typeof from === "object") || typeof from === "function")
+    for (
+      var keys = __getOwnPropNames2(from), i = 0, n = keys.length, key;
+      i < n;
+      i++
+    ) {
+      key = keys[i];
+      if (!__hasOwnProp2.call(to, key) && key !== except)
+        __defProp2(to, key, {
+          get: ((k) => from[k]).bind(null, key),
+          enumerable: !(desc = __getOwnPropDesc2(from, key)) || desc.enumerable,
+        });
+    }
   return to;
 };
-var __toESM2 = (mod, isNodeMode, target2) => (target2 = mod != null ? __create2(__getProtoOf2(mod)) : {}, __copyProps2(isNodeMode || !mod || !mod.__esModule ? __defProp2(target2, "default", {
-  value: mod,
-  enumerable: true
-}) : target2, mod));
+var __toESM2 = (mod, isNodeMode, target2) => (
+  (target2 = mod != null ? __create2(__getProtoOf2(mod)) : {}),
+  __copyProps2(
+    isNodeMode || !mod || !mod.__esModule
+      ? __defProp2(target2, "default", {
+          value: mod,
+          enumerable: true,
+        })
+      : target2,
+    mod,
+  )
+);
 function getComponentTypeName(options) {
-  if (typeof options === "function") return options.displayName || options.name || options.__VUE_DEVTOOLS_COMPONENT_GUSSED_NAME__ || "";
-  const name = options.name || options._componentTag || options.__VUE_DEVTOOLS_COMPONENT_GUSSED_NAME__ || options.__name;
+  if (typeof options === "function")
+    return (
+      options.displayName ||
+      options.name ||
+      options.__VUE_DEVTOOLS_COMPONENT_GUSSED_NAME__ ||
+      ""
+    );
+  const name =
+    options.name ||
+    options._componentTag ||
+    options.__VUE_DEVTOOLS_COMPONENT_GUSSED_NAME__ ||
+    options.__name;
   if (name === "index" && options.__file?.endsWith("index.vue")) return "";
   return name;
 }
@@ -498,8 +623,10 @@ function saveComponentGussedName(instance, name) {
   return name;
 }
 function getAppRecord(instance) {
-  if (instance.__VUE_DEVTOOLS_NEXT_APP_RECORD__) return instance.__VUE_DEVTOOLS_NEXT_APP_RECORD__;
-  else if (instance.root) return instance.appContext.app.__VUE_DEVTOOLS_NEXT_APP_RECORD__;
+  if (instance.__VUE_DEVTOOLS_NEXT_APP_RECORD__)
+    return instance.__VUE_DEVTOOLS_NEXT_APP_RECORD__;
+  else if (instance.root)
+    return instance.appContext.app.__VUE_DEVTOOLS_NEXT_APP_RECORD__;
 }
 function isFragment(instance) {
   const subTreeType = instance.subTree?.type;
@@ -511,8 +638,12 @@ function getInstanceName(instance) {
   const name = getComponentTypeName(instance?.type || {});
   if (name) return name;
   if (instance?.root === instance) return "Root";
-  for (const key in instance.parent?.type?.components) if (instance.parent.type.components[key] === instance?.type) return saveComponentGussedName(instance, key);
-  for (const key in instance.appContext?.components) if (instance.appContext.components[key] === instance?.type) return saveComponentGussedName(instance, key);
+  for (const key in instance.parent?.type?.components)
+    if (instance.parent.type.components[key] === instance?.type)
+      return saveComponentGussedName(instance, key);
+  for (const key in instance.appContext?.components)
+    if (instance.appContext.components[key] === instance?.type)
+      return saveComponentGussedName(instance, key);
   const fileName = getComponentFileName(instance?.type || {});
   if (fileName) return fileName;
   return "Anonymous Component";
@@ -522,7 +653,9 @@ function getUniqueComponentId(instance) {
 }
 function getComponentInstance(appRecord, instanceId) {
   instanceId = instanceId || `${appRecord.id}:root`;
-  return appRecord.instanceMap.get(instanceId) || appRecord.instanceMap.get(":root");
+  return (
+    appRecord.instanceMap.get(instanceId) || appRecord.instanceMap.get(":root")
+  );
 }
 function createRect() {
   const rect = {
@@ -535,7 +668,7 @@ function createRect() {
     },
     get height() {
       return rect.bottom - rect.top;
-    }
+    },
   };
   return rect;
 }
@@ -551,10 +684,12 @@ function getFragmentRect(vnode) {
   for (let i = 0, l = vnode.children.length; i < l; i++) {
     const childVnode = vnode.children[i];
     let childRect;
-    if (childVnode.component) childRect = getComponentBoundingRect(childVnode.component);
+    if (childVnode.component)
+      childRect = getComponentBoundingRect(childVnode.component);
     else if (childVnode.el) {
       const el = childVnode.el;
-      if (el.nodeType === 1 || el.getBoundingClientRect) childRect = el.getBoundingClientRect();
+      if (el.nodeType === 1 || el.getBoundingClientRect)
+        childRect = el.getBoundingClientRect();
       else if (el.nodeType === 3 && el.data.trim()) childRect = getTextRect(el);
     }
     if (childRect) mergeRects(rect, childRect);
@@ -574,14 +709,15 @@ var DEFAULT_RECT = {
   right: 0,
   bottom: 0,
   width: 0,
-  height: 0
+  height: 0,
 };
 function getComponentBoundingRect(instance) {
   const el = instance.subTree.el;
   if (typeof window === "undefined") return DEFAULT_RECT;
   if (isFragment(instance)) return getFragmentRect(instance.subTree);
   else if (el?.nodeType === 1) return el?.getBoundingClientRect();
-  else if (instance.subTree.component) return getComponentBoundingRect(instance.subTree.component);
+  else if (instance.subTree.component)
+    return getComponentBoundingRect(instance.subTree.component);
   else return DEFAULT_RECT;
 }
 function getRootElementsFromComponentInstance(instance) {
@@ -593,7 +729,8 @@ function getFragmentRootElements(vnode) {
   if (!vnode.children) return [];
   const list = [];
   vnode.children.forEach((childVnode) => {
-    if (childVnode.component) list.push(...getRootElementsFromComponentInstance(childVnode.component));
+    if (childVnode.component)
+      list.push(...getRootElementsFromComponentInstance(childVnode.component));
     else if (childVnode?.el) list.push(childVnode.el);
   });
   return list;
@@ -610,7 +747,7 @@ var containerStyles = {
   border: "1px solid #42b88350",
   borderRadius: "5px",
   transition: "all 0.1s ease-in",
-  pointerEvents: "none"
+  pointerEvents: "none",
 };
 var cardStyles = {
   fontFamily: "Arial, Helvetica, sans-serif",
@@ -624,14 +761,15 @@ var cardStyles = {
   fontWeight: 600,
   lineHeight: "24px",
   backgroundColor: "#42b883",
-  boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1)"
+  boxShadow:
+    "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1)",
 };
 var indicatorStyles = {
   display: "inline-block",
   fontWeight: 400,
   fontStyle: "normal",
   fontSize: "12px",
-  opacity: 0.7
+  opacity: 0.7,
 };
 function getContainerElement() {
   return document.getElementById(CONTAINER_ELEMENT_ID);
@@ -650,7 +788,7 @@ function getStyles(bounds) {
     left: `${Math.round(bounds.left * 100) / 100}px`,
     top: `${Math.round(bounds.top * 100) / 100}px`,
     width: `${Math.round(bounds.width * 100) / 100}px`,
-    height: `${Math.round(bounds.height * 100) / 100}px`
+    height: `${Math.round(bounds.height * 100) / 100}px`,
   };
 }
 function create(options) {
@@ -659,13 +797,13 @@ function create(options) {
   Object.assign(containerEl.style, {
     ...containerStyles,
     ...getStyles(options.bounds),
-    ...options.style
+    ...options.style,
   });
   const cardEl = document.createElement("span");
   cardEl.id = CARD_ELEMENT_ID;
   Object.assign(cardEl.style, {
     ...cardStyles,
-    top: options.bounds.top < 35 ? 0 : "-35px"
+    top: options.bounds.top < 35 ? 0 : "-35px",
   });
   const nameEl = document.createElement("span");
   nameEl.id = COMPONENT_NAME_ELEMENT_ID;
@@ -688,7 +826,7 @@ function update(options) {
   if (containerEl) {
     Object.assign(containerEl.style, {
       ...containerStyles,
-      ...getStyles(options.bounds)
+      ...getStyles(options.bounds),
     });
     Object.assign(cardEl.style, { top: options.bounds.top < 35 ? 0 : "-35px" });
     nameEl.innerHTML = `&lt;${options.name}&gt;&nbsp;&nbsp;`;
@@ -699,13 +837,15 @@ function highlight(instance) {
   const bounds = getComponentBoundingRect(instance);
   if (!bounds.width && !bounds.height) return;
   const name = getInstanceName(instance);
-  getContainerElement() ? update({
-    bounds,
-    name
-  }) : create({
-    bounds,
-    name
-  });
+  getContainerElement()
+    ? update({
+        bounds,
+        name,
+      })
+    : create({
+        bounds,
+        name,
+      });
 }
 function unhighlight() {
   const el = getContainerElement();
@@ -721,13 +861,15 @@ function inspectFn(e) {
       if (instance.vnode.el) {
         const bounds = getComponentBoundingRect(instance);
         const name = getInstanceName(instance);
-        getContainerElement() ? update({
-          bounds,
-          name
-        }) : create({
-          bounds,
-          name
-        });
+        getContainerElement()
+          ? update({
+              bounds,
+              name,
+            })
+          : create({
+              bounds,
+              name,
+            });
       }
     }
   }
@@ -741,7 +883,11 @@ var inspectComponentHighLighterSelectFn = null;
 function cancelInspectComponentHighLighter() {
   unhighlight();
   window.removeEventListener("mouseover", inspectFn);
-  window.removeEventListener("click", inspectComponentHighLighterSelectFn, true);
+  window.removeEventListener(
+    "click",
+    inspectComponentHighLighterSelectFn,
+    true,
+  );
   inspectComponentHighLighterSelectFn = null;
 }
 function inspectComponentHighLighter() {
@@ -767,13 +913,14 @@ function scrollToComponent(options) {
   const instance = getComponentInstance(activeAppRecord.value, options.id);
   if (instance) {
     const [el] = getRootElementsFromComponentInstance(instance);
-    if (typeof el.scrollIntoView === "function") el.scrollIntoView({ behavior: "smooth" });
+    if (typeof el.scrollIntoView === "function")
+      el.scrollIntoView({ behavior: "smooth" });
     else {
       const bounds = getComponentBoundingRect(instance);
       const scrollTarget = document.createElement("div");
       const styles = {
         ...getStyles(bounds),
-        position: "absolute"
+        position: "absolute",
       };
       Object.assign(scrollTarget.style, styles);
       document.body.appendChild(scrollTarget);
@@ -787,15 +934,17 @@ function scrollToComponent(options) {
       if (bounds.width || bounds.height) {
         const name = getInstanceName(instance);
         const el2 = getContainerElement();
-        el2 ? update({
-          ...options,
-          name,
-          bounds
-        }) : create({
-          ...options,
-          name,
-          bounds
-        });
+        el2
+          ? update({
+              ...options,
+              name,
+              bounds,
+            })
+          : create({
+              ...options,
+              name,
+              bounds,
+            });
         setTimeout(() => {
           if (el2) el2.style.display = "none";
         }, 1500);
@@ -829,13 +978,14 @@ function getComponentInspector() {
       setupInspector();
       resolve(target.__VUE_INSPECTOR__);
     }
-    if (!target.__VUE_INSPECTOR__) waitForInspectorInit(() => {
-      setup();
-    });
+    if (!target.__VUE_INSPECTOR__)
+      waitForInspectorInit(() => {
+        setup();
+      });
     else setup();
   });
 }
-var ReactiveFlags = (function(ReactiveFlags2) {
+var ReactiveFlags = (function (ReactiveFlags2) {
   ReactiveFlags2["SKIP"] = "__v_skip";
   ReactiveFlags2["IS_REACTIVE"] = "__v_isReactive";
   ReactiveFlags2["IS_READONLY"] = "__v_isReadonly";
@@ -866,7 +1016,8 @@ var StateEditor = class {
     while (sections.length > 1) {
       const section = sections.shift();
       if (object instanceof Map) object = object.get(section);
-      else if (object instanceof Set) object = Array.from(object.values())[section];
+      else if (object instanceof Set)
+        object = Array.from(object.values())[section];
       else object = object[section];
       if (this.refEditor.isRef(object)) object = this.refEditor.get(object);
     }
@@ -895,18 +1046,24 @@ var StateEditor = class {
       object = object[section];
       if (this.refEditor.isRef(object)) object = this.refEditor.get(object);
     }
-    return object != null && Object.prototype.hasOwnProperty.call(object, sections[0]);
+    return (
+      object != null &&
+      Object.prototype.hasOwnProperty.call(object, sections[0])
+    );
   }
   createDefaultSetCallback(state) {
     return (object, field, value) => {
-      if (state.remove || state.newKey) if (Array.isArray(object)) object.splice(field, 1);
-      else if (toRaw$1(object) instanceof Map) object.delete(field);
-      else if (toRaw$1(object) instanceof Set) object.delete(Array.from(object.values())[field]);
-      else Reflect.deleteProperty(object, field);
+      if (state.remove || state.newKey)
+        if (Array.isArray(object)) object.splice(field, 1);
+        else if (toRaw$1(object) instanceof Map) object.delete(field);
+        else if (toRaw$1(object) instanceof Set)
+          object.delete(Array.from(object.values())[field]);
+        else Reflect.deleteProperty(object, field);
       if (!state.remove) {
         const target2 = object[state.newKey || field];
         if (this.refEditor.isRef(target2)) this.refEditor.set(target2, value);
-        else if (toRaw$1(object) instanceof Map) object.set(state.newKey || field, value);
+        else if (toRaw$1(object) instanceof Map)
+          object.set(state.newKey || field, value);
         else if (toRaw$1(object) instanceof Set) object.add(value);
         else object[state.newKey || field] = value;
       }
@@ -948,92 +1105,126 @@ var RefStateEditor = class {
   }
 };
 var stateEditor = new StateEditor();
-var TIMELINE_LAYERS_STATE_STORAGE_ID = "__VUE_DEVTOOLS_KIT_TIMELINE_LAYERS_STATE__";
+var TIMELINE_LAYERS_STATE_STORAGE_ID =
+  "__VUE_DEVTOOLS_KIT_TIMELINE_LAYERS_STATE__";
 function getTimelineLayersStateFromStorage() {
-  if (typeof window === "undefined" || !isBrowser || typeof localStorage === "undefined" || localStorage === null) return {
-    recordingState: false,
-    mouseEventEnabled: false,
-    keyboardEventEnabled: false,
-    componentEventEnabled: false,
-    performanceEventEnabled: false,
-    selected: ""
-  };
-  const state = typeof localStorage.getItem !== "undefined" ? localStorage.getItem(TIMELINE_LAYERS_STATE_STORAGE_ID) : null;
-  return state ? JSON.parse(state) : {
-    recordingState: false,
-    mouseEventEnabled: false,
-    keyboardEventEnabled: false,
-    componentEventEnabled: false,
-    performanceEventEnabled: false,
-    selected: ""
-  };
+  if (
+    typeof window === "undefined" ||
+    !isBrowser ||
+    typeof localStorage === "undefined" ||
+    localStorage === null
+  )
+    return {
+      recordingState: false,
+      mouseEventEnabled: false,
+      keyboardEventEnabled: false,
+      componentEventEnabled: false,
+      performanceEventEnabled: false,
+      selected: "",
+    };
+  const state =
+    typeof localStorage.getItem !== "undefined"
+      ? localStorage.getItem(TIMELINE_LAYERS_STATE_STORAGE_ID)
+      : null;
+  return state
+    ? JSON.parse(state)
+    : {
+        recordingState: false,
+        mouseEventEnabled: false,
+        keyboardEventEnabled: false,
+        componentEventEnabled: false,
+        performanceEventEnabled: false,
+        selected: "",
+      };
 }
 target.__VUE_DEVTOOLS_KIT_TIMELINE_LAYERS ??= [];
-var devtoolsTimelineLayers = new Proxy(target.__VUE_DEVTOOLS_KIT_TIMELINE_LAYERS, { get(target2, prop, receiver) {
-  return Reflect.get(target2, prop, receiver);
-} });
+var devtoolsTimelineLayers = new Proxy(
+  target.__VUE_DEVTOOLS_KIT_TIMELINE_LAYERS,
+  {
+    get(target2, prop, receiver) {
+      return Reflect.get(target2, prop, receiver);
+    },
+  },
+);
 function addTimelineLayer(options, descriptor) {
   devtoolsState.timelineLayersState[descriptor.id] = false;
   devtoolsTimelineLayers.push({
     ...options,
     descriptorId: descriptor.id,
-    appRecord: getAppRecord(descriptor.app)
+    appRecord: getAppRecord(descriptor.app),
   });
 }
 target.__VUE_DEVTOOLS_KIT_INSPECTOR__ ??= [];
-var devtoolsInspector = new Proxy(target.__VUE_DEVTOOLS_KIT_INSPECTOR__, { get(target2, prop, receiver) {
-  return Reflect.get(target2, prop, receiver);
-} });
+var devtoolsInspector = new Proxy(target.__VUE_DEVTOOLS_KIT_INSPECTOR__, {
+  get(target2, prop, receiver) {
+    return Reflect.get(target2, prop, receiver);
+  },
+});
 var callInspectorUpdatedHook = debounce(() => {
-  devtoolsContext.hooks.callHook(DevToolsMessagingHookKeys.SEND_INSPECTOR_TO_CLIENT, getActiveInspectors());
+  devtoolsContext.hooks.callHook(
+    DevToolsMessagingHookKeys.SEND_INSPECTOR_TO_CLIENT,
+    getActiveInspectors(),
+  );
 });
 function addInspector(inspector, descriptor) {
   devtoolsInspector.push({
     options: inspector,
     descriptor,
     treeFilterPlaceholder: inspector.treeFilterPlaceholder ?? "Search tree...",
-    stateFilterPlaceholder: inspector.stateFilterPlaceholder ?? "Search state...",
+    stateFilterPlaceholder:
+      inspector.stateFilterPlaceholder ?? "Search state...",
     treeFilter: "",
     selectedNodeId: "",
-    appRecord: getAppRecord(descriptor.app)
+    appRecord: getAppRecord(descriptor.app),
   });
   callInspectorUpdatedHook();
 }
 function getActiveInspectors() {
-  return devtoolsInspector.filter((inspector) => inspector.descriptor.app === activeAppRecord.value.app).filter((inspector) => inspector.descriptor.id !== "components").map((inspector) => {
-    const descriptor = inspector.descriptor;
-    const options = inspector.options;
-    return {
-      id: options.id,
-      label: options.label,
-      logo: descriptor.logo,
-      icon: `custom-ic-baseline-${options?.icon?.replace(/_/g, "-")}`,
-      packageName: descriptor.packageName,
-      homepage: descriptor.homepage,
-      pluginId: descriptor.id
-    };
-  });
+  return devtoolsInspector
+    .filter(
+      (inspector) => inspector.descriptor.app === activeAppRecord.value.app,
+    )
+    .filter((inspector) => inspector.descriptor.id !== "components")
+    .map((inspector) => {
+      const descriptor = inspector.descriptor;
+      const options = inspector.options;
+      return {
+        id: options.id,
+        label: options.label,
+        logo: descriptor.logo,
+        icon: `custom-ic-baseline-${options?.icon?.replace(/_/g, "-")}`,
+        packageName: descriptor.packageName,
+        homepage: descriptor.homepage,
+        pluginId: descriptor.id,
+      };
+    });
 }
 function getInspector(id, app) {
-  return devtoolsInspector.find((inspector) => inspector.options.id === id && (app ? inspector.descriptor.app === app : true));
+  return devtoolsInspector.find(
+    (inspector) =>
+      inspector.options.id === id &&
+      (app ? inspector.descriptor.app === app : true),
+  );
 }
-var DevToolsV6PluginAPIHookKeys = (function(DevToolsV6PluginAPIHookKeys2) {
+var DevToolsV6PluginAPIHookKeys = (function (DevToolsV6PluginAPIHookKeys2) {
   DevToolsV6PluginAPIHookKeys2["VISIT_COMPONENT_TREE"] = "visitComponentTree";
   DevToolsV6PluginAPIHookKeys2["INSPECT_COMPONENT"] = "inspectComponent";
   DevToolsV6PluginAPIHookKeys2["EDIT_COMPONENT_STATE"] = "editComponentState";
   DevToolsV6PluginAPIHookKeys2["GET_INSPECTOR_TREE"] = "getInspectorTree";
   DevToolsV6PluginAPIHookKeys2["GET_INSPECTOR_STATE"] = "getInspectorState";
   DevToolsV6PluginAPIHookKeys2["EDIT_INSPECTOR_STATE"] = "editInspectorState";
-  DevToolsV6PluginAPIHookKeys2["INSPECT_TIMELINE_EVENT"] = "inspectTimelineEvent";
+  DevToolsV6PluginAPIHookKeys2["INSPECT_TIMELINE_EVENT"] =
+    "inspectTimelineEvent";
   DevToolsV6PluginAPIHookKeys2["TIMELINE_CLEARED"] = "timelineCleared";
   DevToolsV6PluginAPIHookKeys2["SET_PLUGIN_SETTINGS"] = "setPluginSettings";
   return DevToolsV6PluginAPIHookKeys2;
 })({});
-var DevToolsContextHookKeys = (function(DevToolsContextHookKeys2) {
+var DevToolsContextHookKeys = (function (DevToolsContextHookKeys2) {
   DevToolsContextHookKeys2["ADD_INSPECTOR"] = "addInspector";
   DevToolsContextHookKeys2["SEND_INSPECTOR_TREE"] = "sendInspectorTree";
   DevToolsContextHookKeys2["SEND_INSPECTOR_STATE"] = "sendInspectorState";
-  DevToolsContextHookKeys2["CUSTOM_INSPECTOR_SELECT_NODE"] = "customInspectorSelectNode";
+  DevToolsContextHookKeys2["CUSTOM_INSPECTOR_SELECT_NODE"] =
+    "customInspectorSelectNode";
   DevToolsContextHookKeys2["TIMELINE_LAYER_ADDED"] = "timelineLayerAdded";
   DevToolsContextHookKeys2["TIMELINE_EVENT_ADDED"] = "timelineEventAdded";
   DevToolsContextHookKeys2["GET_COMPONENT_INSTANCES"] = "getComponentInstances";
@@ -1043,98 +1234,157 @@ var DevToolsContextHookKeys = (function(DevToolsContextHookKeys2) {
   DevToolsContextHookKeys2["COMPONENT_UNHIGHLIGHT"] = "componentUnhighlight";
   return DevToolsContextHookKeys2;
 })({});
-var DevToolsMessagingHookKeys = (function(DevToolsMessagingHookKeys2) {
-  DevToolsMessagingHookKeys2["SEND_INSPECTOR_TREE_TO_CLIENT"] = "sendInspectorTreeToClient";
-  DevToolsMessagingHookKeys2["SEND_INSPECTOR_STATE_TO_CLIENT"] = "sendInspectorStateToClient";
-  DevToolsMessagingHookKeys2["SEND_TIMELINE_EVENT_TO_CLIENT"] = "sendTimelineEventToClient";
-  DevToolsMessagingHookKeys2["SEND_INSPECTOR_TO_CLIENT"] = "sendInspectorToClient";
-  DevToolsMessagingHookKeys2["SEND_ACTIVE_APP_UNMOUNTED_TO_CLIENT"] = "sendActiveAppUpdatedToClient";
+var DevToolsMessagingHookKeys = (function (DevToolsMessagingHookKeys2) {
+  DevToolsMessagingHookKeys2["SEND_INSPECTOR_TREE_TO_CLIENT"] =
+    "sendInspectorTreeToClient";
+  DevToolsMessagingHookKeys2["SEND_INSPECTOR_STATE_TO_CLIENT"] =
+    "sendInspectorStateToClient";
+  DevToolsMessagingHookKeys2["SEND_TIMELINE_EVENT_TO_CLIENT"] =
+    "sendTimelineEventToClient";
+  DevToolsMessagingHookKeys2["SEND_INSPECTOR_TO_CLIENT"] =
+    "sendInspectorToClient";
+  DevToolsMessagingHookKeys2["SEND_ACTIVE_APP_UNMOUNTED_TO_CLIENT"] =
+    "sendActiveAppUpdatedToClient";
   DevToolsMessagingHookKeys2["DEVTOOLS_STATE_UPDATED"] = "devtoolsStateUpdated";
-  DevToolsMessagingHookKeys2["DEVTOOLS_CONNECTED_UPDATED"] = "devtoolsConnectedUpdated";
+  DevToolsMessagingHookKeys2["DEVTOOLS_CONNECTED_UPDATED"] =
+    "devtoolsConnectedUpdated";
   DevToolsMessagingHookKeys2["ROUTER_INFO_UPDATED"] = "routerInfoUpdated";
   return DevToolsMessagingHookKeys2;
 })({});
 function createDevToolsCtxHooks() {
   const hooks2 = createHooks();
-  hooks2.hook(DevToolsContextHookKeys.ADD_INSPECTOR, ({ inspector, plugin }) => {
-    addInspector(inspector, plugin.descriptor);
-  });
-  const debounceSendInspectorTree = debounce(async ({ inspectorId, plugin }) => {
-    if (!inspectorId || !plugin?.descriptor?.app || devtoolsState.highPerfModeEnabled) return;
-    const inspector = getInspector(inspectorId, plugin.descriptor.app);
-    const _payload = {
-      app: plugin.descriptor.app,
-      inspectorId,
-      filter: inspector?.treeFilter || "",
-      rootNodes: []
-    };
-    await new Promise((resolve) => {
-      hooks2.callHookWith(async (callbacks) => {
-        await Promise.all(callbacks.map((cb) => cb(_payload)));
-        resolve();
-      }, DevToolsV6PluginAPIHookKeys.GET_INSPECTOR_TREE);
-    });
-    hooks2.callHookWith(async (callbacks) => {
-      await Promise.all(callbacks.map((cb) => cb({
+  hooks2.hook(
+    DevToolsContextHookKeys.ADD_INSPECTOR,
+    ({ inspector, plugin }) => {
+      addInspector(inspector, plugin.descriptor);
+    },
+  );
+  const debounceSendInspectorTree = debounce(
+    async ({ inspectorId, plugin }) => {
+      if (
+        !inspectorId ||
+        !plugin?.descriptor?.app ||
+        devtoolsState.highPerfModeEnabled
+      )
+        return;
+      const inspector = getInspector(inspectorId, plugin.descriptor.app);
+      const _payload = {
+        app: plugin.descriptor.app,
         inspectorId,
-        rootNodes: _payload.rootNodes
-      })));
-    }, DevToolsMessagingHookKeys.SEND_INSPECTOR_TREE_TO_CLIENT);
-  }, 120);
-  hooks2.hook(DevToolsContextHookKeys.SEND_INSPECTOR_TREE, debounceSendInspectorTree);
-  const debounceSendInspectorState = debounce(async ({ inspectorId, plugin }) => {
-    if (!inspectorId || !plugin?.descriptor?.app || devtoolsState.highPerfModeEnabled) return;
-    const inspector = getInspector(inspectorId, plugin.descriptor.app);
-    const _payload = {
-      app: plugin.descriptor.app,
-      inspectorId,
-      nodeId: inspector?.selectedNodeId || "",
-      state: null
-    };
-    const ctx = { currentTab: `custom-inspector:${inspectorId}` };
-    if (_payload.nodeId) await new Promise((resolve) => {
+        filter: inspector?.treeFilter || "",
+        rootNodes: [],
+      };
+      await new Promise((resolve) => {
+        hooks2.callHookWith(async (callbacks) => {
+          await Promise.all(callbacks.map((cb) => cb(_payload)));
+          resolve();
+        }, DevToolsV6PluginAPIHookKeys.GET_INSPECTOR_TREE);
+      });
       hooks2.callHookWith(async (callbacks) => {
-        await Promise.all(callbacks.map((cb) => cb(_payload, ctx)));
-        resolve();
-      }, DevToolsV6PluginAPIHookKeys.GET_INSPECTOR_STATE);
-    });
-    hooks2.callHookWith(async (callbacks) => {
-      await Promise.all(callbacks.map((cb) => cb({
+        await Promise.all(
+          callbacks.map((cb) =>
+            cb({
+              inspectorId,
+              rootNodes: _payload.rootNodes,
+            }),
+          ),
+        );
+      }, DevToolsMessagingHookKeys.SEND_INSPECTOR_TREE_TO_CLIENT);
+    },
+    120,
+  );
+  hooks2.hook(
+    DevToolsContextHookKeys.SEND_INSPECTOR_TREE,
+    debounceSendInspectorTree,
+  );
+  const debounceSendInspectorState = debounce(
+    async ({ inspectorId, plugin }) => {
+      if (
+        !inspectorId ||
+        !plugin?.descriptor?.app ||
+        devtoolsState.highPerfModeEnabled
+      )
+        return;
+      const inspector = getInspector(inspectorId, plugin.descriptor.app);
+      const _payload = {
+        app: plugin.descriptor.app,
         inspectorId,
-        nodeId: _payload.nodeId,
-        state: _payload.state
-      })));
-    }, DevToolsMessagingHookKeys.SEND_INSPECTOR_STATE_TO_CLIENT);
-  }, 120);
-  hooks2.hook(DevToolsContextHookKeys.SEND_INSPECTOR_STATE, debounceSendInspectorState);
-  hooks2.hook(DevToolsContextHookKeys.CUSTOM_INSPECTOR_SELECT_NODE, ({ inspectorId, nodeId, plugin }) => {
-    const inspector = getInspector(inspectorId, plugin.descriptor.app);
-    if (!inspector) return;
-    inspector.selectedNodeId = nodeId;
-  });
-  hooks2.hook(DevToolsContextHookKeys.TIMELINE_LAYER_ADDED, ({ options, plugin }) => {
-    addTimelineLayer(options, plugin.descriptor);
-  });
-  hooks2.hook(DevToolsContextHookKeys.TIMELINE_EVENT_ADDED, ({ options, plugin }) => {
-    if (devtoolsState.highPerfModeEnabled || !devtoolsState.timelineLayersState?.[plugin.descriptor.id] && ![
-      "performance",
-      "component-event",
-      "keyboard",
-      "mouse"
-    ].includes(options.layerId)) return;
-    hooks2.callHookWith(async (callbacks) => {
-      await Promise.all(callbacks.map((cb) => cb(options)));
-    }, DevToolsMessagingHookKeys.SEND_TIMELINE_EVENT_TO_CLIENT);
-  });
-  hooks2.hook(DevToolsContextHookKeys.GET_COMPONENT_INSTANCES, async ({ app }) => {
-    const appRecord = app.__VUE_DEVTOOLS_NEXT_APP_RECORD__;
-    if (!appRecord) return null;
-    const appId = appRecord.id.toString();
-    return [...appRecord.instanceMap].filter(([key]) => key.split(":")[0] === appId).map(([, instance]) => instance);
-  });
-  hooks2.hook(DevToolsContextHookKeys.GET_COMPONENT_BOUNDS, async ({ instance }) => {
-    return getComponentBoundingRect(instance);
-  });
+        nodeId: inspector?.selectedNodeId || "",
+        state: null,
+      };
+      const ctx = { currentTab: `custom-inspector:${inspectorId}` };
+      if (_payload.nodeId)
+        await new Promise((resolve) => {
+          hooks2.callHookWith(async (callbacks) => {
+            await Promise.all(callbacks.map((cb) => cb(_payload, ctx)));
+            resolve();
+          }, DevToolsV6PluginAPIHookKeys.GET_INSPECTOR_STATE);
+        });
+      hooks2.callHookWith(async (callbacks) => {
+        await Promise.all(
+          callbacks.map((cb) =>
+            cb({
+              inspectorId,
+              nodeId: _payload.nodeId,
+              state: _payload.state,
+            }),
+          ),
+        );
+      }, DevToolsMessagingHookKeys.SEND_INSPECTOR_STATE_TO_CLIENT);
+    },
+    120,
+  );
+  hooks2.hook(
+    DevToolsContextHookKeys.SEND_INSPECTOR_STATE,
+    debounceSendInspectorState,
+  );
+  hooks2.hook(
+    DevToolsContextHookKeys.CUSTOM_INSPECTOR_SELECT_NODE,
+    ({ inspectorId, nodeId, plugin }) => {
+      const inspector = getInspector(inspectorId, plugin.descriptor.app);
+      if (!inspector) return;
+      inspector.selectedNodeId = nodeId;
+    },
+  );
+  hooks2.hook(
+    DevToolsContextHookKeys.TIMELINE_LAYER_ADDED,
+    ({ options, plugin }) => {
+      addTimelineLayer(options, plugin.descriptor);
+    },
+  );
+  hooks2.hook(
+    DevToolsContextHookKeys.TIMELINE_EVENT_ADDED,
+    ({ options, plugin }) => {
+      if (
+        devtoolsState.highPerfModeEnabled ||
+        (!devtoolsState.timelineLayersState?.[plugin.descriptor.id] &&
+          !["performance", "component-event", "keyboard", "mouse"].includes(
+            options.layerId,
+          ))
+      )
+        return;
+      hooks2.callHookWith(async (callbacks) => {
+        await Promise.all(callbacks.map((cb) => cb(options)));
+      }, DevToolsMessagingHookKeys.SEND_TIMELINE_EVENT_TO_CLIENT);
+    },
+  );
+  hooks2.hook(
+    DevToolsContextHookKeys.GET_COMPONENT_INSTANCES,
+    async ({ app }) => {
+      const appRecord = app.__VUE_DEVTOOLS_NEXT_APP_RECORD__;
+      if (!appRecord) return null;
+      const appId = appRecord.id.toString();
+      return [...appRecord.instanceMap]
+        .filter(([key]) => key.split(":")[0] === appId)
+        .map(([, instance]) => instance);
+    },
+  );
+  hooks2.hook(
+    DevToolsContextHookKeys.GET_COMPONENT_BOUNDS,
+    async ({ instance }) => {
+      return getComponentBoundingRect(instance);
+    },
+  );
   hooks2.hook(DevToolsContextHookKeys.GET_COMPONENT_NAME, ({ instance }) => {
     return getInstanceName(instance);
   });
@@ -1165,35 +1415,46 @@ function initStateFactory() {
     highPerfModeEnabled: true,
     devtoolsClientDetected: {},
     perfUniqueGroupId: 0,
-    timelineLayersState: getTimelineLayersStateFromStorage()
+    timelineLayersState: getTimelineLayersStateFromStorage(),
   };
 }
 target[STATE_KEY] ??= initStateFactory();
 var callStateUpdatedHook = debounce((state) => {
-  devtoolsContext.hooks.callHook(DevToolsMessagingHookKeys.DEVTOOLS_STATE_UPDATED, { state });
+  devtoolsContext.hooks.callHook(
+    DevToolsMessagingHookKeys.DEVTOOLS_STATE_UPDATED,
+    { state },
+  );
 });
 var callConnectedUpdatedHook = debounce((state, oldState) => {
-  devtoolsContext.hooks.callHook(DevToolsMessagingHookKeys.DEVTOOLS_CONNECTED_UPDATED, {
-    state,
-    oldState
-  });
+  devtoolsContext.hooks.callHook(
+    DevToolsMessagingHookKeys.DEVTOOLS_CONNECTED_UPDATED,
+    {
+      state,
+      oldState,
+    },
+  );
 });
-var devtoolsAppRecords = new Proxy(target.__VUE_DEVTOOLS_KIT_APP_RECORDS__, { get(_target, prop, receiver) {
-  if (prop === "value") return target.__VUE_DEVTOOLS_KIT_APP_RECORDS__;
-  return target.__VUE_DEVTOOLS_KIT_APP_RECORDS__[prop];
-} });
-var activeAppRecord = new Proxy(target.__VUE_DEVTOOLS_KIT_ACTIVE_APP_RECORD__, { get(_target, prop, receiver) {
-  if (prop === "value") return target.__VUE_DEVTOOLS_KIT_ACTIVE_APP_RECORD__;
-  else if (prop === "id") return target.__VUE_DEVTOOLS_KIT_ACTIVE_APP_RECORD_ID__;
-  return target.__VUE_DEVTOOLS_KIT_ACTIVE_APP_RECORD__[prop];
-} });
+var devtoolsAppRecords = new Proxy(target.__VUE_DEVTOOLS_KIT_APP_RECORDS__, {
+  get(_target, prop, receiver) {
+    if (prop === "value") return target.__VUE_DEVTOOLS_KIT_APP_RECORDS__;
+    return target.__VUE_DEVTOOLS_KIT_APP_RECORDS__[prop];
+  },
+});
+var activeAppRecord = new Proxy(target.__VUE_DEVTOOLS_KIT_ACTIVE_APP_RECORD__, {
+  get(_target, prop, receiver) {
+    if (prop === "value") return target.__VUE_DEVTOOLS_KIT_ACTIVE_APP_RECORD__;
+    else if (prop === "id")
+      return target.__VUE_DEVTOOLS_KIT_ACTIVE_APP_RECORD_ID__;
+    return target.__VUE_DEVTOOLS_KIT_ACTIVE_APP_RECORD__[prop];
+  },
+});
 function updateAllStates() {
   callStateUpdatedHook({
     ...target[STATE_KEY],
     appRecords: devtoolsAppRecords.value,
     activeAppRecordId: activeAppRecord.id,
     tabs: target.__VUE_DEVTOOLS_KIT_CUSTOM_TABS__,
-    commands: target.__VUE_DEVTOOLS_KIT_CUSTOM_COMMANDS__
+    commands: target.__VUE_DEVTOOLS_KIT_CUSTOM_COMMANDS__,
   });
 }
 function setActiveAppRecord(app) {
@@ -1208,8 +1469,10 @@ var devtoolsState = new Proxy(target[STATE_KEY], {
   get(target$3, property) {
     if (property === "appRecords") return devtoolsAppRecords;
     else if (property === "activeAppRecordId") return activeAppRecord.id;
-    else if (property === "tabs") return target.__VUE_DEVTOOLS_KIT_CUSTOM_TABS__;
-    else if (property === "commands") return target.__VUE_DEVTOOLS_KIT_CUSTOM_COMMANDS__;
+    else if (property === "tabs")
+      return target.__VUE_DEVTOOLS_KIT_CUSTOM_TABS__;
+    else if (property === "commands")
+      return target.__VUE_DEVTOOLS_KIT_CUSTOM_COMMANDS__;
     return target[STATE_KEY][property];
   },
   deleteProperty(target2, property) {
@@ -1220,7 +1483,7 @@ var devtoolsState = new Proxy(target[STATE_KEY], {
     target$4[property] = value;
     target[STATE_KEY][property] = value;
     return true;
-  }
+  },
 });
 function onDevToolsConnected(fn) {
   return new Promise((resolve) => {
@@ -1228,12 +1491,15 @@ function onDevToolsConnected(fn) {
       fn();
       resolve();
     }
-    devtoolsContext.hooks.hook(DevToolsMessagingHookKeys.DEVTOOLS_CONNECTED_UPDATED, ({ state }) => {
-      if (state.connected) {
-        fn();
-        resolve();
-      }
-    });
+    devtoolsContext.hooks.hook(
+      DevToolsMessagingHookKeys.DEVTOOLS_CONNECTED_UPDATED,
+      ({ state }) => {
+        if (state.connected) {
+          fn();
+          resolve();
+        }
+      },
+    );
   });
 }
 var resolveIcon = (icon) => {
@@ -1247,7 +1513,7 @@ function addCustomTab(tab) {
   if (tabs.some((t) => t.name === tab.name)) return;
   tabs.push({
     ...tab,
-    icon: resolveIcon(tab.icon)
+    icon: resolveIcon(tab.icon),
   });
   updateAllStates();
 }
@@ -1257,10 +1523,12 @@ function addCustomCommand(action) {
   commands.push({
     ...action,
     icon: resolveIcon(action.icon),
-    children: action.children ? action.children.map((child) => ({
-      ...child,
-      icon: resolveIcon(child.icon)
-    })) : void 0
+    children: action.children
+      ? action.children.map((child) => ({
+          ...child,
+          icon: resolveIcon(child.icon),
+        }))
+      : void 0,
   });
   updateAllStates();
 }
@@ -1272,27 +1540,41 @@ function removeCustomCommand(actionId) {
   updateAllStates();
 }
 function openInEditor(options = {}) {
-  const { file, host, baseUrl = window.location.origin, line = 0, column = 0 } = options;
+  const {
+    file,
+    host,
+    baseUrl = window.location.origin,
+    line = 0,
+    column = 0,
+  } = options;
   if (file) {
     if (host === "chrome-extension") {
       const fileName = file.replace(/\\/g, "\\\\");
       const _baseUrl = window.VUE_DEVTOOLS_CONFIG?.openInEditorHost ?? "/";
-      fetch(`${_baseUrl}__open-in-editor?file=${encodeURI(file)}`).then((response) => {
-        if (!response.ok) {
-          const msg = `Opening component ${fileName} failed`;
-          console.log(`%c${msg}`, "color:red");
-        }
-      });
+      fetch(`${_baseUrl}__open-in-editor?file=${encodeURI(file)}`).then(
+        (response) => {
+          if (!response.ok) {
+            const msg = `Opening component ${fileName} failed`;
+            console.log(`%c${msg}`, "color:red");
+          }
+        },
+      );
     } else if (devtoolsState.vitePluginDetected) {
-      const _baseUrl = target.__VUE_DEVTOOLS_OPEN_IN_EDITOR_BASE_URL__ ?? baseUrl;
+      const _baseUrl =
+        target.__VUE_DEVTOOLS_OPEN_IN_EDITOR_BASE_URL__ ?? baseUrl;
       target.__VUE_INSPECTOR__.openInEditor(_baseUrl, file, line, column);
     }
   }
 }
 target.__VUE_DEVTOOLS_KIT_PLUGIN_BUFFER__ ??= [];
-var devtoolsPluginBuffer = new Proxy(target.__VUE_DEVTOOLS_KIT_PLUGIN_BUFFER__, { get(target2, prop, receiver) {
-  return Reflect.get(target2, prop, receiver);
-} });
+var devtoolsPluginBuffer = new Proxy(
+  target.__VUE_DEVTOOLS_KIT_PLUGIN_BUFFER__,
+  {
+    get(target2, prop, receiver) {
+      return Reflect.get(target2, prop, receiver);
+    },
+  },
+);
 function _getSettings(settings) {
   const _settings = {};
   Object.keys(settings).forEach((key) => {
@@ -1304,7 +1586,13 @@ function getPluginLocalKey(pluginId) {
   return `__VUE_DEVTOOLS_NEXT_PLUGIN_SETTINGS__${pluginId}__`;
 }
 function getPluginSettingsOptions(pluginId) {
-  return (devtoolsPluginBuffer.find((item) => item[0].id === pluginId && !!item[0]?.settings)?.[0] ?? null)?.settings ?? null;
+  return (
+    (
+      devtoolsPluginBuffer.find(
+        (item) => item[0].id === pluginId && !!item[0]?.settings,
+      )?.[0] ?? null
+    )?.settings ?? null
+  );
 }
 function getPluginSettings(pluginId, fallbackValue) {
   const localKey = getPluginLocalKey(pluginId);
@@ -1312,12 +1600,19 @@ function getPluginSettings(pluginId, fallbackValue) {
     const localSettings = localStorage.getItem(localKey);
     if (localSettings) return JSON.parse(localSettings);
   }
-  if (pluginId) return _getSettings((devtoolsPluginBuffer.find((item) => item[0].id === pluginId)?.[0] ?? null)?.settings ?? {});
+  if (pluginId)
+    return _getSettings(
+      (
+        devtoolsPluginBuffer.find((item) => item[0].id === pluginId)?.[0] ??
+        null
+      )?.settings ?? {},
+    );
   return _getSettings(fallbackValue);
 }
 function initPluginSettings(pluginId, settings) {
   const localKey = getPluginLocalKey(pluginId);
-  if (!localStorage.getItem(localKey)) localStorage.setItem(localKey, JSON.stringify(_getSettings(settings)));
+  if (!localStorage.getItem(localKey))
+    localStorage.setItem(localKey, JSON.stringify(_getSettings(settings)));
 }
 function setPluginSettings(pluginId, key, value) {
   const localKey = getPluginLocalKey(pluginId);
@@ -1325,20 +1620,22 @@ function setPluginSettings(pluginId, key, value) {
   const parsedLocalSettings = JSON.parse(localSettings || "{}");
   const updated = {
     ...parsedLocalSettings,
-    [key]: value
+    [key]: value,
   };
   localStorage.setItem(localKey, JSON.stringify(updated));
   devtoolsContext.hooks.callHookWith((callbacks) => {
-    callbacks.forEach((cb) => cb({
-      pluginId,
-      key,
-      oldValue: parsedLocalSettings[key],
-      newValue: value,
-      settings: updated
-    }));
+    callbacks.forEach((cb) =>
+      cb({
+        pluginId,
+        key,
+        oldValue: parsedLocalSettings[key],
+        newValue: value,
+        settings: updated,
+      }),
+    );
   }, DevToolsV6PluginAPIHookKeys.SET_PLUGIN_SETTINGS);
 }
-var DevToolsHooks = (function(DevToolsHooks2) {
+var DevToolsHooks = (function (DevToolsHooks2) {
   DevToolsHooks2["APP_INIT"] = "app:init";
   DevToolsHooks2["APP_UNMOUNT"] = "app:unmount";
   DevToolsHooks2["COMPONENT_UPDATED"] = "component:updated";
@@ -1355,7 +1652,7 @@ var DevToolsHooks = (function(DevToolsHooks2) {
   DevToolsHooks2["SETUP_DEVTOOLS_PLUGIN"] = "devtools-plugin:setup";
   return DevToolsHooks2;
 })({});
-var devtoolsHooks = target.__VUE_DEVTOOLS_HOOK ??= createHooks();
+var devtoolsHooks = (target.__VUE_DEVTOOLS_HOOK ??= createHooks());
 var on = {
   vueAppInit(fn) {
     devtoolsHooks.hook(DevToolsHooks.APP_INIT, fn);
@@ -1386,13 +1683,17 @@ var on = {
   },
   perfEnd(fn) {
     return devtoolsHooks.hook(DevToolsHooks.PERFORMANCE_END, fn);
-  }
+  },
 };
 var hook = {
   on,
   setupDevToolsPlugin(pluginDescriptor, setupFn) {
-    return devtoolsHooks.callHook(DevToolsHooks.SETUP_DEVTOOLS_PLUGIN, pluginDescriptor, setupFn);
-  }
+    return devtoolsHooks.callHook(
+      DevToolsHooks.SETUP_DEVTOOLS_PLUGIN,
+      pluginDescriptor,
+      setupFn,
+    );
+  },
 };
 var DevToolsV6PluginAPI = class {
   constructor({ plugin, ctx }) {
@@ -1402,83 +1703,110 @@ var DevToolsV6PluginAPI = class {
   get on() {
     return {
       visitComponentTree: (handler) => {
-        this.hooks.hook(DevToolsV6PluginAPIHookKeys.VISIT_COMPONENT_TREE, handler);
+        this.hooks.hook(
+          DevToolsV6PluginAPIHookKeys.VISIT_COMPONENT_TREE,
+          handler,
+        );
       },
       inspectComponent: (handler) => {
         this.hooks.hook(DevToolsV6PluginAPIHookKeys.INSPECT_COMPONENT, handler);
       },
       editComponentState: (handler) => {
-        this.hooks.hook(DevToolsV6PluginAPIHookKeys.EDIT_COMPONENT_STATE, handler);
+        this.hooks.hook(
+          DevToolsV6PluginAPIHookKeys.EDIT_COMPONENT_STATE,
+          handler,
+        );
       },
       getInspectorTree: (handler) => {
-        this.hooks.hook(DevToolsV6PluginAPIHookKeys.GET_INSPECTOR_TREE, handler);
+        this.hooks.hook(
+          DevToolsV6PluginAPIHookKeys.GET_INSPECTOR_TREE,
+          handler,
+        );
       },
       getInspectorState: (handler) => {
-        this.hooks.hook(DevToolsV6PluginAPIHookKeys.GET_INSPECTOR_STATE, handler);
+        this.hooks.hook(
+          DevToolsV6PluginAPIHookKeys.GET_INSPECTOR_STATE,
+          handler,
+        );
       },
       editInspectorState: (handler) => {
-        this.hooks.hook(DevToolsV6PluginAPIHookKeys.EDIT_INSPECTOR_STATE, handler);
+        this.hooks.hook(
+          DevToolsV6PluginAPIHookKeys.EDIT_INSPECTOR_STATE,
+          handler,
+        );
       },
       inspectTimelineEvent: (handler) => {
-        this.hooks.hook(DevToolsV6PluginAPIHookKeys.INSPECT_TIMELINE_EVENT, handler);
+        this.hooks.hook(
+          DevToolsV6PluginAPIHookKeys.INSPECT_TIMELINE_EVENT,
+          handler,
+        );
       },
       timelineCleared: (handler) => {
         this.hooks.hook(DevToolsV6PluginAPIHookKeys.TIMELINE_CLEARED, handler);
       },
       setPluginSettings: (handler) => {
-        this.hooks.hook(DevToolsV6PluginAPIHookKeys.SET_PLUGIN_SETTINGS, handler);
-      }
+        this.hooks.hook(
+          DevToolsV6PluginAPIHookKeys.SET_PLUGIN_SETTINGS,
+          handler,
+        );
+      },
     };
   }
   notifyComponentUpdate(instance) {
     if (devtoolsState.highPerfModeEnabled) return;
-    const inspector = getActiveInspectors().find((i) => i.packageName === this.plugin.descriptor.packageName);
+    const inspector = getActiveInspectors().find(
+      (i) => i.packageName === this.plugin.descriptor.packageName,
+    );
     if (inspector?.id) {
       if (instance) {
         const args = [
           instance.appContext.app,
           instance.uid,
           instance.parent?.uid,
-          instance
+          instance,
         ];
         devtoolsHooks.callHook(DevToolsHooks.COMPONENT_UPDATED, ...args);
       } else devtoolsHooks.callHook(DevToolsHooks.COMPONENT_UPDATED);
       this.hooks.callHook(DevToolsContextHookKeys.SEND_INSPECTOR_STATE, {
         inspectorId: inspector.id,
-        plugin: this.plugin
+        plugin: this.plugin,
       });
     }
   }
   addInspector(options) {
     this.hooks.callHook(DevToolsContextHookKeys.ADD_INSPECTOR, {
       inspector: options,
-      plugin: this.plugin
+      plugin: this.plugin,
     });
-    if (this.plugin.descriptor.settings) initPluginSettings(options.id, this.plugin.descriptor.settings);
+    if (this.plugin.descriptor.settings)
+      initPluginSettings(options.id, this.plugin.descriptor.settings);
   }
   sendInspectorTree(inspectorId) {
     if (devtoolsState.highPerfModeEnabled) return;
     this.hooks.callHook(DevToolsContextHookKeys.SEND_INSPECTOR_TREE, {
       inspectorId,
-      plugin: this.plugin
+      plugin: this.plugin,
     });
   }
   sendInspectorState(inspectorId) {
     if (devtoolsState.highPerfModeEnabled) return;
     this.hooks.callHook(DevToolsContextHookKeys.SEND_INSPECTOR_STATE, {
       inspectorId,
-      plugin: this.plugin
+      plugin: this.plugin,
     });
   }
   selectInspectorNode(inspectorId, nodeId) {
     this.hooks.callHook(DevToolsContextHookKeys.CUSTOM_INSPECTOR_SELECT_NODE, {
       inspectorId,
       nodeId,
-      plugin: this.plugin
+      plugin: this.plugin,
     });
   }
   visitComponentTree(payload) {
-    return this.hooks.callHook(DevToolsV6PluginAPIHookKeys.VISIT_COMPONENT_TREE, payload);
+    return this.hooks.callHook(
+      DevToolsV6PluginAPIHookKeys.VISIT_COMPONENT_TREE,
+      payload,
+    );
   }
   now() {
     if (devtoolsState.highPerfModeEnabled) return 0;
@@ -1487,31 +1815,43 @@ var DevToolsV6PluginAPI = class {
   addTimelineLayer(options) {
     this.hooks.callHook(DevToolsContextHookKeys.TIMELINE_LAYER_ADDED, {
       options,
-      plugin: this.plugin
+      plugin: this.plugin,
     });
   }
   addTimelineEvent(options) {
     if (devtoolsState.highPerfModeEnabled) return;
     this.hooks.callHook(DevToolsContextHookKeys.TIMELINE_EVENT_ADDED, {
       options,
-      plugin: this.plugin
+      plugin: this.plugin,
     });
   }
   getSettings(pluginId) {
-    return getPluginSettings(pluginId ?? this.plugin.descriptor.id, this.plugin.descriptor.settings);
+    return getPluginSettings(
+      pluginId ?? this.plugin.descriptor.id,
+      this.plugin.descriptor.settings,
+    );
   }
   getComponentInstances(app) {
-    return this.hooks.callHook(DevToolsContextHookKeys.GET_COMPONENT_INSTANCES, { app });
+    return this.hooks.callHook(
+      DevToolsContextHookKeys.GET_COMPONENT_INSTANCES,
+      { app },
+    );
   }
   getComponentBounds(instance) {
-    return this.hooks.callHook(DevToolsContextHookKeys.GET_COMPONENT_BOUNDS, { instance });
+    return this.hooks.callHook(DevToolsContextHookKeys.GET_COMPONENT_BOUNDS, {
+      instance,
+    });
   }
   getComponentName(instance) {
-    return this.hooks.callHook(DevToolsContextHookKeys.GET_COMPONENT_NAME, { instance });
+    return this.hooks.callHook(DevToolsContextHookKeys.GET_COMPONENT_NAME, {
+      instance,
+    });
   }
   highlightElement(instance) {
     const uid = instance.__VUE_DEVTOOLS_NEXT_UID__;
-    return this.hooks.callHook(DevToolsContextHookKeys.COMPONENT_HIGHLIGHT, { uid });
+    return this.hooks.callHook(DevToolsContextHookKeys.COMPONENT_HIGHLIGHT, {
+      uid,
+    });
   }
   unhighlightElement() {
     return this.hooks.callHook(DevToolsContextHookKeys.COMPONENT_UNHIGHLIGHT);
@@ -1526,13 +1866,14 @@ var tokenMap = {
   [UNDEFINED]: "undefined",
   [NAN]: "NaN",
   [INFINITY]: "Infinity",
-  [NEGATIVE_INFINITY]: "-Infinity"
+  [NEGATIVE_INFINITY]: "-Infinity",
 };
 var reversedTokenMap = Object.entries(tokenMap).reduce((acc, [key, value]) => {
   acc[value] = key;
   return acc;
 }, {});
-target.__VUE_DEVTOOLS_KIT__REGISTERED_PLUGIN_APPS__ ??= /* @__PURE__ */ new Set();
+target.__VUE_DEVTOOLS_KIT__REGISTERED_PLUGIN_APPS__ ??=
+  /* @__PURE__ */ new Set();
 function setupDevToolsPlugin(pluginDescriptor, setupFn) {
   return hook.setupDevToolsPlugin(pluginDescriptor, setupFn);
 }
@@ -1542,18 +1883,20 @@ function callDevToolsPluginSetupFn(plugin, app) {
   const api = new DevToolsPluginAPI({
     plugin: {
       setupFn,
-      descriptor: pluginDescriptor
+      descriptor: pluginDescriptor,
     },
-    ctx: devtoolsContext
+    ctx: devtoolsContext,
   });
-  if (pluginDescriptor.packageName === "vuex") api.on.editInspectorState((payload) => {
-    api.sendInspectorState(payload.inspectorId);
-  });
+  if (pluginDescriptor.packageName === "vuex")
+    api.on.editInspectorState((payload) => {
+      api.sendInspectorState(payload.inspectorId);
+    });
   setupFn(api);
 }
 function registerDevToolsPlugin(app, options) {
   if (target.__VUE_DEVTOOLS_KIT__REGISTERED_PLUGIN_APPS__.has(app)) return;
-  if (devtoolsState.highPerfModeEnabled && !options?.inspectingComponent) return;
+  if (devtoolsState.highPerfModeEnabled && !options?.inspectingComponent)
+    return;
   target.__VUE_DEVTOOLS_KIT__REGISTERED_PLUGIN_APPS__.add(app);
   devtoolsPluginBuffer.forEach((plugin) => {
     callDevToolsPluginSetupFn(plugin, app);
@@ -1563,18 +1906,24 @@ var ROUTER_KEY = "__VUE_DEVTOOLS_ROUTER__";
 var ROUTER_INFO_KEY = "__VUE_DEVTOOLS_ROUTER_INFO__";
 target[ROUTER_INFO_KEY] ??= {
   currentRoute: null,
-  routes: []
+  routes: [],
 };
 target[ROUTER_KEY] ??= {};
-var devtoolsRouterInfo = new Proxy(target[ROUTER_INFO_KEY], { get(target$1, property) {
-  return target[ROUTER_INFO_KEY][property];
-} });
-var devtoolsRouter = new Proxy(target[ROUTER_KEY], { get(target$2, property) {
-  if (property === "value") return target[ROUTER_KEY];
-} });
+var devtoolsRouterInfo = new Proxy(target[ROUTER_INFO_KEY], {
+  get(target$1, property) {
+    return target[ROUTER_INFO_KEY][property];
+  },
+});
+var devtoolsRouter = new Proxy(target[ROUTER_KEY], {
+  get(target$2, property) {
+    if (property === "value") return target[ROUTER_KEY];
+  },
+});
 function getRoutes(router) {
   const routesMap = /* @__PURE__ */ new Map();
-  return (router?.getRoutes() || []).filter((i) => !routesMap.has(i.path) && routesMap.set(i.path, 1));
+  return (router?.getRoutes() || []).filter(
+    (i) => !routesMap.has(i.path) && routesMap.set(i.path, 1),
+  );
 }
 function filterRoutes(routes) {
   return routes.map((item) => {
@@ -1584,7 +1933,7 @@ function filterRoutes(routes) {
       path,
       name,
       children,
-      meta
+      meta,
     };
   });
 }
@@ -1599,7 +1948,7 @@ function filterCurrentRoute(route) {
       name,
       params,
       query,
-      matched: filterRoutes(matched)
+      matched: filterRoutes(matched),
     };
   }
   return route;
@@ -1610,22 +1959,26 @@ function normalizeRouterInfo(appRecord, activeAppRecord2) {
     const currentRoute = filterCurrentRoute(router?.currentRoute.value);
     const routes = filterRoutes(getRoutes(router));
     const c = console.warn;
-    console.warn = () => {
-    };
+    console.warn = () => {};
     target[ROUTER_INFO_KEY] = {
       currentRoute: currentRoute ? deepClone(currentRoute) : {},
-      routes: deepClone(routes)
+      routes: deepClone(routes),
     };
     target[ROUTER_KEY] = router;
     console.warn = c;
   }
   init();
-  hook.on.componentUpdated(debounce(() => {
-    if (activeAppRecord2.value?.app !== appRecord.app) return;
-    init();
-    if (devtoolsState.highPerfModeEnabled) return;
-    devtoolsContext.hooks.callHook(DevToolsMessagingHookKeys.ROUTER_INFO_UPDATED, { state: target[ROUTER_INFO_KEY] });
-  }, 200));
+  hook.on.componentUpdated(
+    debounce(() => {
+      if (activeAppRecord2.value?.app !== appRecord.app) return;
+      init();
+      if (devtoolsState.highPerfModeEnabled) return;
+      devtoolsContext.hooks.callHook(
+        DevToolsMessagingHookKeys.ROUTER_INFO_UPDATED,
+        { state: target[ROUTER_INFO_KEY] },
+      );
+    }, 200),
+  );
 }
 function createDevToolsApi(hooks2) {
   return {
@@ -1633,7 +1986,7 @@ function createDevToolsApi(hooks2) {
       const _payload = {
         ...payload,
         app: activeAppRecord.value.app,
-        rootNodes: []
+        rootNodes: [],
       };
       await new Promise((resolve) => {
         hooks2.callHookWith(async (callbacks) => {
@@ -1647,7 +2000,7 @@ function createDevToolsApi(hooks2) {
       const _payload = {
         ...payload,
         app: activeAppRecord.value.app,
-        state: null
+        state: null,
       };
       const ctx = { currentTab: `custom-inspector:${payload.inspectorId}` };
       await new Promise((resolve) => {
@@ -1664,8 +2017,13 @@ function createDevToolsApi(hooks2) {
         ...payload,
         app: activeAppRecord.value.app,
         set: (obj, path = payload.path, value = payload.state.value, cb) => {
-          stateEditor2.set(obj, path, value, cb || stateEditor2.createDefaultSetCallback(payload.state));
-        }
+          stateEditor2.set(
+            obj,
+            path,
+            value,
+            cb || stateEditor2.createDefaultSetCallback(payload.state),
+          );
+        },
       };
       hooks2.callHookWith((callbacks) => {
         callbacks.forEach((cb) => cb(_payload));
@@ -1677,8 +2035,8 @@ function createDevToolsApi(hooks2) {
         inspectorId,
         plugin: {
           descriptor: inspector.descriptor,
-          setupFn: () => ({})
-        }
+          setupFn: () => ({}),
+        },
       });
     },
     inspectComponentInspector() {
@@ -1689,7 +2047,10 @@ function createDevToolsApi(hooks2) {
     },
     getComponentRenderCode(id) {
       const instance = getComponentInstance(activeAppRecord.value, id);
-      if (instance) return !(typeof instance?.type === "function") ? instance.render.toString() : instance.type.toString();
+      if (instance)
+        return !(typeof instance?.type === "function")
+          ? instance.render.toString()
+          : instance.type.toString();
     },
     scrollToComponent(id) {
       return scrollToComponent({ id });
@@ -1697,7 +2058,9 @@ function createDevToolsApi(hooks2) {
     openInEditor,
     getVueInspector: getComponentInspector,
     toggleApp(id, options) {
-      const appRecord = devtoolsAppRecords.value.find((record) => record.id === id);
+      const appRecord = devtoolsAppRecords.value.find(
+        (record) => record.id === id,
+      );
       if (appRecord) {
         setActiveAppRecordId(id);
         setActiveAppRecord(appRecord);
@@ -1719,9 +2082,9 @@ function createDevToolsApi(hooks2) {
     getPluginSettings(pluginId) {
       return {
         options: getPluginSettingsOptions(pluginId),
-        values: getPluginSettings(pluginId)
+        values: getPluginSettings(pluginId),
       };
-    }
+    },
   };
 }
 target.__VUE_DEVTOOLS_ENV__ ??= { vitePluginDetected: false };
@@ -1733,129 +2096,129 @@ target.__VUE_DEVTOOLS_KIT_CONTEXT__ ??= {
       ...devtoolsState,
       activeAppRecordId: activeAppRecord.id,
       activeAppRecord: activeAppRecord.value,
-      appRecords: devtoolsAppRecords.value
+      appRecords: devtoolsAppRecords.value,
     };
   },
-  api: createDevToolsApi(hooks)
+  api: createDevToolsApi(hooks),
 };
 var devtoolsContext = target.__VUE_DEVTOOLS_KIT_CONTEXT__;
-var require_speakingurl$1 = __commonJSMin2(((exports, module) => {
-  (function(root) {
+var require_speakingurl$1 = __commonJSMin2((exports, module) => {
+  (function (root) {
     "use strict";
     var charMap = {
-      "À": "A",
-      "Á": "A",
-      "Â": "A",
-      "Ã": "A",
-      "Ä": "Ae",
-      "Å": "A",
-      "Æ": "AE",
-      "Ç": "C",
-      "È": "E",
-      "É": "E",
-      "Ê": "E",
-      "Ë": "E",
-      "Ì": "I",
-      "Í": "I",
-      "Î": "I",
-      "Ï": "I",
-      "Ð": "D",
-      "Ñ": "N",
-      "Ò": "O",
-      "Ó": "O",
-      "Ô": "O",
-      "Õ": "O",
-      "Ö": "Oe",
-      "Ő": "O",
-      "Ø": "O",
-      "Ù": "U",
-      "Ú": "U",
-      "Û": "U",
-      "Ü": "Ue",
-      "Ű": "U",
-      "Ý": "Y",
-      "Þ": "TH",
-      "ß": "ss",
-      "à": "a",
-      "á": "a",
-      "â": "a",
-      "ã": "a",
-      "ä": "ae",
-      "å": "a",
-      "æ": "ae",
-      "ç": "c",
-      "è": "e",
-      "é": "e",
-      "ê": "e",
-      "ë": "e",
-      "ì": "i",
-      "í": "i",
-      "î": "i",
-      "ï": "i",
-      "ð": "d",
-      "ñ": "n",
-      "ò": "o",
-      "ó": "o",
-      "ô": "o",
-      "õ": "o",
-      "ö": "oe",
-      "ő": "o",
-      "ø": "o",
-      "ù": "u",
-      "ú": "u",
-      "û": "u",
-      "ü": "ue",
-      "ű": "u",
-      "ý": "y",
-      "þ": "th",
-      "ÿ": "y",
-      "ẞ": "SS",
-      "ا": "a",
-      "أ": "a",
-      "إ": "i",
-      "آ": "aa",
-      "ؤ": "u",
-      "ئ": "e",
-      "ء": "a",
-      "ب": "b",
-      "ت": "t",
-      "ث": "th",
-      "ج": "j",
-      "ح": "h",
-      "خ": "kh",
-      "د": "d",
-      "ذ": "th",
-      "ر": "r",
-      "ز": "z",
-      "س": "s",
-      "ش": "sh",
-      "ص": "s",
-      "ض": "dh",
-      "ط": "t",
-      "ظ": "z",
-      "ع": "a",
-      "غ": "gh",
-      "ف": "f",
-      "ق": "q",
-      "ك": "k",
-      "ل": "l",
-      "م": "m",
-      "ن": "n",
-      "ه": "h",
-      "و": "w",
-      "ي": "y",
-      "ى": "a",
-      "ة": "h",
-      "ﻻ": "la",
-      "ﻷ": "laa",
-      "ﻹ": "lai",
-      "ﻵ": "laa",
-      "گ": "g",
-      "چ": "ch",
-      "پ": "p",
-      "ژ": "zh",
-      "ک": "k",
-      "ی": "y",
+      À: "A",
+      Á: "A",
+      Â: "A",
+      Ã: "A",
+      Ä: "Ae",
+      Å: "A",
+      Æ: "AE",
+      Ç: "C",
+      È: "E",
+      É: "E",
+      Ê: "E",
+      Ë: "E",
+      Ì: "I",
+      Í: "I",
+      Î: "I",
+      Ï: "I",
+      Ð: "D",
+      Ñ: "N",
+      Ò: "O",
+      Ó: "O",
+      Ô: "O",
+      Õ: "O",
+      Ö: "Oe",
+      Ő: "O",
+      Ø: "O",
+      Ù: "U",
+      Ú: "U",
+      Û: "U",
+      Ü: "Ue",
+      Ű: "U",
+      Ý: "Y",
+      Þ: "TH",
+      ß: "ss",
+      à: "a",
+      á: "a",
+      â: "a",
+      ã: "a",
+      ä: "ae",
+      å: "a",
+      æ: "ae",
+      ç: "c",
+      è: "e",
+      é: "e",
+      ê: "e",
+      ë: "e",
+      ì: "i",
+      í: "i",
+      î: "i",
+      ï: "i",
+      ð: "d",
+      ñ: "n",
+      ò: "o",
+      ó: "o",
+      ô: "o",
+      õ: "o",
+      ö: "oe",
+      ő: "o",
+      ø: "o",
+      ù: "u",
+      ú: "u",
+      û: "u",
+      ü: "ue",
+      ű: "u",
+      ý: "y",
+      þ: "th",
+      ÿ: "y",
+      ẞ: "SS",
+      ا: "a",
+      أ: "a",
+      إ: "i",
+      آ: "aa",
+      ؤ: "u",
+      ئ: "e",
+      ء: "a",
+      ب: "b",
+      ت: "t",
+      ث: "th",
+      ج: "j",
+      ح: "h",
+      خ: "kh",
+      د: "d",
+      ذ: "th",
+      ر: "r",
+      ز: "z",
+      س: "s",
+      ش: "sh",
+      ص: "s",
+      ض: "dh",
+      ط: "t",
+      ظ: "z",
+      ع: "a",
+      غ: "gh",
+      ف: "f",
+      ق: "q",
+      ك: "k",
+      ل: "l",
+      م: "m",
+      ن: "n",
+      ه: "h",
+      و: "w",
+      ي: "y",
+      ى: "a",
+      ة: "h",
+      ﻻ: "la",
+      ﻷ: "laa",
+      ﻹ: "lai",
+      ﻵ: "laa",
+      گ: "g",
+      چ: "ch",
+      پ: "p",
+      ژ: "zh",
+      ک: "k",
+      ی: "y",
       "َ": "a",
       "ً": "an",
       "ِ": "e",
@@ -1883,54 +2246,54 @@ var require_speakingurl$1 = __commonJSMin2(((exports, module) => {
       "۷": "7",
       "۸": "8",
       "۹": "9",
-      "က": "k",
-      "ခ": "kh",
-      "ဂ": "g",
-      "ဃ": "ga",
-      "င": "ng",
-      "စ": "s",
-      "ဆ": "sa",
-      "ဇ": "z",
-      "စျ": "za",
-      "ည": "ny",
-      "ဋ": "t",
-      "ဌ": "ta",
-      "ဍ": "d",
-      "ဎ": "da",
-      "ဏ": "na",
-      "တ": "t",
-      "ထ": "ta",
-      "ဒ": "d",
-      "ဓ": "da",
-      "န": "n",
-      "ပ": "p",
-      "ဖ": "pa",
-      "ဗ": "b",
-      "ဘ": "ba",
-      "မ": "m",
-      "ယ": "y",
-      "ရ": "ya",
-      "လ": "l",
-      "ဝ": "w",
-      "သ": "th",
-      "ဟ": "h",
-      "ဠ": "la",
-      "အ": "a",
+      က: "k",
+      ခ: "kh",
+      ဂ: "g",
+      ဃ: "ga",
+      င: "ng",
+      စ: "s",
+      ဆ: "sa",
+      ဇ: "z",
+      စျ: "za",
+      ည: "ny",
+      ဋ: "t",
+      ဌ: "ta",
+      ဍ: "d",
+      ဎ: "da",
+      ဏ: "na",
+      တ: "t",
+      ထ: "ta",
+      ဒ: "d",
+      ဓ: "da",
+      န: "n",
+      ပ: "p",
+      ဖ: "pa",
+      ဗ: "b",
+      ဘ: "ba",
+      မ: "m",
+      ယ: "y",
+      ရ: "ya",
+      လ: "l",
+      ဝ: "w",
+      သ: "th",
+      ဟ: "h",
+      ဠ: "la",
+      အ: "a",
       "ြ": "y",
       "ျ": "ya",
       "ွ": "w",
       "ြွ": "yw",
       "ျွ": "ywa",
       "ှ": "h",
-      "ဧ": "e",
+      ဧ: "e",
       "၏": "-e",
-      "ဣ": "i",
-      "ဤ": "-i",
-      "ဉ": "u",
-      "ဦ": "-u",
-      "ဩ": "aw",
-      "သြော": "aw",
-      "ဪ": "aw",
+      ဣ: "i",
+      ဤ: "-i",
+      ဉ: "u",
+      ဦ: "-u",
+      ဩ: "aw",
+      သြော: "aw",
+      ဪ: "aw",
       "၀": "0",
       "၁": "1",
       "၂": "2",
@@ -1944,62 +2307,62 @@ var require_speakingurl$1 = __commonJSMin2(((exports, module) => {
       "္": "",
       "့": "",
       "း": "",
-      "č": "c",
-      "ď": "d",
-      "ě": "e",
-      "ň": "n",
-      "ř": "r",
-      "š": "s",
-      "ť": "t",
-      "ů": "u",
-      "ž": "z",
-      "Č": "C",
-      "Ď": "D",
-      "Ě": "E",
-      "Ň": "N",
-      "Ř": "R",
-      "Š": "S",
-      "Ť": "T",
-      "Ů": "U",
-      "Ž": "Z",
-      "ހ": "h",
-      "ށ": "sh",
-      "ނ": "n",
-      "ރ": "r",
-      "ބ": "b",
-      "ޅ": "lh",
-      "ކ": "k",
-      "އ": "a",
-      "ވ": "v",
-      "މ": "m",
-      "ފ": "f",
-      "ދ": "dh",
-      "ތ": "th",
-      "ލ": "l",
-      "ގ": "g",
-      "ޏ": "gn",
-      "ސ": "s",
-      "ޑ": "d",
-      "ޒ": "z",
-      "ޓ": "t",
-      "ޔ": "y",
-      "ޕ": "p",
-      "ޖ": "j",
-      "ޗ": "ch",
-      "ޘ": "tt",
-      "ޙ": "hh",
-      "ޚ": "kh",
-      "ޛ": "th",
-      "ޜ": "z",
-      "ޝ": "sh",
-      "ޞ": "s",
-      "ޟ": "d",
-      "ޠ": "t",
-      "ޡ": "z",
-      "ޢ": "a",
-      "ޣ": "gh",
-      "ޤ": "q",
-      "ޥ": "w",
+      č: "c",
+      ď: "d",
+      ě: "e",
+      ň: "n",
+      ř: "r",
+      š: "s",
+      ť: "t",
+      ů: "u",
+      ž: "z",
+      Č: "C",
+      Ď: "D",
+      Ě: "E",
+      Ň: "N",
+      Ř: "R",
+      Š: "S",
+      Ť: "T",
+      Ů: "U",
+      Ž: "Z",
+      ހ: "h",
+      ށ: "sh",
+      ނ: "n",
+      ރ: "r",
+      ބ: "b",
+      ޅ: "lh",
+      ކ: "k",
+      އ: "a",
+      ވ: "v",
+      މ: "m",
+      ފ: "f",
+      ދ: "dh",
+      ތ: "th",
+      ލ: "l",
+      ގ: "g",
+      ޏ: "gn",
+      ސ: "s",
+      ޑ: "d",
+      ޒ: "z",
+      ޓ: "t",
+      ޔ: "y",
+      ޕ: "p",
+      ޖ: "j",
+      ޗ: "ch",
+      ޘ: "tt",
+      ޙ: "hh",
+      ޚ: "kh",
+      ޛ: "th",
+      ޜ: "z",
+      ޝ: "sh",
+      ޞ: "s",
+      ޟ: "d",
+      ޠ: "t",
+      ޡ: "z",
+      ޢ: "a",
+      ޣ: "gh",
+      ޤ: "q",
+      ޥ: "w",
       "ަ": "a",
       "ާ": "aa",
       "ި": "i",
@@ -2011,349 +2374,349 @@ var require_speakingurl$1 = __commonJSMin2(((exports, module) => {
       "ޮ": "o",
       "ޯ": "oa",
       "ް": "",
-      "ა": "a",
-      "ბ": "b",
-      "გ": "g",
-      "დ": "d",
-      "ე": "e",
-      "ვ": "v",
-      "ზ": "z",
-      "თ": "t",
-      "ი": "i",
-      "კ": "k",
-      "ლ": "l",
-      "მ": "m",
-      "ნ": "n",
-      "ო": "o",
-      "პ": "p",
-      "ჟ": "zh",
-      "რ": "r",
-      "ს": "s",
-      "ტ": "t",
-      "უ": "u",
-      "ფ": "p",
-      "ქ": "k",
-      "ღ": "gh",
-      "ყ": "q",
-      "შ": "sh",
-      "ჩ": "ch",
-      "ც": "ts",
-      "ძ": "dz",
-      "წ": "ts",
-      "ჭ": "ch",
-      "ხ": "kh",
-      "ჯ": "j",
-      "ჰ": "h",
-      "α": "a",
-      "β": "v",
-      "γ": "g",
-      "δ": "d",
-      "ε": "e",
-      "ζ": "z",
-      "η": "i",
-      "θ": "th",
-      "ι": "i",
-      "κ": "k",
-      "λ": "l",
-      "μ": "m",
-      "ν": "n",
-      "ξ": "ks",
-      "ο": "o",
-      "π": "p",
-      "ρ": "r",
-      "σ": "s",
-      "τ": "t",
-      "υ": "y",
-      "φ": "f",
-      "χ": "x",
-      "ψ": "ps",
-      "ω": "o",
-      "ά": "a",
-      "έ": "e",
-      "ί": "i",
-      "ό": "o",
-      "ύ": "y",
-      "ή": "i",
-      "ώ": "o",
-      "ς": "s",
-      "ϊ": "i",
-      "ΰ": "y",
-      "ϋ": "y",
-      "ΐ": "i",
-      "Α": "A",
-      "Β": "B",
-      "Γ": "G",
-      "Δ": "D",
-      "Ε": "E",
-      "Ζ": "Z",
-      "Η": "I",
-      "Θ": "TH",
-      "Ι": "I",
-      "Κ": "K",
-      "Λ": "L",
-      "Μ": "M",
-      "Ν": "N",
-      "Ξ": "KS",
-      "Ο": "O",
-      "Π": "P",
-      "Ρ": "R",
-      "Σ": "S",
-      "Τ": "T",
-      "Υ": "Y",
-      "Φ": "F",
-      "Χ": "X",
-      "Ψ": "PS",
-      "Ω": "O",
-      "Ά": "A",
-      "Έ": "E",
-      "Ί": "I",
-      "Ό": "O",
-      "Ύ": "Y",
-      "Ή": "I",
-      "Ώ": "O",
-      "Ϊ": "I",
-      "Ϋ": "Y",
-      "ā": "a",
-      "ē": "e",
-      "ģ": "g",
-      "ī": "i",
-      "ķ": "k",
-      "ļ": "l",
-      "ņ": "n",
-      "ū": "u",
-      "Ā": "A",
-      "Ē": "E",
-      "Ģ": "G",
-      "Ī": "I",
-      "Ķ": "k",
-      "Ļ": "L",
-      "Ņ": "N",
-      "Ū": "U",
-      "Ќ": "Kj",
-      "ќ": "kj",
-      "Љ": "Lj",
-      "љ": "lj",
-      "Њ": "Nj",
-      "њ": "nj",
-      "Тс": "Ts",
-      "тс": "ts",
-      "ą": "a",
-      "ć": "c",
-      "ę": "e",
-      "ł": "l",
-      "ń": "n",
-      "ś": "s",
-      "ź": "z",
-      "ż": "z",
-      "Ą": "A",
-      "Ć": "C",
-      "Ę": "E",
-      "Ł": "L",
-      "Ń": "N",
-      "Ś": "S",
-      "Ź": "Z",
-      "Ż": "Z",
-      "Є": "Ye",
-      "І": "I",
-      "Ї": "Yi",
-      "Ґ": "G",
-      "є": "ye",
-      "і": "i",
-      "ї": "yi",
-      "ґ": "g",
-      "ă": "a",
-      "Ă": "A",
-      "ș": "s",
-      "Ș": "S",
-      "ț": "t",
-      "Ț": "T",
-      "ţ": "t",
-      "Ţ": "T",
-      "а": "a",
-      "б": "b",
-      "в": "v",
-      "г": "g",
-      "д": "d",
-      "е": "e",
-      "ё": "yo",
-      "ж": "zh",
-      "з": "z",
-      "и": "i",
-      "й": "i",
-      "к": "k",
-      "л": "l",
-      "м": "m",
-      "н": "n",
-      "о": "o",
-      "п": "p",
-      "р": "r",
-      "с": "s",
-      "т": "t",
-      "у": "u",
-      "ф": "f",
-      "х": "kh",
-      "ц": "c",
-      "ч": "ch",
-      "ш": "sh",
-      "щ": "sh",
-      "ъ": "",
-      "ы": "y",
-      "ь": "",
-      "э": "e",
-      "ю": "yu",
-      "я": "ya",
-      "А": "A",
-      "Б": "B",
-      "В": "V",
-      "Г": "G",
-      "Д": "D",
-      "Е": "E",
-      "Ё": "Yo",
-      "Ж": "Zh",
-      "З": "Z",
-      "И": "I",
-      "Й": "I",
-      "К": "K",
-      "Л": "L",
-      "М": "M",
-      "Н": "N",
-      "О": "O",
-      "П": "P",
-      "Р": "R",
-      "С": "S",
-      "Т": "T",
-      "У": "U",
-      "Ф": "F",
-      "Х": "Kh",
-      "Ц": "C",
-      "Ч": "Ch",
-      "Ш": "Sh",
-      "Щ": "Sh",
-      "Ъ": "",
-      "Ы": "Y",
-      "Ь": "",
-      "Э": "E",
-      "Ю": "Yu",
-      "Я": "Ya",
-      "ђ": "dj",
-      "ј": "j",
-      "ћ": "c",
-      "џ": "dz",
-      "Ђ": "Dj",
-      "Ј": "j",
-      "Ћ": "C",
-      "Џ": "Dz",
-      "ľ": "l",
-      "ĺ": "l",
-      "ŕ": "r",
-      "Ľ": "L",
-      "Ĺ": "L",
-      "Ŕ": "R",
-      "ş": "s",
-      "Ş": "S",
-      "ı": "i",
-      "İ": "I",
-      "ğ": "g",
-      "Ğ": "G",
-      "ả": "a",
-      "Ả": "A",
-      "ẳ": "a",
-      "Ẳ": "A",
-      "ẩ": "a",
-      "Ẩ": "A",
-      "đ": "d",
-      "Đ": "D",
-      "ẹ": "e",
-      "Ẹ": "E",
-      "ẽ": "e",
-      "Ẽ": "E",
-      "ẻ": "e",
-      "Ẻ": "E",
-      "ế": "e",
-      "Ế": "E",
-      "ề": "e",
-      "Ề": "E",
-      "ệ": "e",
-      "Ệ": "E",
-      "ễ": "e",
-      "Ễ": "E",
-      "ể": "e",
-      "Ể": "E",
-      "ỏ": "o",
-      "ọ": "o",
-      "Ọ": "o",
-      "ố": "o",
-      "Ố": "O",
-      "ồ": "o",
-      "Ồ": "O",
-      "ổ": "o",
-      "Ổ": "O",
-      "ộ": "o",
-      "Ộ": "O",
-      "ỗ": "o",
-      "Ỗ": "O",
-      "ơ": "o",
-      "Ơ": "O",
-      "ớ": "o",
-      "Ớ": "O",
-      "ờ": "o",
-      "Ờ": "O",
-      "ợ": "o",
-      "Ợ": "O",
-      "ỡ": "o",
-      "Ỡ": "O",
-      "Ở": "o",
-      "ở": "o",
-      "ị": "i",
-      "Ị": "I",
-      "ĩ": "i",
-      "Ĩ": "I",
-      "ỉ": "i",
-      "Ỉ": "i",
-      "ủ": "u",
-      "Ủ": "U",
-      "ụ": "u",
-      "Ụ": "U",
-      "ũ": "u",
-      "Ũ": "U",
-      "ư": "u",
-      "Ư": "U",
-      "ứ": "u",
-      "Ứ": "U",
-      "ừ": "u",
-      "Ừ": "U",
-      "ự": "u",
-      "Ự": "U",
-      "ữ": "u",
-      "Ữ": "U",
-      "ử": "u",
-      "Ử": "ư",
-      "ỷ": "y",
-      "Ỷ": "y",
-      "ỳ": "y",
-      "Ỳ": "Y",
-      "ỵ": "y",
-      "Ỵ": "Y",
-      "ỹ": "y",
-      "Ỹ": "Y",
-      "ạ": "a",
-      "Ạ": "A",
-      "ấ": "a",
-      "Ấ": "A",
-      "ầ": "a",
-      "Ầ": "A",
-      "ậ": "a",
-      "Ậ": "A",
-      "ẫ": "a",
-      "Ẫ": "A",
-      "ắ": "a",
-      "Ắ": "A",
-      "ằ": "a",
-      "Ằ": "A",
-      "ặ": "a",
-      "Ặ": "A",
-      "ẵ": "a",
-      "Ẵ": "A",
+      ა: "a",
+      ბ: "b",
+      გ: "g",
+      დ: "d",
+      ე: "e",
+      ვ: "v",
+      ზ: "z",
+      თ: "t",
+      ი: "i",
+      კ: "k",
+      ლ: "l",
+      მ: "m",
+      ნ: "n",
+      ო: "o",
+      პ: "p",
+      ჟ: "zh",
+      რ: "r",
+      ს: "s",
+      ტ: "t",
+      უ: "u",
+      ფ: "p",
+      ქ: "k",
+      ღ: "gh",
+      ყ: "q",
+      შ: "sh",
+      ჩ: "ch",
+      ც: "ts",
+      ძ: "dz",
+      წ: "ts",
+      ჭ: "ch",
+      ხ: "kh",
+      ჯ: "j",
+      ჰ: "h",
+      α: "a",
+      β: "v",
+      γ: "g",
+      δ: "d",
+      ε: "e",
+      ζ: "z",
+      η: "i",
+      θ: "th",
+      ι: "i",
+      κ: "k",
+      λ: "l",
+      μ: "m",
+      ν: "n",
+      ξ: "ks",
+      ο: "o",
+      π: "p",
+      ρ: "r",
+      σ: "s",
+      τ: "t",
+      υ: "y",
+      φ: "f",
+      χ: "x",
+      ψ: "ps",
+      ω: "o",
+      ά: "a",
+      έ: "e",
+      ί: "i",
+      ό: "o",
+      ύ: "y",
+      ή: "i",
+      ώ: "o",
+      ς: "s",
+      ϊ: "i",
+      ΰ: "y",
+      ϋ: "y",
+      ΐ: "i",
+      Α: "A",
+      Β: "B",
+      Γ: "G",
+      Δ: "D",
+      Ε: "E",
+      Ζ: "Z",
+      Η: "I",
+      Θ: "TH",
+      Ι: "I",
+      Κ: "K",
+      Λ: "L",
+      Μ: "M",
+      Ν: "N",
+      Ξ: "KS",
+      Ο: "O",
+      Π: "P",
+      Ρ: "R",
+      Σ: "S",
+      Τ: "T",
+      Υ: "Y",
+      Φ: "F",
+      Χ: "X",
+      Ψ: "PS",
+      Ω: "O",
+      Ά: "A",
+      Έ: "E",
+      Ί: "I",
+      Ό: "O",
+      Ύ: "Y",
+      Ή: "I",
+      Ώ: "O",
+      Ϊ: "I",
+      Ϋ: "Y",
+      ā: "a",
+      ē: "e",
+      ģ: "g",
+      ī: "i",
+      ķ: "k",
+      ļ: "l",
+      ņ: "n",
+      ū: "u",
+      Ā: "A",
+      Ē: "E",
+      Ģ: "G",
+      Ī: "I",
+      Ķ: "k",
+      Ļ: "L",
+      Ņ: "N",
+      Ū: "U",
+      Ќ: "Kj",
+      ќ: "kj",
+      Љ: "Lj",
+      љ: "lj",
+      Њ: "Nj",
+      њ: "nj",
+      Тс: "Ts",
+      тс: "ts",
+      ą: "a",
+      ć: "c",
+      ę: "e",
+      ł: "l",
+      ń: "n",
+      ś: "s",
+      ź: "z",
+      ż: "z",
+      Ą: "A",
+      Ć: "C",
+      Ę: "E",
+      Ł: "L",
+      Ń: "N",
+      Ś: "S",
+      Ź: "Z",
+      Ż: "Z",
+      Є: "Ye",
+      І: "I",
+      Ї: "Yi",
+      Ґ: "G",
+      є: "ye",
+      і: "i",
+      ї: "yi",
+      ґ: "g",
+      ă: "a",
+      Ă: "A",
+      ș: "s",
+      Ș: "S",
+      ț: "t",
+      Ț: "T",
+      ţ: "t",
+      Ţ: "T",
+      а: "a",
+      б: "b",
+      в: "v",
+      г: "g",
+      д: "d",
+      е: "e",
+      ё: "yo",
+      ж: "zh",
+      з: "z",
+      и: "i",
+      й: "i",
+      к: "k",
+      л: "l",
+      м: "m",
+      н: "n",
+      о: "o",
+      п: "p",
+      р: "r",
+      с: "s",
+      т: "t",
+      у: "u",
+      ф: "f",
+      х: "kh",
+      ц: "c",
+      ч: "ch",
+      ш: "sh",
+      щ: "sh",
+      ъ: "",
+      ы: "y",
+      ь: "",
+      э: "e",
+      ю: "yu",
+      я: "ya",
+      А: "A",
+      Б: "B",
+      В: "V",
+      Г: "G",
+      Д: "D",
+      Е: "E",
+      Ё: "Yo",
+      Ж: "Zh",
+      З: "Z",
+      И: "I",
+      Й: "I",
+      К: "K",
+      Л: "L",
+      М: "M",
+      Н: "N",
+      О: "O",
+      П: "P",
+      Р: "R",
+      С: "S",
+      Т: "T",
+      У: "U",
+      Ф: "F",
+      Х: "Kh",
+      Ц: "C",
+      Ч: "Ch",
+      Ш: "Sh",
+      Щ: "Sh",
+      Ъ: "",
+      Ы: "Y",
+      Ь: "",
+      Э: "E",
+      Ю: "Yu",
+      Я: "Ya",
+      ђ: "dj",
+      ј: "j",
+      ћ: "c",
+      џ: "dz",
+      Ђ: "Dj",
+      Ј: "j",
+      Ћ: "C",
+      Џ: "Dz",
+      ľ: "l",
+      ĺ: "l",
+      ŕ: "r",
+      Ľ: "L",
+      Ĺ: "L",
+      Ŕ: "R",
+      ş: "s",
+      Ş: "S",
+      ı: "i",
+      İ: "I",
+      ğ: "g",
+      Ğ: "G",
+      ả: "a",
+      Ả: "A",
+      ẳ: "a",
+      Ẳ: "A",
+      ẩ: "a",
+      Ẩ: "A",
+      đ: "d",
+      Đ: "D",
+      ẹ: "e",
+      Ẹ: "E",
+      ẽ: "e",
+      Ẽ: "E",
+      ẻ: "e",
+      Ẻ: "E",
+      ế: "e",
+      Ế: "E",
+      ề: "e",
+      Ề: "E",
+      ệ: "e",
+      Ệ: "E",
+      ễ: "e",
+      Ễ: "E",
+      ể: "e",
+      Ể: "E",
+      ỏ: "o",
+      ọ: "o",
+      Ọ: "o",
+      ố: "o",
+      Ố: "O",
+      ồ: "o",
+      Ồ: "O",
+      ổ: "o",
+      Ổ: "O",
+      ộ: "o",
+      Ộ: "O",
+      ỗ: "o",
+      Ỗ: "O",
+      ơ: "o",
+      Ơ: "O",
+      ớ: "o",
+      Ớ: "O",
+      ờ: "o",
+      Ờ: "O",
+      ợ: "o",
+      Ợ: "O",
+      ỡ: "o",
+      Ỡ: "O",
+      Ở: "o",
+      ở: "o",
+      ị: "i",
+      Ị: "I",
+      ĩ: "i",
+      Ĩ: "I",
+      ỉ: "i",
+      Ỉ: "i",
+      ủ: "u",
+      Ủ: "U",
+      ụ: "u",
+      Ụ: "U",
+      ũ: "u",
+      Ũ: "U",
+      ư: "u",
+      Ư: "U",
+      ứ: "u",
+      Ứ: "U",
+      ừ: "u",
+      Ừ: "U",
+      ự: "u",
+      Ự: "U",
+      ữ: "u",
+      Ữ: "U",
+      ử: "u",
+      Ử: "ư",
+      ỷ: "y",
+      Ỷ: "y",
+      ỳ: "y",
+      Ỳ: "Y",
+      ỵ: "y",
+      Ỵ: "Y",
+      ỹ: "y",
+      Ỹ: "Y",
+      ạ: "a",
+      Ạ: "A",
+      ấ: "a",
+      Ấ: "A",
+      ầ: "a",
+      Ầ: "A",
+      ậ: "a",
+      Ậ: "A",
+      ẫ: "a",
+      Ẫ: "A",
+      ắ: "a",
+      Ắ: "A",
+      ằ: "a",
+      Ằ: "A",
+      ặ: "a",
+      Ặ: "A",
+      ẵ: "a",
+      Ẵ: "A",
       "⓪": "0",
       "①": "1",
       "②": "2",
@@ -2453,22 +2816,22 @@ var require_speakingurl$1 = __commonJSMin2(((exports, module) => {
       "‘": "'",
       "’": "'",
       "∂": "d",
-      "ƒ": "f",
+      ƒ: "f",
       "™": "(TM)",
       "©": "(C)",
-      "œ": "oe",
-      "Œ": "OE",
+      œ: "oe",
+      Œ: "OE",
       "®": "(R)",
       "†": "+",
       "℠": "(SM)",
       "…": "...",
       "˚": "o",
-      "º": "o",
-      "ª": "a",
+      º: "o",
+      ª: "a",
       "•": "*",
       "၊": ",",
       "။": ".",
-      "$": "USD",
+      $: "USD",
       "€": "EUR",
       "₢": "BRN",
       "₣": "FRF",
@@ -2489,8 +2852,8 @@ var require_speakingurl$1 = __commonJSMin2(((exports, module) => {
       "₵": "GHS",
       "¢": "cent",
       "¥": "CNY",
-      "元": "CNY",
-      "円": "YEN",
+      元: "CNY",
+      円: "YEN",
       "﷼": "IRR",
       "₠": "EWE",
       "฿": "THB",
@@ -2500,14 +2863,14 @@ var require_speakingurl$1 = __commonJSMin2(((exports, module) => {
       "₺": "TRY",
       "؋": "AFN",
       "₼": "AZN",
-      "лв": "BGN",
+      лв: "BGN",
       "៛": "KHR",
       "₡": "CRC",
       "₸": "KZT",
-      "ден": "MKD",
-      "zł": "PLN",
+      ден: "MKD",
+      zł: "PLN",
       "₽": "RUB",
-      "₾": "GEL"
+      "₾": "GEL",
     };
     var lookAheadCharArray = ["်", "ް"];
     var diatricMap = {
@@ -2526,189 +2889,189 @@ var require_speakingurl$1 = __commonJSMin2(((exports, module) => {
       "ေါ": "aw",
       "ေါ်": "aw",
       "်": "်",
-      "က်": "et",
+      က်: "et",
       "ိုက်": "aik",
       "ောက်": "auk",
-      "င်": "in",
+      င်: "in",
       "ိုင်": "aing",
       "ောင်": "aung",
-      "စ်": "it",
-      "ည်": "i",
-      "တ်": "at",
+      စ်: "it",
+      ည်: "i",
+      တ်: "at",
       "ိတ်": "eik",
       "ုတ်": "ok",
       "ွတ်": "ut",
       "ေတ်": "it",
-      "ဒ်": "d",
+      ဒ်: "d",
       "ိုဒ်": "ok",
       "ုဒ်": "ait",
-      "န်": "an",
+      န်: "an",
       "ာန်": "an",
       "ိန်": "ein",
       "ုန်": "on",
       "ွန်": "un",
-      "ပ်": "at",
+      ပ်: "at",
       "ိပ်": "eik",
       "ုပ်": "ok",
       "ွပ်": "ut",
-      "န်ုပ်": "nub",
-      "မ်": "an",
+      န်ုပ်: "nub",
+      မ်: "an",
       "ိမ်": "ein",
       "ုမ်": "on",
       "ွမ်": "un",
-      "ယ်": "e",
+      ယ်: "e",
       "ိုလ်": "ol",
-      "ဉ်": "in",
+      ဉ်: "in",
       "ံ": "an",
       "ိံ": "ein",
       "ုံ": "on",
       "ައް": "ah",
-      "ަށް": "ah"
+      "ަށް": "ah",
     };
     var langCharMap = {
-      "en": {},
-      "az": {
-        "ç": "c",
-        "ə": "e",
-        "ğ": "g",
-        "ı": "i",
-        "ö": "o",
-        "ş": "s",
-        "ü": "u",
-        "Ç": "C",
-        "Ə": "E",
-        "Ğ": "G",
-        "İ": "I",
-        "Ö": "O",
-        "Ş": "S",
-        "Ü": "U"
+      en: {},
+      az: {
+        ç: "c",
+        ə: "e",
+        ğ: "g",
+        ı: "i",
+        ö: "o",
+        ş: "s",
+        ü: "u",
+        Ç: "C",
+        Ə: "E",
+        Ğ: "G",
+        İ: "I",
+        Ö: "O",
+        Ş: "S",
+        Ü: "U",
       },
-      "cs": {
-        "č": "c",
-        "ď": "d",
-        "ě": "e",
-        "ň": "n",
-        "ř": "r",
-        "š": "s",
-        "ť": "t",
-        "ů": "u",
-        "ž": "z",
-        "Č": "C",
-        "Ď": "D",
-        "Ě": "E",
-        "Ň": "N",
-        "Ř": "R",
-        "Š": "S",
-        "Ť": "T",
-        "Ů": "U",
-        "Ž": "Z"
+      cs: {
+        č: "c",
+        ď: "d",
+        ě: "e",
+        ň: "n",
+        ř: "r",
+        š: "s",
+        ť: "t",
+        ů: "u",
+        ž: "z",
+        Č: "C",
+        Ď: "D",
+        Ě: "E",
+        Ň: "N",
+        Ř: "R",
+        Š: "S",
+        Ť: "T",
+        Ů: "U",
+        Ž: "Z",
       },
-      "fi": {
-        "ä": "a",
-        "Ä": "A",
-        "ö": "o",
-        "Ö": "O"
+      fi: {
+        ä: "a",
+        Ä: "A",
+        ö: "o",
+        Ö: "O",
       },
-      "hu": {
-        "ä": "a",
-        "Ä": "A",
-        "ö": "o",
-        "Ö": "O",
-        "ü": "u",
-        "Ü": "U",
-        "ű": "u",
-        "Ű": "U"
+      hu: {
+        ä: "a",
+        Ä: "A",
+        ö: "o",
+        Ö: "O",
+        ü: "u",
+        Ü: "U",
+        ű: "u",
+        Ű: "U",
       },
-      "lt": {
-        "ą": "a",
-        "č": "c",
-        "ę": "e",
-        "ė": "e",
-        "į": "i",
-        "š": "s",
-        "ų": "u",
-        "ū": "u",
-        "ž": "z",
-        "Ą": "A",
-        "Č": "C",
-        "Ę": "E",
-        "Ė": "E",
-        "Į": "I",
-        "Š": "S",
-        "Ų": "U",
-        "Ū": "U"
+      lt: {
+        ą: "a",
+        č: "c",
+        ę: "e",
+        ė: "e",
+        į: "i",
+        š: "s",
+        ų: "u",
+        ū: "u",
+        ž: "z",
+        Ą: "A",
+        Č: "C",
+        Ę: "E",
+        Ė: "E",
+        Į: "I",
+        Š: "S",
+        Ų: "U",
+        Ū: "U",
       },
-      "lv": {
-        "ā": "a",
-        "č": "c",
-        "ē": "e",
-        "ģ": "g",
-        "ī": "i",
-        "ķ": "k",
-        "ļ": "l",
-        "ņ": "n",
-        "š": "s",
-        "ū": "u",
-        "ž": "z",
-        "Ā": "A",
-        "Č": "C",
-        "Ē": "E",
-        "Ģ": "G",
-        "Ī": "i",
-        "Ķ": "k",
-        "Ļ": "L",
-        "Ņ": "N",
-        "Š": "S",
-        "Ū": "u",
-        "Ž": "Z"
+      lv: {
+        ā: "a",
+        č: "c",
+        ē: "e",
+        ģ: "g",
+        ī: "i",
+        ķ: "k",
+        ļ: "l",
+        ņ: "n",
+        š: "s",
+        ū: "u",
+        ž: "z",
+        Ā: "A",
+        Č: "C",
+        Ē: "E",
+        Ģ: "G",
+        Ī: "i",
+        Ķ: "k",
+        Ļ: "L",
+        Ņ: "N",
+        Š: "S",
+        Ū: "u",
+        Ž: "Z",
       },
-      "pl": {
-        "ą": "a",
-        "ć": "c",
-        "ę": "e",
-        "ł": "l",
-        "ń": "n",
-        "ó": "o",
-        "ś": "s",
-        "ź": "z",
-        "ż": "z",
-        "Ą": "A",
-        "Ć": "C",
-        "Ę": "e",
-        "Ł": "L",
-        "Ń": "N",
-        "Ó": "O",
-        "Ś": "S",
-        "Ź": "Z",
-        "Ż": "Z"
+      pl: {
+        ą: "a",
+        ć: "c",
+        ę: "e",
+        ł: "l",
+        ń: "n",
+        ó: "o",
+        ś: "s",
+        ź: "z",
+        ż: "z",
+        Ą: "A",
+        Ć: "C",
+        Ę: "e",
+        Ł: "L",
+        Ń: "N",
+        Ó: "O",
+        Ś: "S",
+        Ź: "Z",
+        Ż: "Z",
       },
-      "sv": {
-        "ä": "a",
-        "Ä": "A",
-        "ö": "o",
-        "Ö": "O"
+      sv: {
+        ä: "a",
+        Ä: "A",
+        ö: "o",
+        Ö: "O",
       },
-      "sk": {
-        "ä": "a",
-        "Ä": "A"
+      sk: {
+        ä: "a",
+        Ä: "A",
       },
-      "sr": {
-        "љ": "lj",
-        "њ": "nj",
-        "Љ": "Lj",
-        "Њ": "Nj",
-        "đ": "dj",
-        "Đ": "Dj"
+      sr: {
+        љ: "lj",
+        њ: "nj",
+        Љ: "Lj",
+        Њ: "Nj",
+        đ: "dj",
+        Đ: "Dj",
       },
-      "tr": {
-        "Ü": "U",
-        "Ö": "O",
-        "ü": "u",
-        "ö": "o"
-      }
+      tr: {
+        Ü: "U",
+        Ö: "O",
+        ü: "u",
+        ö: "o",
+      },
     };
     var symbolMap = {
-      "ar": {
+      ar: {
         "∆": "delta",
         "∞": "la-nihaya",
         "♥": "hob",
@@ -2717,10 +3080,10 @@ var require_speakingurl$1 = __commonJSMin2(((exports, module) => {
         "<": "aqal-men",
         ">": "akbar-men",
         "∑": "majmou",
-        "¤": "omla"
+        "¤": "omla",
       },
-      "az": {},
-      "ca": {
+      az: {},
+      ca: {
         "∆": "delta",
         "∞": "infinit",
         "♥": "amor",
@@ -2729,9 +3092,9 @@ var require_speakingurl$1 = __commonJSMin2(((exports, module) => {
         "<": "menys que",
         ">": "mes que",
         "∑": "suma dels",
-        "¤": "moneda"
+        "¤": "moneda",
       },
-      "cs": {
+      cs: {
         "∆": "delta",
         "∞": "nekonecno",
         "♥": "laska",
@@ -2740,9 +3103,9 @@ var require_speakingurl$1 = __commonJSMin2(((exports, module) => {
         "<": "mensi nez",
         ">": "vetsi nez",
         "∑": "soucet",
-        "¤": "mena"
+        "¤": "mena",
       },
-      "de": {
+      de: {
         "∆": "delta",
         "∞": "unendlich",
         "♥": "Liebe",
@@ -2751,9 +3114,9 @@ var require_speakingurl$1 = __commonJSMin2(((exports, module) => {
         "<": "kleiner als",
         ">": "groesser als",
         "∑": "Summe von",
-        "¤": "Waehrung"
+        "¤": "Waehrung",
       },
-      "dv": {
+      dv: {
         "∆": "delta",
         "∞": "kolunulaa",
         "♥": "loabi",
@@ -2762,9 +3125,9 @@ var require_speakingurl$1 = __commonJSMin2(((exports, module) => {
         "<": "ah vure kuda",
         ">": "ah vure bodu",
         "∑": "jumula",
-        "¤": "faisaa"
+        "¤": "faisaa",
       },
-      "en": {
+      en: {
         "∆": "delta",
         "∞": "infinity",
         "♥": "love",
@@ -2773,9 +3136,9 @@ var require_speakingurl$1 = __commonJSMin2(((exports, module) => {
         "<": "less than",
         ">": "greater than",
         "∑": "sum",
-        "¤": "currency"
+        "¤": "currency",
       },
-      "es": {
+      es: {
         "∆": "delta",
         "∞": "infinito",
         "♥": "amor",
@@ -2784,9 +3147,9 @@ var require_speakingurl$1 = __commonJSMin2(((exports, module) => {
         "<": "menos que",
         ">": "mas que",
         "∑": "suma de los",
-        "¤": "moneda"
+        "¤": "moneda",
       },
-      "fa": {
+      fa: {
         "∆": "delta",
         "∞": "bi-nahayat",
         "♥": "eshgh",
@@ -2795,9 +3158,9 @@ var require_speakingurl$1 = __commonJSMin2(((exports, module) => {
         "<": "kamtar-az",
         ">": "bishtar-az",
         "∑": "majmooe",
-        "¤": "vahed"
+        "¤": "vahed",
       },
-      "fi": {
+      fi: {
         "∆": "delta",
         "∞": "aarettomyys",
         "♥": "rakkaus",
@@ -2806,9 +3169,9 @@ var require_speakingurl$1 = __commonJSMin2(((exports, module) => {
         "<": "pienempi kuin",
         ">": "suurempi kuin",
         "∑": "summa",
-        "¤": "valuutta"
+        "¤": "valuutta",
       },
-      "fr": {
+      fr: {
         "∆": "delta",
         "∞": "infiniment",
         "♥": "Amour",
@@ -2817,9 +3180,9 @@ var require_speakingurl$1 = __commonJSMin2(((exports, module) => {
         "<": "moins que",
         ">": "superieure a",
         "∑": "somme des",
-        "¤": "monnaie"
+        "¤": "monnaie",
       },
-      "ge": {
+      ge: {
         "∆": "delta",
         "∞": "usasruloba",
         "♥": "siqvaruli",
@@ -2828,10 +3191,10 @@ var require_speakingurl$1 = __commonJSMin2(((exports, module) => {
         "<": "naklebi",
         ">": "meti",
         "∑": "jami",
-        "¤": "valuta"
+        "¤": "valuta",
       },
-      "gr": {},
-      "hu": {
+      gr: {},
+      hu: {
         "∆": "delta",
         "∞": "vegtelen",
         "♥": "szerelem",
@@ -2840,9 +3203,9 @@ var require_speakingurl$1 = __commonJSMin2(((exports, module) => {
         "<": "kisebb mint",
         ">": "nagyobb mint",
         "∑": "szumma",
-        "¤": "penznem"
+        "¤": "penznem",
       },
-      "it": {
+      it: {
         "∆": "delta",
         "∞": "infinito",
         "♥": "amore",
@@ -2851,9 +3214,9 @@ var require_speakingurl$1 = __commonJSMin2(((exports, module) => {
         "<": "minore di",
         ">": "maggiore di",
         "∑": "somma",
-        "¤": "moneta"
+        "¤": "moneta",
       },
-      "lt": {
+      lt: {
         "∆": "delta",
         "∞": "begalybe",
         "♥": "meile",
@@ -2862,9 +3225,9 @@ var require_speakingurl$1 = __commonJSMin2(((exports, module) => {
         "<": "maziau nei",
         ">": "daugiau nei",
         "∑": "suma",
-        "¤": "valiuta"
+        "¤": "valiuta",
       },
-      "lv": {
+      lv: {
         "∆": "delta",
         "∞": "bezgaliba",
         "♥": "milestiba",
@@ -2873,9 +3236,9 @@ var require_speakingurl$1 = __commonJSMin2(((exports, module) => {
         "<": "mazak neka",
         ">": "lielaks neka",
         "∑": "summa",
-        "¤": "valuta"
+        "¤": "valuta",
       },
-      "my": {
+      my: {
         "∆": "kwahkhyaet",
         "∞": "asaonasme",
         "♥": "akhyait",
@@ -2884,10 +3247,10 @@ var require_speakingurl$1 = __commonJSMin2(((exports, module) => {
         "<": "ngethaw",
         ">": "kyithaw",
         "∑": "paungld",
-        "¤": "ngwekye"
+        "¤": "ngwekye",
       },
-      "mk": {},
-      "nl": {
+      mk: {},
+      nl: {
         "∆": "delta",
         "∞": "oneindig",
         "♥": "liefde",
@@ -2896,9 +3259,9 @@ var require_speakingurl$1 = __commonJSMin2(((exports, module) => {
         "<": "kleiner dan",
         ">": "groter dan",
         "∑": "som",
-        "¤": "valuta"
+        "¤": "valuta",
       },
-      "pl": {
+      pl: {
         "∆": "delta",
         "∞": "nieskonczonosc",
         "♥": "milosc",
@@ -2907,9 +3270,9 @@ var require_speakingurl$1 = __commonJSMin2(((exports, module) => {
         "<": "mniejsze niz",
         ">": "wieksze niz",
         "∑": "suma",
-        "¤": "waluta"
+        "¤": "waluta",
       },
-      "pt": {
+      pt: {
         "∆": "delta",
         "∞": "infinito",
         "♥": "amor",
@@ -2918,9 +3281,9 @@ var require_speakingurl$1 = __commonJSMin2(((exports, module) => {
         "<": "menor que",
         ">": "maior que",
         "∑": "soma",
-        "¤": "moeda"
+        "¤": "moeda",
       },
-      "ro": {
+      ro: {
         "∆": "delta",
         "∞": "infinit",
         "♥": "dragoste",
@@ -2929,9 +3292,9 @@ var require_speakingurl$1 = __commonJSMin2(((exports, module) => {
         "<": "mai mic ca",
         ">": "mai mare ca",
         "∑": "suma",
-        "¤": "valuta"
+        "¤": "valuta",
       },
-      "ru": {
+      ru: {
         "∆": "delta",
         "∞": "beskonechno",
         "♥": "lubov",
@@ -2940,9 +3303,9 @@ var require_speakingurl$1 = __commonJSMin2(((exports, module) => {
         "<": "menshe",
         ">": "bolshe",
         "∑": "summa",
-        "¤": "valjuta"
+        "¤": "valjuta",
       },
-      "sk": {
+      sk: {
         "∆": "delta",
         "∞": "nekonecno",
         "♥": "laska",
@@ -2951,10 +3314,10 @@ var require_speakingurl$1 = __commonJSMin2(((exports, module) => {
         "<": "menej ako",
         ">": "viac ako",
         "∑": "sucet",
-        "¤": "mena"
+        "¤": "mena",
       },
-      "sr": {},
-      "tr": {
+      sr: {},
+      tr: {
         "∆": "delta",
         "∞": "sonsuzluk",
         "♥": "ask",
@@ -2963,9 +3326,9 @@ var require_speakingurl$1 = __commonJSMin2(((exports, module) => {
         "<": "kucuktur",
         ">": "buyuktur",
         "∑": "toplam",
-        "¤": "para birimi"
+        "¤": "para birimi",
       },
-      "uk": {
+      uk: {
         "∆": "delta",
         "∞": "bezkinechnist",
         "♥": "lubov",
@@ -2974,9 +3337,9 @@ var require_speakingurl$1 = __commonJSMin2(((exports, module) => {
         "<": "menshe",
         ">": "bilshe",
         "∑": "suma",
-        "¤": "valjuta"
+        "¤": "valjuta",
       },
-      "vn": {
+      vn: {
         "∆": "delta",
         "∞": "vo cuc",
         "♥": "yeu",
@@ -2985,41 +3348,14 @@ var require_speakingurl$1 = __commonJSMin2(((exports, module) => {
         "<": "nho hon",
         ">": "lon hon",
         "∑": "tong",
-        "¤": "tien te"
-      }
+        "¤": "tien te",
+      },
     };
-    var uricChars = [
-      ";",
-      "?",
-      ":",
-      "@",
-      "&",
-      "=",
-      "+",
-      "$",
-      ",",
-      "/"
-    ].join("");
-    var uricNoSlashChars = [
-      ";",
-      "?",
-      ":",
-      "@",
-      "&",
-      "=",
-      "+",
-      "$",
-      ","
-    ].join("");
-    var markChars = [
-      ".",
-      "!",
-      "~",
-      "*",
-      "'",
-      "(",
-      ")"
-    ].join("");
+    var uricChars = [";", "?", ":", "@", "&", "=", "+", "$", ",", "/"].join("");
+    var uricNoSlashChars = [";", "?", ":", "@", "&", "=", "+", "$", ","].join(
+      "",
+    );
+    var markChars = [".", "!", "~", "*", "'", "(", ")"].join("");
     var getSlug = function getSlug2(input, opts) {
       var separator = "-";
       var result = "";
@@ -3047,30 +3383,54 @@ var require_speakingurl$1 = __commonJSMin2(((exports, module) => {
       langChar = langCharMap.en;
       if (typeof opts === "object") {
         maintainCase = opts.maintainCase || false;
-        customReplacements = opts.custom && typeof opts.custom === "object" ? opts.custom : customReplacements;
-        truncate = +opts.truncate > 1 && opts.truncate || false;
+        customReplacements =
+          opts.custom && typeof opts.custom === "object"
+            ? opts.custom
+            : customReplacements;
+        truncate = (+opts.truncate > 1 && opts.truncate) || false;
         uricFlag = opts.uric || false;
         uricNoSlashFlag = opts.uricNoSlash || false;
         markFlag = opts.mark || false;
-        convertSymbols = opts.symbols === false || opts.lang === false ? false : true;
+        convertSymbols =
+          opts.symbols === false || opts.lang === false ? false : true;
         separator = opts.separator || separator;
         if (uricFlag) allowedChars += uricChars;
         if (uricNoSlashFlag) allowedChars += uricNoSlashChars;
         if (markFlag) allowedChars += markChars;
-        symbol = opts.lang && symbolMap[opts.lang] && convertSymbols ? symbolMap[opts.lang] : convertSymbols ? symbolMap.en : {};
-        langChar = opts.lang && langCharMap[opts.lang] ? langCharMap[opts.lang] : opts.lang === false || opts.lang === true ? {} : langCharMap.en;
-        if (opts.titleCase && typeof opts.titleCase.length === "number" && Array.prototype.toString.call(opts.titleCase)) {
-          opts.titleCase.forEach(function(v) {
+        symbol =
+          opts.lang && symbolMap[opts.lang] && convertSymbols
+            ? symbolMap[opts.lang]
+            : convertSymbols
+              ? symbolMap.en
+              : {};
+        langChar =
+          opts.lang && langCharMap[opts.lang]
+            ? langCharMap[opts.lang]
+            : opts.lang === false || opts.lang === true
+              ? {}
+              : langCharMap.en;
+        if (
+          opts.titleCase &&
+          typeof opts.titleCase.length === "number" &&
+          Array.prototype.toString.call(opts.titleCase)
+        ) {
+          opts.titleCase.forEach(function (v) {
             customReplacements[v + ""] = v + "";
           });
           titleCase = true;
         } else titleCase = !!opts.titleCase;
-        if (opts.custom && typeof opts.custom.length === "number" && Array.prototype.toString.call(opts.custom)) opts.custom.forEach(function(v) {
-          customReplacements[v + ""] = v + "";
-        });
-        Object.keys(customReplacements).forEach(function(v) {
+        if (
+          opts.custom &&
+          typeof opts.custom.length === "number" &&
+          Array.prototype.toString.call(opts.custom)
+        )
+          opts.custom.forEach(function (v) {
+            customReplacements[v + ""] = v + "";
+          });
+        Object.keys(customReplacements).forEach(function (v) {
           var r;
-          if (v.length > 1) r = new RegExp("\\b" + escapeChars(v) + "\\b", "gi");
+          if (v.length > 1)
+            r = new RegExp("\\b" + escapeChars(v) + "\\b", "gi");
           else r = new RegExp(escapeChars(v), "gi");
           input = input.replace(r, customReplacements[v]);
         });
@@ -3083,9 +3443,13 @@ var require_speakingurl$1 = __commonJSMin2(((exports, module) => {
       lastCharWasDiatric = false;
       for (i = 0, l = input.length; i < l; i++) {
         ch = input[i];
-        if (isReplacedCustomChar(ch, customReplacements)) lastCharWasSymbol = false;
+        if (isReplacedCustomChar(ch, customReplacements))
+          lastCharWasSymbol = false;
         else if (langChar[ch]) {
-          ch = lastCharWasSymbol && langChar[ch].match(/[A-Za-z0-9]/) ? " " + langChar[ch] : langChar[ch];
+          ch =
+            lastCharWasSymbol && langChar[ch].match(/[A-Za-z0-9]/)
+              ? " " + langChar[ch]
+              : langChar[ch];
           lastCharWasSymbol = false;
         } else if (ch in charMap) {
           if (i + 1 < l && lookAheadCharArray.indexOf(input[i + 1]) >= 0) {
@@ -3094,7 +3458,11 @@ var require_speakingurl$1 = __commonJSMin2(((exports, module) => {
           } else if (lastCharWasDiatric === true) {
             ch = diatricMap[diatricString] + charMap[ch];
             diatricString = "";
-          } else ch = lastCharWasSymbol && charMap[ch].match(/[A-Za-z0-9]/) ? " " + charMap[ch] : charMap[ch];
+          } else
+            ch =
+              lastCharWasSymbol && charMap[ch].match(/[A-Za-z0-9]/)
+                ? " " + charMap[ch]
+                : charMap[ch];
           lastCharWasSymbol = false;
           lastCharWasDiatric = false;
         } else if (ch in diatricMap) {
@@ -3102,25 +3470,51 @@ var require_speakingurl$1 = __commonJSMin2(((exports, module) => {
           ch = "";
           if (i === l - 1) ch = diatricMap[diatricString];
           lastCharWasDiatric = true;
-        } else if (symbol[ch] && !(uricFlag && uricChars.indexOf(ch) !== -1) && !(uricNoSlashFlag && uricNoSlashChars.indexOf(ch) !== -1)) {
-          ch = lastCharWasSymbol || result.substr(-1).match(/[A-Za-z0-9]/) ? separator + symbol[ch] : symbol[ch];
-          ch += input[i + 1] !== void 0 && input[i + 1].match(/[A-Za-z0-9]/) ? separator : "";
+        } else if (
+          symbol[ch] &&
+          !(uricFlag && uricChars.indexOf(ch) !== -1) &&
+          !(uricNoSlashFlag && uricNoSlashChars.indexOf(ch) !== -1)
+        ) {
+          ch =
+            lastCharWasSymbol || result.substr(-1).match(/[A-Za-z0-9]/)
+              ? separator + symbol[ch]
+              : symbol[ch];
+          ch +=
+            input[i + 1] !== void 0 && input[i + 1].match(/[A-Za-z0-9]/)
+              ? separator
+              : "";
           lastCharWasSymbol = true;
         } else {
           if (lastCharWasDiatric === true) {
             ch = diatricMap[diatricString] + ch;
             diatricString = "";
             lastCharWasDiatric = false;
-          } else if (lastCharWasSymbol && (/[A-Za-z0-9]/.test(ch) || result.substr(-1).match(/A-Za-z0-9]/))) ch = " " + ch;
+          } else if (
+            lastCharWasSymbol &&
+            (/[A-Za-z0-9]/.test(ch) || result.substr(-1).match(/A-Za-z0-9]/))
+          )
+            ch = " " + ch;
           lastCharWasSymbol = false;
         }
-        result += ch.replace(new RegExp("[^\\w\\s" + allowedChars + "_-]", "g"), separator);
+        result += ch.replace(
+          new RegExp("[^\\w\\s" + allowedChars + "_-]", "g"),
+          separator,
+        );
       }
-      if (titleCase) result = result.replace(/(\w)(\S*)/g, function(_, i2, r) {
-        var j = i2.toUpperCase() + (r !== null ? r : "");
-        return Object.keys(customReplacements).indexOf(j.toLowerCase()) < 0 ? j : j.toLowerCase();
-      });
-      result = result.replace(/\s+/g, separator).replace(new RegExp("\\" + separator + "+", "g"), separator).replace(new RegExp("(^\\" + separator + "+|\\" + separator + "+$)", "g"), "");
+      if (titleCase)
+        result = result.replace(/(\w)(\S*)/g, function (_, i2, r) {
+          var j = i2.toUpperCase() + (r !== null ? r : "");
+          return Object.keys(customReplacements).indexOf(j.toLowerCase()) < 0
+            ? j
+            : j.toLowerCase();
+        });
+      result = result
+        .replace(/\s+/g, separator)
+        .replace(new RegExp("\\" + separator + "+", "g"), separator)
+        .replace(
+          new RegExp("(^\\" + separator + "+|\\" + separator + "+$)", "g"),
+          "",
+        );
       if (truncate && result.length > truncate) {
         lucky = result.charAt(truncate) === separator;
         result = result.slice(0, truncate);
@@ -3137,32 +3531,38 @@ var require_speakingurl$1 = __commonJSMin2(((exports, module) => {
     var escapeChars = function escapeChars2(input) {
       return input.replace(/[-\\^$*+?.()|[\]{}\/]/g, "\\$&");
     };
-    var isReplacedCustomChar = function(ch, customReplacements) {
-      for (var c in customReplacements) if (customReplacements[c] === ch) return true;
+    var isReplacedCustomChar = function (ch, customReplacements) {
+      for (var c in customReplacements)
+        if (customReplacements[c] === ch) return true;
     };
     if (typeof module !== "undefined" && module.exports) {
       module.exports = getSlug;
       module.exports.createSlug = createSlug;
-    } else if (typeof define !== "undefined" && define.amd) define([], function() {
-      return getSlug;
-    });
-    else try {
-      if (root.getSlug || root.createSlug) throw "speakingurl: globals exists /(getSlug|createSlug)/";
-      else {
-        root.getSlug = getSlug;
-        root.createSlug = createSlug;
-      }
-    } catch (e) {
-    }
+    } else if (typeof define !== "undefined" && define.amd)
+      define([], function () {
+        return getSlug;
+      });
+    else
+      try {
+        if (root.getSlug || root.createSlug)
+          throw "speakingurl: globals exists /(getSlug|createSlug)/";
+        else {
+          root.getSlug = getSlug;
+          root.createSlug = createSlug;
+        }
+      } catch (e) {}
   })(exports);
-}));
-var import_speakingurl = __toESM2(__commonJSMin2(((exports, module) => {
-  module.exports = require_speakingurl$1();
-}))(), 1);
-var appRecordInfo = target.__VUE_DEVTOOLS_NEXT_APP_RECORD_INFO__ ??= {
+});
+var import_speakingurl = __toESM2(
+  __commonJSMin2((exports, module) => {
+    module.exports = require_speakingurl$1();
+  })(),
+  1,
+);
+var appRecordInfo = (target.__VUE_DEVTOOLS_NEXT_APP_RECORD_INFO__ ??= {
   id: 0,
-  appIds: /* @__PURE__ */ new Set()
-};
+  appIds: /* @__PURE__ */ new Set(),
+});
 function onDevToolsClientConnected(fn) {
   return new Promise((resolve) => {
     if (devtoolsState.connected && devtoolsState.clientConnected) {
@@ -3170,24 +3570,31 @@ function onDevToolsClientConnected(fn) {
       resolve();
       return;
     }
-    devtoolsContext.hooks.hook(DevToolsMessagingHookKeys.DEVTOOLS_CONNECTED_UPDATED, ({ state }) => {
-      if (state.connected && state.clientConnected) {
-        fn();
-        resolve();
-      }
-    });
+    devtoolsContext.hooks.hook(
+      DevToolsMessagingHookKeys.DEVTOOLS_CONNECTED_UPDATED,
+      ({ state }) => {
+        if (state.connected && state.clientConnected) {
+          fn();
+          resolve();
+        }
+      },
+    );
   });
 }
 function toggleHighPerfMode(state) {
-  devtoolsState.highPerfModeEnabled = state ?? !devtoolsState.highPerfModeEnabled;
-  if (!state && activeAppRecord.value) registerDevToolsPlugin(activeAppRecord.value.app);
+  devtoolsState.highPerfModeEnabled =
+    state ?? !devtoolsState.highPerfModeEnabled;
+  if (!state && activeAppRecord.value)
+    registerDevToolsPlugin(activeAppRecord.value.app);
 }
 function updateDevToolsClientDetected(params) {
   devtoolsState.devtoolsClientDetected = {
     ...devtoolsState.devtoolsClientDetected,
-    ...params
+    ...params,
   };
-  toggleHighPerfMode(!Object.values(devtoolsState.devtoolsClientDetected).some(Boolean));
+  toggleHighPerfMode(
+    !Object.values(devtoolsState.devtoolsClientDetected).some(Boolean),
+  );
 }
 target.__VUE_DEVTOOLS_UPDATE_CLIENT_DETECTED__ ??= updateDevToolsClientDetected;
 var DoubleIndexedKV = class {
@@ -3237,7 +3644,8 @@ var ClassRegistry = class extends Registry {
   }
   register(value, options) {
     if (typeof options === "object") {
-      if (options.allowProps) this.classToAllowedProps.set(value, options.allowProps);
+      if (options.allowProps)
+        this.classToAllowedProps.set(value, options.allowProps);
       super.register(value, options.identifier);
     } else super.register(value, options);
   }
@@ -3248,7 +3656,8 @@ var ClassRegistry = class extends Registry {
 function valuesOfObj(record) {
   if ("values" in Object) return Object.values(record);
   const values = [];
-  for (const key in record) if (record.hasOwnProperty(key)) values.push(record[key]);
+  for (const key in record)
+    if (record.hasOwnProperty(key)) values.push(record[key]);
   return values;
 }
 function find(record, predicate) {
@@ -3286,7 +3695,8 @@ var CustomTransformerRegistry = class {
     return this.transfomers[name];
   }
 };
-var getType$1 = (payload) => Object.prototype.toString.call(payload).slice(8, -1);
+var getType$1 = (payload) =>
+  Object.prototype.toString.call(payload).slice(8, -1);
 var isUndefined$1 = (payload) => typeof payload === "undefined";
 var isNull$1 = (payload) => payload === null;
 var isPlainObject$2 = (payload) => {
@@ -3295,7 +3705,8 @@ var isPlainObject$2 = (payload) => {
   if (Object.getPrototypeOf(payload) === null) return true;
   return Object.getPrototypeOf(payload) === Object.prototype;
 };
-var isEmptyObject = (payload) => isPlainObject$2(payload) && Object.keys(payload).length === 0;
+var isEmptyObject = (payload) =>
+  isPlainObject$2(payload) && Object.keys(payload).length === 0;
 var isArray$2 = (payload) => Array.isArray(payload);
 var isString = (payload) => typeof payload === "string";
 var isNumber = (payload) => typeof payload === "number" && !isNaN(payload);
@@ -3307,10 +3718,17 @@ var isSymbol = (payload) => getType$1(payload) === "Symbol";
 var isDate = (payload) => payload instanceof Date && !isNaN(payload.valueOf());
 var isError = (payload) => payload instanceof Error;
 var isNaNValue = (payload) => typeof payload === "number" && isNaN(payload);
-var isPrimitive = (payload) => isBoolean(payload) || isNull$1(payload) || isUndefined$1(payload) || isNumber(payload) || isString(payload) || isSymbol(payload);
+var isPrimitive = (payload) =>
+  isBoolean(payload) ||
+  isNull$1(payload) ||
+  isUndefined$1(payload) ||
+  isNumber(payload) ||
+  isString(payload) ||
+  isSymbol(payload);
 var isBigint = (payload) => typeof payload === "bigint";
 var isInfinite = (payload) => payload === Infinity || payload === -Infinity;
-var isTypedArray = (payload) => ArrayBuffer.isView(payload) && !(payload instanceof DataView);
+var isTypedArray = (payload) =>
+  ArrayBuffer.isView(payload) && !(payload instanceof DataView);
 var isURL = (payload) => payload instanceof URL;
 var escapeKey = (key) => key.replace(/\./g, "\\.");
 var stringifyPath = (path) => path.map(String).map(escapeKey).join(".");
@@ -3335,75 +3753,140 @@ var parsePath = (string) => {
   result.push(lastSegment);
   return result;
 };
-function simpleTransformation(isApplicable, annotation, transform, untransform) {
+function simpleTransformation(
+  isApplicable,
+  annotation,
+  transform,
+  untransform,
+) {
   return {
     isApplicable,
     annotation,
     transform,
-    untransform
+    untransform,
   };
 }
 var simpleRules = [
-  simpleTransformation(isUndefined$1, "undefined", () => null, () => void 0),
-  simpleTransformation(isBigint, "bigint", (v) => v.toString(), (v) => {
-    if (typeof BigInt !== "undefined") return BigInt(v);
-    console.error("Please add a BigInt polyfill.");
-    return v;
-  }),
-  simpleTransformation(isDate, "Date", (v) => v.toISOString(), (v) => new Date(v)),
-  simpleTransformation(isError, "Error", (v, superJson) => {
-    const baseError = {
-      name: v.name,
-      message: v.message
-    };
-    superJson.allowedErrorProps.forEach((prop) => {
-      baseError[prop] = v[prop];
-    });
-    return baseError;
-  }, (v, superJson) => {
-    const e = new Error(v.message);
-    e.name = v.name;
-    e.stack = v.stack;
-    superJson.allowedErrorProps.forEach((prop) => {
-      e[prop] = v[prop];
-    });
-    return e;
-  }),
-  simpleTransformation(isRegExp, "regexp", (v) => "" + v, (regex) => {
-    const body = regex.slice(1, regex.lastIndexOf("/"));
-    const flags = regex.slice(regex.lastIndexOf("/") + 1);
-    return new RegExp(body, flags);
-  }),
-  simpleTransformation(isSet, "set", (v) => [...v.values()], (v) => new Set(v)),
-  simpleTransformation(isMap, "map", (v) => [...v.entries()], (v) => new Map(v)),
-  simpleTransformation((v) => isNaNValue(v) || isInfinite(v), "number", (v) => {
-    if (isNaNValue(v)) return "NaN";
-    if (v > 0) return "Infinity";
-    else return "-Infinity";
-  }, Number),
-  simpleTransformation((v) => v === 0 && 1 / v === -Infinity, "number", () => {
-    return "-0";
-  }, Number),
-  simpleTransformation(isURL, "URL", (v) => v.toString(), (v) => new URL(v))
+  simpleTransformation(
+    isUndefined$1,
+    "undefined",
+    () => null,
+    () => void 0,
+  ),
+  simpleTransformation(
+    isBigint,
+    "bigint",
+    (v) => v.toString(),
+    (v) => {
+      if (typeof BigInt !== "undefined") return BigInt(v);
+      console.error("Please add a BigInt polyfill.");
+      return v;
+    },
+  ),
+  simpleTransformation(
+    isDate,
+    "Date",
+    (v) => v.toISOString(),
+    (v) => new Date(v),
+  ),
+  simpleTransformation(
+    isError,
+    "Error",
+    (v, superJson) => {
+      const baseError = {
+        name: v.name,
+        message: v.message,
+      };
+      superJson.allowedErrorProps.forEach((prop) => {
+        baseError[prop] = v[prop];
+      });
+      return baseError;
+    },
+    (v, superJson) => {
+      const e = new Error(v.message);
+      e.name = v.name;
+      e.stack = v.stack;
+      superJson.allowedErrorProps.forEach((prop) => {
+        e[prop] = v[prop];
+      });
+      return e;
+    },
+  ),
+  simpleTransformation(
+    isRegExp,
+    "regexp",
+    (v) => "" + v,
+    (regex) => {
+      const body = regex.slice(1, regex.lastIndexOf("/"));
+      const flags = regex.slice(regex.lastIndexOf("/") + 1);
+      return new RegExp(body, flags);
+    },
+  ),
+  simpleTransformation(
+    isSet,
+    "set",
+    (v) => [...v.values()],
+    (v) => new Set(v),
+  ),
+  simpleTransformation(
+    isMap,
+    "map",
+    (v) => [...v.entries()],
+    (v) => new Map(v),
+  ),
+  simpleTransformation(
+    (v) => isNaNValue(v) || isInfinite(v),
+    "number",
+    (v) => {
+      if (isNaNValue(v)) return "NaN";
+      if (v > 0) return "Infinity";
+      else return "-Infinity";
+    },
+    Number,
+  ),
+  simpleTransformation(
+    (v) => v === 0 && 1 / v === -Infinity,
+    "number",
+    () => {
+      return "-0";
+    },
+    Number,
+  ),
+  simpleTransformation(
+    isURL,
+    "URL",
+    (v) => v.toString(),
+    (v) => new URL(v),
+  ),
 ];
-function compositeTransformation(isApplicable, annotation, transform, untransform) {
+function compositeTransformation(
+  isApplicable,
+  annotation,
+  transform,
+  untransform,
+) {
   return {
     isApplicable,
     annotation,
     transform,
-    untransform
+    untransform,
   };
 }
-var symbolRule = compositeTransformation((s, superJson) => {
-  if (isSymbol(s)) return !!superJson.symbolRegistry.getIdentifier(s);
-  return false;
-}, (s, superJson) => {
-  return ["symbol", superJson.symbolRegistry.getIdentifier(s)];
-}, (v) => v.description, (_, a, superJson) => {
-  const value = superJson.symbolRegistry.getValue(a[1]);
-  if (!value) throw new Error("Trying to deserialize unknown symbol");
-  return value;
-});
+var symbolRule = compositeTransformation(
+  (s, superJson) => {
+    if (isSymbol(s)) return !!superJson.symbolRegistry.getIdentifier(s);
+    return false;
+  },
+  (s, superJson) => {
+    return ["symbol", superJson.symbolRegistry.getIdentifier(s)];
+  },
+  (v) => v.description,
+  (_, a, superJson) => {
+    const value = superJson.symbolRegistry.getValue(a[1]);
+    if (!value) throw new Error("Trying to deserialize unknown symbol");
+    return value;
+  },
+);
 var constructorToName = [
   Int8Array,
   Uint8Array,
@@ -3413,81 +3896,110 @@ var constructorToName = [
   Uint32Array,
   Float32Array,
   Float64Array,
-  Uint8ClampedArray
+  Uint8ClampedArray,
 ].reduce((obj, ctor) => {
   obj[ctor.name] = ctor;
   return obj;
 }, {});
-var typedArrayRule = compositeTransformation(isTypedArray, (v) => ["typed-array", v.constructor.name], (v) => [...v], (v, a) => {
-  const ctor = constructorToName[a[1]];
-  if (!ctor) throw new Error("Trying to deserialize unknown typed array");
-  return new ctor(v);
-});
+var typedArrayRule = compositeTransformation(
+  isTypedArray,
+  (v) => ["typed-array", v.constructor.name],
+  (v) => [...v],
+  (v, a) => {
+    const ctor = constructorToName[a[1]];
+    if (!ctor) throw new Error("Trying to deserialize unknown typed array");
+    return new ctor(v);
+  },
+);
 function isInstanceOfRegisteredClass(potentialClass, superJson) {
-  if (potentialClass?.constructor) return !!superJson.classRegistry.getIdentifier(potentialClass.constructor);
+  if (potentialClass?.constructor)
+    return !!superJson.classRegistry.getIdentifier(potentialClass.constructor);
   return false;
 }
-var classRule = compositeTransformation(isInstanceOfRegisteredClass, (clazz, superJson) => {
-  return ["class", superJson.classRegistry.getIdentifier(clazz.constructor)];
-}, (clazz, superJson) => {
-  const allowedProps = superJson.classRegistry.getAllowedProps(clazz.constructor);
-  if (!allowedProps) return { ...clazz };
-  const result = {};
-  allowedProps.forEach((prop) => {
-    result[prop] = clazz[prop];
-  });
-  return result;
-}, (v, a, superJson) => {
-  const clazz = superJson.classRegistry.getValue(a[1]);
-  if (!clazz) throw new Error(`Trying to deserialize unknown class '${a[1]}' - check https://github.com/blitz-js/superjson/issues/116#issuecomment-773996564`);
-  return Object.assign(Object.create(clazz.prototype), v);
-});
-var customRule = compositeTransformation((value, superJson) => {
-  return !!superJson.customTransformerRegistry.findApplicable(value);
-}, (value, superJson) => {
-  return ["custom", superJson.customTransformerRegistry.findApplicable(value).name];
-}, (value, superJson) => {
-  return superJson.customTransformerRegistry.findApplicable(value).serialize(value);
-}, (v, a, superJson) => {
-  const transformer = superJson.customTransformerRegistry.findByName(a[1]);
-  if (!transformer) throw new Error("Trying to deserialize unknown custom value");
-  return transformer.deserialize(v);
-});
-var compositeRules = [
-  classRule,
-  symbolRule,
-  customRule,
-  typedArrayRule
-];
+var classRule = compositeTransformation(
+  isInstanceOfRegisteredClass,
+  (clazz, superJson) => {
+    return ["class", superJson.classRegistry.getIdentifier(clazz.constructor)];
+  },
+  (clazz, superJson) => {
+    const allowedProps = superJson.classRegistry.getAllowedProps(
+      clazz.constructor,
+    );
+    if (!allowedProps) return { ...clazz };
+    const result = {};
+    allowedProps.forEach((prop) => {
+      result[prop] = clazz[prop];
+    });
+    return result;
+  },
+  (v, a, superJson) => {
+    const clazz = superJson.classRegistry.getValue(a[1]);
+    if (!clazz)
+      throw new Error(
+        `Trying to deserialize unknown class '${a[1]}' - check https://github.com/blitz-js/superjson/issues/116#issuecomment-773996564`,
+      );
+    return Object.assign(Object.create(clazz.prototype), v);
+  },
+);
+var customRule = compositeTransformation(
+  (value, superJson) => {
+    return !!superJson.customTransformerRegistry.findApplicable(value);
+  },
+  (value, superJson) => {
+    return [
+      "custom",
+      superJson.customTransformerRegistry.findApplicable(value).name,
+    ];
+  },
+  (value, superJson) => {
+    return superJson.customTransformerRegistry
+      .findApplicable(value)
+      .serialize(value);
+  },
+  (v, a, superJson) => {
+    const transformer = superJson.customTransformerRegistry.findByName(a[1]);
+    if (!transformer)
+      throw new Error("Trying to deserialize unknown custom value");
+    return transformer.deserialize(v);
+  },
+);
+var compositeRules = [classRule, symbolRule, customRule, typedArrayRule];
 var transformValue = (value, superJson) => {
-  const applicableCompositeRule = findArr(compositeRules, (rule) => rule.isApplicable(value, superJson));
-  if (applicableCompositeRule) return {
-    value: applicableCompositeRule.transform(value, superJson),
-    type: applicableCompositeRule.annotation(value, superJson)
-  };
-  const applicableSimpleRule = findArr(simpleRules, (rule) => rule.isApplicable(value, superJson));
-  if (applicableSimpleRule) return {
-    value: applicableSimpleRule.transform(value, superJson),
-    type: applicableSimpleRule.annotation
-  };
+  const applicableCompositeRule = findArr(compositeRules, (rule) =>
+    rule.isApplicable(value, superJson),
+  );
+  if (applicableCompositeRule)
+    return {
+      value: applicableCompositeRule.transform(value, superJson),
+      type: applicableCompositeRule.annotation(value, superJson),
+    };
+  const applicableSimpleRule = findArr(simpleRules, (rule) =>
+    rule.isApplicable(value, superJson),
+  );
+  if (applicableSimpleRule)
+    return {
+      value: applicableSimpleRule.transform(value, superJson),
+      type: applicableSimpleRule.annotation,
+    };
 };
 var simpleRulesByAnnotation = {};
 simpleRules.forEach((rule) => {
   simpleRulesByAnnotation[rule.annotation] = rule;
 });
 var untransformValue = (json, type, superJson) => {
-  if (isArray$2(type)) switch (type[0]) {
-    case "symbol":
-      return symbolRule.untransform(json, type, superJson);
-    case "class":
-      return classRule.untransform(json, type, superJson);
-    case "custom":
-      return customRule.untransform(json, type, superJson);
-    case "typed-array":
-      return typedArrayRule.untransform(json, type, superJson);
-    default:
-      throw new Error("Unknown transformation: " + type);
-  }
+  if (isArray$2(type))
+    switch (type[0]) {
+      case "symbol":
+        return symbolRule.untransform(json, type, superJson);
+      case "class":
+        return classRule.untransform(json, type, superJson);
+      case "custom":
+        return customRule.untransform(json, type, superJson);
+      case "typed-array":
+        return typedArrayRule.untransform(json, type, superJson);
+      default:
+        throw new Error("Unknown transformation: " + type);
+    }
   else {
     const transformation = simpleRulesByAnnotation[type];
     if (!transformation) throw new Error("Unknown transformation: " + type);
@@ -3504,9 +4016,12 @@ var getNthKey = (value, n) => {
   return keys.next().value;
 };
 function validatePath(path) {
-  if (includes(path, "__proto__")) throw new Error("__proto__ is not allowed as a property");
-  if (includes(path, "prototype")) throw new Error("prototype is not allowed as a property");
-  if (includes(path, "constructor")) throw new Error("constructor is not allowed as a property");
+  if (includes(path, "__proto__"))
+    throw new Error("__proto__ is not allowed as a property");
+  if (includes(path, "prototype"))
+    throw new Error("prototype is not allowed as a property");
+  if (includes(path, "constructor"))
+    throw new Error("constructor is not allowed as a property");
 }
 var getDeep = (object, path) => {
   validatePath(path);
@@ -3588,13 +4103,16 @@ var setDeep = (object, path, mapper) => {
 function traverse(tree, walker2, origin = []) {
   if (!tree) return;
   if (!isArray$2(tree)) {
-    forEach(tree, (subtree, key) => traverse(subtree, walker2, [...origin, ...parsePath(key)]));
+    forEach(tree, (subtree, key) =>
+      traverse(subtree, walker2, [...origin, ...parsePath(key)]),
+    );
     return;
   }
   const [nodeValue, children] = tree;
-  if (children) forEach(children, (child, key) => {
-    traverse(child, walker2, [...origin, ...parsePath(key)]);
-  });
+  if (children)
+    forEach(children, (child, key) => {
+      traverse(child, walker2, [...origin, ...parsePath(key)]);
+    });
   walker2(nodeValue, origin);
 }
 function applyValueAnnotations(plain, annotations, superJson) {
@@ -3619,7 +4137,12 @@ function applyReferentialEqualityAnnotations(plain, annotations) {
   } else forEach(annotations, apply);
   return plain;
 }
-var isDeep = (object, superJson) => isPlainObject$2(object) || isArray$2(object) || isMap(object) || isSet(object) || isInstanceOfRegisteredClass(object, superJson);
+var isDeep = (object, superJson) =>
+  isPlainObject$2(object) ||
+  isArray$2(object) ||
+  isMap(object) ||
+  isSet(object) ||
+  isInstanceOfRegisteredClass(object, superJson);
 function addIdentity(object, path, identities) {
   const existingSet = identities.get(object);
   if (existingSet) existingSet.push(path);
@@ -3630,16 +4153,31 @@ function generateReferentialEqualityAnnotations(identitites, dedupe) {
   let rootEqualityPaths = void 0;
   identitites.forEach((paths) => {
     if (paths.length <= 1) return;
-    if (!dedupe) paths = paths.map((path) => path.map(String)).sort((a, b) => a.length - b.length);
+    if (!dedupe)
+      paths = paths
+        .map((path) => path.map(String))
+        .sort((a, b) => a.length - b.length);
     const [representativePath, ...identicalPaths] = paths;
-    if (representativePath.length === 0) rootEqualityPaths = identicalPaths.map(stringifyPath);
-    else result[stringifyPath(representativePath)] = identicalPaths.map(stringifyPath);
+    if (representativePath.length === 0)
+      rootEqualityPaths = identicalPaths.map(stringifyPath);
+    else
+      result[stringifyPath(representativePath)] =
+        identicalPaths.map(stringifyPath);
   });
-  if (rootEqualityPaths) if (isEmptyObject(result)) return [rootEqualityPaths];
-  else return [rootEqualityPaths, result];
+  if (rootEqualityPaths)
+    if (isEmptyObject(result)) return [rootEqualityPaths];
+    else return [rootEqualityPaths, result];
   else return isEmptyObject(result) ? void 0 : result;
 }
-var walker = (object, identities, superJson, dedupe, path = [], objectsInThisPath = [], seenObjects = /* @__PURE__ */ new Map()) => {
+var walker = (
+  object,
+  identities,
+  superJson,
+  dedupe,
+  path = [],
+  objectsInThisPath = [],
+  seenObjects = /* @__PURE__ */ new Map(),
+) => {
   const primitive = isPrimitive(object);
   if (!primitive) {
     addIdentity(object, path, identities);
@@ -3648,10 +4186,12 @@ var walker = (object, identities, superJson, dedupe, path = [], objectsInThisPat
   }
   if (!isDeep(object, superJson)) {
     const transformed2 = transformValue(object, superJson);
-    const result2 = transformed2 ? {
-      transformedValue: transformed2.value,
-      annotations: [transformed2.type]
-    } : { transformedValue: object };
+    const result2 = transformed2
+      ? {
+          transformedValue: transformed2.value,
+          annotations: [transformed2.type],
+        }
+      : { transformedValue: object };
     if (!primitive) seenObjects.set(object, result2);
     return result2;
   }
@@ -3661,21 +4201,44 @@ var walker = (object, identities, superJson, dedupe, path = [], objectsInThisPat
   const transformedValue = isArray$2(transformed) ? [] : {};
   const innerAnnotations = {};
   forEach(transformed, (value, index) => {
-    if (index === "__proto__" || index === "constructor" || index === "prototype") throw new Error(`Detected property ${index}. This is a prototype pollution risk, please remove it from your object.`);
-    const recursiveResult = walker(value, identities, superJson, dedupe, [...path, index], [...objectsInThisPath, object], seenObjects);
+    if (
+      index === "__proto__" ||
+      index === "constructor" ||
+      index === "prototype"
+    )
+      throw new Error(
+        `Detected property ${index}. This is a prototype pollution risk, please remove it from your object.`,
+      );
+    const recursiveResult = walker(
+      value,
+      identities,
+      superJson,
+      dedupe,
+      [...path, index],
+      [...objectsInThisPath, object],
+      seenObjects,
+    );
     transformedValue[index] = recursiveResult.transformedValue;
-    if (isArray$2(recursiveResult.annotations)) innerAnnotations[index] = recursiveResult.annotations;
-    else if (isPlainObject$2(recursiveResult.annotations)) forEach(recursiveResult.annotations, (tree, key) => {
-      innerAnnotations[escapeKey(index) + "." + key] = tree;
-    });
+    if (isArray$2(recursiveResult.annotations))
+      innerAnnotations[index] = recursiveResult.annotations;
+    else if (isPlainObject$2(recursiveResult.annotations))
+      forEach(recursiveResult.annotations, (tree, key) => {
+        innerAnnotations[escapeKey(index) + "." + key] = tree;
+      });
   });
-  const result = isEmptyObject(innerAnnotations) ? {
-    transformedValue,
-    annotations: !!transformationResult ? [transformationResult.type] : void 0
-  } : {
-    transformedValue,
-    annotations: !!transformationResult ? [transformationResult.type, innerAnnotations] : innerAnnotations
-  };
+  const result = isEmptyObject(innerAnnotations)
+    ? {
+        transformedValue,
+        annotations: !!transformationResult
+          ? [transformationResult.type]
+          : void 0,
+      }
+    : {
+        transformedValue,
+        annotations: !!transformationResult
+          ? [transformationResult.type, innerAnnotations]
+          : innerAnnotations,
+      };
   if (!primitive) seenObjects.set(object, result);
   return result;
 };
@@ -3688,27 +4251,39 @@ function isArray$1(payload) {
 function isPlainObject$1(payload) {
   if (getType(payload) !== "Object") return false;
   const prototype = Object.getPrototypeOf(payload);
-  return !!prototype && prototype.constructor === Object && prototype === Object.prototype;
+  return (
+    !!prototype &&
+    prototype.constructor === Object &&
+    prototype === Object.prototype
+  );
 }
 function isNull(payload) {
   return getType(payload) === "Null";
 }
 function isOneOf(a, b, c, d, e) {
-  return (value) => a(value) || b(value) || !!c && c(value) || !!d && d(value) || !!e && e(value);
+  return (value) =>
+    a(value) ||
+    b(value) ||
+    (!!c && c(value)) ||
+    (!!d && d(value)) ||
+    (!!e && e(value));
 }
 function isUndefined(payload) {
   return getType(payload) === "Undefined";
 }
 isOneOf(isNull, isUndefined);
 function assignProp(carry, key, newVal, originalObject, includeNonenumerable) {
-  const propType = {}.propertyIsEnumerable.call(originalObject, key) ? "enumerable" : "nonenumerable";
+  const propType = {}.propertyIsEnumerable.call(originalObject, key)
+    ? "enumerable"
+    : "nonenumerable";
   if (propType === "enumerable") carry[key] = newVal;
-  if (includeNonenumerable && propType === "nonenumerable") Object.defineProperty(carry, key, {
-    value: newVal,
-    enumerable: false,
-    writable: true,
-    configurable: true
-  });
+  if (includeNonenumerable && propType === "nonenumerable")
+    Object.defineProperty(carry, key, {
+      value: newVal,
+      enumerable: false,
+      writable: true,
+      configurable: true,
+    });
 }
 function copy(target2, options = {}) {
   if (isArray$1(target2)) return target2.map((item) => copy(item, options));
@@ -3724,8 +4299,8 @@ function copy(target2, options = {}) {
 }
 var SuperJSON = class {
   /**
-  * @param dedupeReferentialEqualities  If true, SuperJSON will make sure only one instance of referentially equal objects are serialized and the rest are replaced with `null`.
-  */
+   * @param dedupeReferentialEqualities  If true, SuperJSON will make sure only one instance of referentially equal objects are serialized and the rest are replaced with `null`.
+   */
   constructor({ dedupe = false } = {}) {
     this.classRegistry = new ClassRegistry();
     this.symbolRegistry = new Registry((s) => s.description ?? "");
@@ -3737,22 +4312,31 @@ var SuperJSON = class {
     const identities = /* @__PURE__ */ new Map();
     const output = walker(object, identities, this, this.dedupe);
     const res = { json: output.transformedValue };
-    if (output.annotations) res.meta = {
-      ...res.meta,
-      values: output.annotations
-    };
-    const equalityAnnotations = generateReferentialEqualityAnnotations(identities, this.dedupe);
-    if (equalityAnnotations) res.meta = {
-      ...res.meta,
-      referentialEqualities: equalityAnnotations
-    };
+    if (output.annotations)
+      res.meta = {
+        ...res.meta,
+        values: output.annotations,
+      };
+    const equalityAnnotations = generateReferentialEqualityAnnotations(
+      identities,
+      this.dedupe,
+    );
+    if (equalityAnnotations)
+      res.meta = {
+        ...res.meta,
+        referentialEqualities: equalityAnnotations,
+      };
     return res;
   }
   deserialize(payload) {
     const { json, meta } = payload;
     let result = copy(json);
     if (meta?.values) result = applyValueAnnotations(result, meta.values, this);
-    if (meta?.referentialEqualities) result = applyReferentialEqualityAnnotations(result, meta.referentialEqualities);
+    if (meta?.referentialEqualities)
+      result = applyReferentialEqualityAnnotations(
+        result,
+        meta.referentialEqualities,
+      );
     return result;
   }
   stringify(object) {
@@ -3770,7 +4354,7 @@ var SuperJSON = class {
   registerCustom(transformer, name) {
     this.customTransformerRegistry.register({
       name,
-      ...transformer
+      ...transformer,
     });
   }
   allowErrorProps(...props) {
@@ -3778,14 +4362,30 @@ var SuperJSON = class {
   }
 };
 SuperJSON.defaultInstance = new SuperJSON();
-SuperJSON.serialize = SuperJSON.defaultInstance.serialize.bind(SuperJSON.defaultInstance);
-SuperJSON.deserialize = SuperJSON.defaultInstance.deserialize.bind(SuperJSON.defaultInstance);
-SuperJSON.stringify = SuperJSON.defaultInstance.stringify.bind(SuperJSON.defaultInstance);
-SuperJSON.parse = SuperJSON.defaultInstance.parse.bind(SuperJSON.defaultInstance);
-SuperJSON.registerClass = SuperJSON.defaultInstance.registerClass.bind(SuperJSON.defaultInstance);
-SuperJSON.registerSymbol = SuperJSON.defaultInstance.registerSymbol.bind(SuperJSON.defaultInstance);
-SuperJSON.registerCustom = SuperJSON.defaultInstance.registerCustom.bind(SuperJSON.defaultInstance);
-SuperJSON.allowErrorProps = SuperJSON.defaultInstance.allowErrorProps.bind(SuperJSON.defaultInstance);
+SuperJSON.serialize = SuperJSON.defaultInstance.serialize.bind(
+  SuperJSON.defaultInstance,
+);
+SuperJSON.deserialize = SuperJSON.defaultInstance.deserialize.bind(
+  SuperJSON.defaultInstance,
+);
+SuperJSON.stringify = SuperJSON.defaultInstance.stringify.bind(
+  SuperJSON.defaultInstance,
+);
+SuperJSON.parse = SuperJSON.defaultInstance.parse.bind(
+  SuperJSON.defaultInstance,
+);
+SuperJSON.registerClass = SuperJSON.defaultInstance.registerClass.bind(
+  SuperJSON.defaultInstance,
+);
+SuperJSON.registerSymbol = SuperJSON.defaultInstance.registerSymbol.bind(
+  SuperJSON.defaultInstance,
+);
+SuperJSON.registerCustom = SuperJSON.defaultInstance.registerCustom.bind(
+  SuperJSON.defaultInstance,
+);
+SuperJSON.allowErrorProps = SuperJSON.defaultInstance.allowErrorProps.bind(
+  SuperJSON.defaultInstance,
+);
 SuperJSON.serialize;
 SuperJSON.deserialize;
 SuperJSON.stringify;
@@ -3808,6 +4408,6 @@ export {
   onDevToolsConnected,
   removeCustomCommand,
   setupDevToolsPlugin,
-  setupDevToolsPlugin as setupDevtoolsPlugin
+  setupDevToolsPlugin as setupDevtoolsPlugin,
 };
 //# sourceMappingURL=vitepress___@vue_devtools-api.js.map
