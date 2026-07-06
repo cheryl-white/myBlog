@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
 
+<<<<<<< HEAD
 Sitemap: https://cheryl-white.github.io/myBlog/sitemap.xml
+=======
+Sitemap: https://cheryl-white.github.io/myBlog/sitemap.xml
+>>>>>>> 045e11d4c9f1e6dbd9487e5bcd72d72991ed0124

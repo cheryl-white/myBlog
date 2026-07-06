@@ -3,6 +3,7 @@
     "husky": "^9.1.7",
     "lint-staged": "^16.4.0",
     "prettier": "^3.8.4",
+    "sitemap": "^9.0.1",
     "vitepress": "^2.0.0-alpha.17"
   },
   "scripts": {
