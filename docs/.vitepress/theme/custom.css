@@ -1,0 +1,13 @@
+.custom-intro h1,
+.custom-intro p {
+  max-width: 720px;
+  margin: 0 auto; /* 容器居中 */
+  padding: 0 20px;
+  text-align: left; /* 文字左对齐（阅读舒适） */
+}
+
+/* 只针对带有 home-page 类的 body 生效 */
+.home-page {
+  overflow: hidden; /* 隐藏滚动条，禁止滚动 */
+  height: 100vh; /* 固定视口高度，防止内容溢出 */
+}

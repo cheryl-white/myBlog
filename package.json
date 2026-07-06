@@ -18,5 +18,8 @@
     "*.{yml,yaml}": [
       "prettier --write --cache"
     ]
+  },
+  "dependencies": {
+    "vitepress-plugin-pagefind": "^0.4.20"
   }
 }

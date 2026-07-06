@@ -1,0 +1,7 @@
+{
+  "version": "1.5.2",
+  "languages": {
+    "zh-cn": { "hash": "zh-cn_a69de7c7305ca", "wasm": null, "page_count": 5 }
+  },
+  "include_characters": ["_", "‿", "⁀", "⁔", "︳", "︴", "﹍", "﹎", "﹏", "＿"]
+}

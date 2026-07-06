@@ -1,25 +1,25 @@
-import { t as p } from "./chunks/theme.CXNRGqen.js";
+import { t as p } from "./chunks/theme.hAx2AdM0.js";
 import {
-  B as o,
-  a5 as i,
-  a6 as u,
-  a7 as c,
-  a8 as l,
-  a9 as f,
-  aa as d,
-  ab as m,
-  ac as h,
-  ad as g,
-  ae as A,
-  d as v,
-  u as y,
-  p as C,
+  C as o,
+  ag as i,
+  ah as u,
+  ai as l,
+  aj as c,
+  ak as f,
+  al as d,
+  am as m,
+  an as h,
+  ao as g,
+  ap as A,
+  d as C,
+  u as v,
+  p as y,
   x as P,
-  af as b,
-  ag as w,
-  ah as E,
-  ai as R,
-} from "./chunks/framework.BboZe6Fq.js";
+  aq as w,
+  ar as b,
+  as as E,
+  X as R,
+} from "./chunks/framework.CbRxUR4P.js";
 function r(e) {
   if (e.extends) {
     const a = r(e.extends);
@@ -35,19 +35,19 @@ function r(e) {
   return e;
 }
 const n = r(p),
-  S = v({
+  S = C({
     name: "VitePressApp",
     setup() {
-      const { site: e, lang: a, dir: t } = y();
+      const { site: e, lang: a, dir: t } = v();
       return (
-        C(() => {
+        y(() => {
           P(() => {
             ((document.documentElement.lang = a.value),
               (document.documentElement.dir = t.value));
           });
         }),
-        e.value.router.prefetchLinks && b(),
-        w(),
+        e.value.router.prefetchLinks && w(),
+        b(),
         E(),
         n.setup && n.setup(),
         () => R(n.Layout)
@@ -56,12 +56,12 @@ const n = r(p),
   });
 async function T() {
   globalThis.__VITEPRESS__ = !0;
-  const e = D(),
-    a = x();
+  const e = x(),
+    a = j();
   a.provide(u, e);
-  const t = c(e.route);
+  const t = l(e.route);
   return (
-    a.provide(l, t),
+    a.provide(c, t),
     a.component("Content", f),
     a.component("ClientOnly", d),
     Object.defineProperties(a.config.globalProperties, {
@@ -80,10 +80,10 @@ async function T() {
     { app: a, router: e, data: t }
   );
 }
-function x() {
+function j() {
   return A(S);
 }
-function D() {
+function x() {
   let e = o;
   return h((a) => {
     let t = g(a),

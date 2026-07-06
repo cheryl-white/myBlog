@@ -1,26 +1,22 @@
 <!doctype html>
-<html lang="en-US" dir="ltr">
+<html lang="zh-cn" dir="ltr">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>404 | My Awesome Project</title>
+    <title>404 | VitePress</title>
     <meta name="description" content="Not Found" />
     <meta name="generator" content="VitePress v2.0.0-alpha.17" />
     <link
       rel="preload stylesheet"
-      href="/myBlog/docs/assets/style.B_bSxU88.css"
+      href="/myBlog/assets/style.DZjkd-vc.css"
       as="style"
     />
-    <link
-      rel="preload stylesheet"
-      href="/myBlog/docs/vp-icons.css"
-      as="style"
-    />
+    <link rel="preload stylesheet" href="/myBlog/vp-icons.css" as="style" />
 
-    <script type="module" src="/myBlog/docs/assets/app.DVRPH-3R.js"></script>
+    <script type="module" src="/myBlog/assets/app.nPl1yciV.js"></script>
     <link
       rel="preload"
-      href="/myBlog/docs/assets/inter-roman-latin.Cy4MYw_J.woff2"
+      href="/myBlog/assets/inter-roman-latin.Cy4MYw_J.woff2"
       as="font"
       type="font/woff2"
       crossorigin=""
@@ -39,15 +35,27 @@
         /Mac|iPhone|iPod|iPad/i.test(navigator.platform),
       );
     </script>
+    <script>
+      const load = () => {
+        import("/myBlog/pagefind/pagefind.js")
+          .then((e) => {
+            ((window.__pagefind__ = e), e.init());
+          })
+          .catch(() => {});
+      };
+      window.requestIdleCallback
+        ? window.requestIdleCallback(load)
+        : setTimeout(load, 0);
+    </script>
   </head>
   <body>
     <div id="app"></div>
     <script>
       window.__VP_HASH_MAP__ = JSON.parse(
-        '{"api-examples.md":"LMyQUiFR","index.md":"xFUm46KA","markdown-examples.md":"tbX0E0cA"}',
+        '{"difficuties.md":"adiPtTzb","index.md":"B2MHkBRv","my-projects.md":"B3wqs4nH","projects_index.md":"Dx2hE_2W","type_index.md":"CyIQk6Ex","type_react-question.md":"_-bk9wN4"}',
       );
       window.__VP_SITE_DATA__ = JSON.parse(
-        '{"lang":"en-US","dir":"ltr","title":"My Awesome Project","description":"A VitePress Site","base":"/myBlog/docs/","head":[],"router":{"prefetchLinks":true},"appearance":true,"themeConfig":{"nav":[{"text":"Home","link":"/"},{"text":"Examples","link":"/markdown-examples"}],"sidebar":[{"text":"Examples","items":[{"text":"Markdown Examples","link":"/markdown-examples"},{"text":"Runtime API Examples","link":"/api-examples"}]}],"socialLinks":[{"icon":"github","link":"https://github.com/vuejs/vitepress"}]},"locales":{},"scrollOffset":134,"cleanUrls":false,"additionalConfig":{}}',
+        '{"lang":"zh-cn","dir":"ltr","title":"VitePress","description":"This is my personal site","base":"/myBlog/","head":[],"router":{"prefetchLinks":true},"appearance":true,"themeConfig":{"nav":[{"text":"具体项目","link":"/projects"}],"sidebar":[{"text":"Examples","items":[{"text":"Markdown Examples","link":"/markdown-examples"},{"text":"Runtime API Examples","link":"/api-examples"}]}],"socialLinks":[{"icon":"github","link":"http://cheryl-white.github.io/myBlog"}]},"locales":{},"scrollOffset":134,"cleanUrls":false,"additionalConfig":{}}',
       );
     </script>
   </body>

@@ -1,9 +1,17 @@
+:root {
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: -webkit-linear-gradient(
+    120deg,
+    rgb(70, 45, 160),
+    #164cee
+  );
+}
 @font-face {
   font-family: Inter;
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url(/myBlog/docs/assets/inter-roman-cyrillic-ext.BeNbU08G.woff2)
+  src: url(/myBlog/assets/inter-roman-cyrillic-ext.BeNbU08G.woff2)
     format("woff2");
   unicode-range:
     U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
@@ -13,8 +21,7 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url(/myBlog/docs/assets/inter-roman-cyrillic.CD0kT8R4.woff2)
-    format("woff2");
+  src: url(/myBlog/assets/inter-roman-cyrillic.CD0kT8R4.woff2) format("woff2");
   unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
 }
 @font-face {
@@ -22,8 +29,7 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url(/myBlog/docs/assets/inter-roman-greek-ext.CFAEQ5Ow.woff2)
-    format("woff2");
+  src: url(/myBlog/assets/inter-roman-greek-ext.CFAEQ5Ow.woff2) format("woff2");
   unicode-range: U+1F00-1FFF;
 }
 @font-face {
@@ -31,7 +37,7 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url(/myBlog/docs/assets/inter-roman-greek.Dsf7YjP7.woff2) format("woff2");
+  src: url(/myBlog/assets/inter-roman-greek.Dsf7YjP7.woff2) format("woff2");
   unicode-range:
     U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
 }
@@ -40,8 +46,7 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url(/myBlog/docs/assets/inter-roman-vietnamese.CpqCnS2H.woff2)
-    format("woff2");
+  src: url(/myBlog/assets/inter-roman-vietnamese.CpqCnS2H.woff2) format("woff2");
   unicode-range:
     U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1,
     U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329,
@@ -52,8 +57,7 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url(/myBlog/docs/assets/inter-roman-latin-ext.Dl_ayf4-.woff2)
-    format("woff2");
+  src: url(/myBlog/assets/inter-roman-latin-ext.Dl_ayf4-.woff2) format("woff2");
   unicode-range:
     U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
     U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
@@ -64,7 +68,7 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url(/myBlog/docs/assets/inter-roman-latin.Cy4MYw_J.woff2) format("woff2");
+  src: url(/myBlog/assets/inter-roman-latin.Cy4MYw_J.woff2) format("woff2");
   unicode-range:
     U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
     U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
@@ -75,7 +79,7 @@
   font-style: italic;
   font-weight: 100 900;
   font-display: swap;
-  src: url(/myBlog/docs/assets/inter-italic-cyrillic-ext._dlW9xFb.woff2)
+  src: url(/myBlog/assets/inter-italic-cyrillic-ext._dlW9xFb.woff2)
     format("woff2");
   unicode-range:
     U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
@@ -85,8 +89,7 @@
   font-style: italic;
   font-weight: 100 900;
   font-display: swap;
-  src: url(/myBlog/docs/assets/inter-italic-cyrillic.D7dRslh9.woff2)
-    format("woff2");
+  src: url(/myBlog/assets/inter-italic-cyrillic.D7dRslh9.woff2) format("woff2");
   unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
 }
 @font-face {
@@ -94,8 +97,7 @@
   font-style: italic;
   font-weight: 100 900;
   font-display: swap;
-  src: url(/myBlog/docs/assets/inter-italic-greek-ext.Ct-Tf2bq.woff2)
-    format("woff2");
+  src: url(/myBlog/assets/inter-italic-greek-ext.Ct-Tf2bq.woff2) format("woff2");
   unicode-range: U+1F00-1FFF;
 }
 @font-face {
@@ -103,8 +105,7 @@
   font-style: italic;
   font-weight: 100 900;
   font-display: swap;
-  src: url(/myBlog/docs/assets/inter-italic-greek.DNcpQ8QC.woff2)
-    format("woff2");
+  src: url(/myBlog/assets/inter-italic-greek.DNcpQ8QC.woff2) format("woff2");
   unicode-range:
     U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
 }
@@ -113,7 +114,7 @@
   font-style: italic;
   font-weight: 100 900;
   font-display: swap;
-  src: url(/myBlog/docs/assets/inter-italic-vietnamese.BI5UxJD-.woff2)
+  src: url(/myBlog/assets/inter-italic-vietnamese.BI5UxJD-.woff2)
     format("woff2");
   unicode-range:
     U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1,
@@ -125,8 +126,7 @@
   font-style: italic;
   font-weight: 100 900;
   font-display: swap;
-  src: url(/myBlog/docs/assets/inter-italic-latin-ext.DytegdRQ.woff2)
-    format("woff2");
+  src: url(/myBlog/assets/inter-italic-latin-ext.DytegdRQ.woff2) format("woff2");
   unicode-range:
     U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
     U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
@@ -137,8 +137,7 @@
   font-style: italic;
   font-weight: 100 900;
   font-display: swap;
-  src: url(/myBlog/docs/assets/inter-italic-latin.COaG5lWR.woff2)
-    format("woff2");
+  src: url(/myBlog/assets/inter-italic-latin.COaG5lWR.woff2) format("woff2");
   unicode-range:
     U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
     U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
@@ -149,7 +148,7 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url(/myBlog/docs/assets/inter-roman-cyrillic-ext.BeNbU08G.woff2)
+  src: url(/myBlog/assets/inter-roman-cyrillic-ext.BeNbU08G.woff2)
     format("woff2");
   unicode-range:
     U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
@@ -159,8 +158,7 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url(/myBlog/docs/assets/inter-roman-cyrillic.CD0kT8R4.woff2)
-    format("woff2");
+  src: url(/myBlog/assets/inter-roman-cyrillic.CD0kT8R4.woff2) format("woff2");
   unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
 }
 @font-face {
@@ -168,8 +166,7 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url(/myBlog/docs/assets/inter-roman-greek-ext.CFAEQ5Ow.woff2)
-    format("woff2");
+  src: url(/myBlog/assets/inter-roman-greek-ext.CFAEQ5Ow.woff2) format("woff2");
   unicode-range: U+1F00-1FFF;
 }
 @font-face {
@@ -177,7 +174,7 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url(/myBlog/docs/assets/inter-roman-greek.Dsf7YjP7.woff2) format("woff2");
+  src: url(/myBlog/assets/inter-roman-greek.Dsf7YjP7.woff2) format("woff2");
   unicode-range:
     U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
 }
@@ -186,8 +183,7 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url(/myBlog/docs/assets/inter-roman-vietnamese.CpqCnS2H.woff2)
-    format("woff2");
+  src: url(/myBlog/assets/inter-roman-vietnamese.CpqCnS2H.woff2) format("woff2");
   unicode-range:
     U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1,
     U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329,
@@ -198,8 +194,7 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url(/myBlog/docs/assets/inter-roman-latin-ext.Dl_ayf4-.woff2)
-    format("woff2");
+  src: url(/myBlog/assets/inter-roman-latin-ext.Dl_ayf4-.woff2) format("woff2");
   unicode-range:
     U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
     U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
@@ -209,7 +204,7 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url(/myBlog/docs/assets/inter-roman-latin.Cy4MYw_J.woff2) format("woff2");
+  src: url(/myBlog/assets/inter-roman-latin.Cy4MYw_J.woff2) format("woff2");
   unicode-range:
     U+0000-007D, U+007F-00B6, U+00B8-00FF, U+0131, U+0152-0153, U+02BB-02BC,
     U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-2012, U+2016-2017,
@@ -221,7 +216,7 @@
   font-style: italic;
   font-weight: 100 900;
   font-display: swap;
-  src: url(/myBlog/docs/assets/inter-italic-cyrillic-ext._dlW9xFb.woff2)
+  src: url(/myBlog/assets/inter-italic-cyrillic-ext._dlW9xFb.woff2)
     format("woff2");
   unicode-range:
     U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
@@ -231,8 +226,7 @@
   font-style: italic;
   font-weight: 100 900;
   font-display: swap;
-  src: url(/myBlog/docs/assets/inter-italic-cyrillic.D7dRslh9.woff2)
-    format("woff2");
+  src: url(/myBlog/assets/inter-italic-cyrillic.D7dRslh9.woff2) format("woff2");
   unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
 }
 @font-face {
@@ -240,8 +234,7 @@
   font-style: italic;
   font-weight: 100 900;
   font-display: swap;
-  src: url(/myBlog/docs/assets/inter-italic-greek-ext.Ct-Tf2bq.woff2)
-    format("woff2");
+  src: url(/myBlog/assets/inter-italic-greek-ext.Ct-Tf2bq.woff2) format("woff2");
   unicode-range: U+1F00-1FFF;
 }
 @font-face {
@@ -249,8 +242,7 @@
   font-style: italic;
   font-weight: 100 900;
   font-display: swap;
-  src: url(/myBlog/docs/assets/inter-italic-greek.DNcpQ8QC.woff2)
-    format("woff2");
+  src: url(/myBlog/assets/inter-italic-greek.DNcpQ8QC.woff2) format("woff2");
   unicode-range:
     U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
 }
@@ -259,7 +251,7 @@
   font-style: italic;
   font-weight: 100 900;
   font-display: swap;
-  src: url(/myBlog/docs/assets/inter-italic-vietnamese.BI5UxJD-.woff2)
+  src: url(/myBlog/assets/inter-italic-vietnamese.BI5UxJD-.woff2)
     format("woff2");
   unicode-range:
     U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1,
@@ -271,8 +263,7 @@
   font-style: italic;
   font-weight: 100 900;
   font-display: swap;
-  src: url(/myBlog/docs/assets/inter-italic-latin-ext.DytegdRQ.woff2)
-    format("woff2");
+  src: url(/myBlog/assets/inter-italic-latin-ext.DytegdRQ.woff2) format("woff2");
   unicode-range:
     U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
     U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
@@ -282,8 +273,7 @@
   font-style: italic;
   font-weight: 100 900;
   font-display: swap;
-  src: url(/myBlog/docs/assets/inter-italic-latin.COaG5lWR.woff2)
-    format("woff2");
+  src: url(/myBlog/assets/inter-italic-latin.COaG5lWR.woff2) format("woff2");
   unicode-range:
     U+0000-007D, U+007F-00B6, U+00B8-00FF, U+0131, U+0152-0153, U+02BB-02BC,
     U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-2012, U+2016-2017,
@@ -3275,84 +3265,461 @@ ul.details[data-v-e5511d04] {
     display: flex;
   }
 }
-.VPNavBarAskAiButton[data-v-4eb17e89] {
+.blog-search[data-v-7152e00d] {
+  flex: 1;
+  display: flex;
+  padding-left: 32px;
+}
+.blog-search > .nav-search-btn-wait[data-v-7152e00d] {
+  cursor: pointer;
   display: flex;
   align-items: center;
-  height: var(--vp-nav-height);
-  padding: 8px 14px;
-  font-size: 20px;
+  justify-content: center;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  transition: 0.2s border;
+  border-radius: 8px;
+  padding: 0 10px 0 12px;
+  height: 40px;
+  background-color: var(--vp-c-bg-alt);
 }
-@media (min-width: 768px) {
-  .VPNavBarAskAiButton[data-v-4eb17e89] {
-    height: auto;
-    padding: 11.5px;
-    transition: color 0.3s ease;
-    background-color: var(--vp-c-bg-alt);
-    border-radius: 8px;
-    font-size: 15px;
-    color: var(--vp-c-text-2);
+.blog-search .nav-search-btn-wait .metaKey[data-v-7152e00d] {
+  margin-left: 10px;
+  font-size: 12px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 4px;
+  padding: 0 6px;
+}
+.blog-search .nav-search-btn-wait[data-v-7152e00d]:hover {
+  border: 1px solid var(--vp-c-brand-1);
+  border-radius: 6px;
+}
+.blog-search .nav-search-btn-wait .search-tip[data-v-7152e00d] {
+  color: #909399;
+  font-size: 12px;
+  padding-left: 8px;
+  padding-right: 16px;
+}
+@media screen and (max-width: 759px) {
+  .blog-search > .nav-search-btn-wait[data-v-7152e00d] {
+    background-color: inherit;
   }
-  .VPNavBarAskAiButton[data-v-4eb17e89]:hover {
-    color: var(--vp-c-brand-1);
+  .metaKey[data-v-7152e00d],
+  .search-tip[data-v-7152e00d] {
+    display: none;
+  }
+  .blog-search[data-v-7152e00d] {
+    flex: 0;
   }
 }
-.VPNavBarSearchButton[data-v-baa3be99] {
+.search-bar[data-v-7152e00d] {
+  display: flex;
+  cursor: text;
+  align-items: center;
+  border-radius: 4px;
+  border: 1px solid var(--vcp-c-brand);
+}
+.search-bar input[data-v-7152e00d] {
+  width: 100%;
+}
+.search-bar .search-actions[data-v-7152e00d] {
+  display: flex;
+  gap: 4px;
+  padding-right: 12px;
+}
+.search-bar .search-actions.before[data-v-7152e00d] {
+  padding: 0;
+}
+.search-actions button[data-v-7152e00d] {
+  padding: 8px;
+}
+.local-search-icon[data-v-7152e00d] {
+  display: block;
+  font-size: 18px;
+}
+.search-actions button.clear-button[data-v-7152e00d]:disabled {
+  opacity: 0.37;
+}
+.search-actions button[data-v-7152e00d]:not([disabled]):hover,
+.search-actions button.active[data-v-7152e00d]:not([disabled]) {
+  color: var(--vp-c-brand-1);
+}
+.search-actions.before[data-v-7152e00d] {
+  display: none;
+}
+@media screen and (max-width: 560px) {
+  .search-actions.before[data-v-7152e00d] {
+    display: flex;
+  }
+}
+:root {
+  --font-sans:
+    "Inter", --apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  --app-bg: var(--gray1);
+  --app-text: #000000;
+  --command-shadow: 0 16px 70px rgb(0 0 0 / 20%);
+  --lowContrast: #ffffff;
+  --highContrast: #000000;
+  --vcp-c-brand: var(--vp-c-brand-2);
+  --vcp-c-accent: #35495e;
+  --gray1: hsl(0, 0%, 98%);
+  --gray2: hsl(0, 0%, 97.3%);
+  --gray3: hsl(0, 0%, 95.1%);
+  --gray4: hsl(0, 0%, 93%);
+  --gray5: hsl(0, 0%, 90.9%);
+  --gray6: hsl(0, 0%, 88.7%);
+  --gray7: hsl(0, 0%, 85.8%);
+  --gray8: hsl(0, 0%, 78%);
+  --gray9: hsl(0, 0%, 56.1%);
+  --gray10: hsl(0, 0%, 52.3%);
+  --gray11: hsl(0, 0%, 43.5%);
+  --gray12: hsl(0, 0%, 9%);
+  --grayA1: hsla(0, 0%, 0%, 0.012);
+  --grayA2: hsla(0, 0%, 0%, 0.027);
+  --grayA3: hsla(0, 0%, 0%, 0.047);
+  --grayA4: hsla(0, 0%, 0%, 0.071);
+  --grayA5: hsla(0, 0%, 0%, 0.09);
+  --grayA6: hsla(0, 0%, 0%, 0.114);
+  --grayA7: hsla(0, 0%, 0%, 0.141);
+  --grayA8: hsla(0, 0%, 0%, 0.22);
+  --grayA9: hsla(0, 0%, 0%, 0.439);
+  --grayA10: hsla(0, 0%, 0%, 0.478);
+  --grayA11: hsla(0, 0%, 0%, 0.565);
+  --grayA12: hsla(0, 0%, 0%, 0.91);
+  --blue1: hsl(206, 100%, 99.2%);
+  --blue2: hsl(210, 100%, 98%);
+  --blue3: hsl(209, 100%, 96.5%);
+  --blue4: hsl(210, 98.8%, 94%);
+  --blue5: hsl(209, 95%, 90.1%);
+  --blue6: hsl(209, 81.2%, 84.5%);
+  --blue7: hsl(208, 77.5%, 76.9%);
+  --blue8: hsl(206, 81.9%, 65.3%);
+  --blue9: hsl(206, 100%, 50%);
+  --blue10: hsl(208, 100%, 47.3%);
+  --blue11: hsl(211, 100%, 43.2%);
+  --blue12: hsl(211, 100%, 15%);
+}
+.dark {
+  --app-bg: var(--gray1);
+  --app-text: #ffffff;
+  --lowContrast: #000000;
+  --highContrast: #ffffff;
+  --gray1: hsl(0, 0%, 8.5%);
+  --gray2: hsl(0, 0%, 11%);
+  --gray3: hsl(0, 0%, 13.6%);
+  --gray4: hsl(0, 0%, 15.8%);
+  --gray5: hsl(0, 0%, 17.9%);
+  --gray6: hsl(0, 0%, 20.5%);
+  --gray7: hsl(0, 0%, 24.3%);
+  --gray8: hsl(0, 0%, 31.2%);
+  --gray9: hsl(0, 0%, 43.9%);
+  --gray10: hsl(0, 0%, 49.4%);
+  --gray11: hsl(0, 0%, 62.8%);
+  --gray12: hsl(0, 0%, 93%);
+  --grayA1: hsla(0, 0%, 100%, 0);
+  --grayA2: hsla(0, 0%, 100%, 0.026);
+  --grayA3: hsla(0, 0%, 100%, 0.056);
+  --grayA4: hsla(0, 0%, 100%, 0.077);
+  --grayA5: hsla(0, 0%, 100%, 0.103);
+  --grayA6: hsla(0, 0%, 100%, 0.129);
+  --grayA7: hsla(0, 0%, 100%, 0.172);
+  --grayA8: hsla(0, 0%, 100%, 0.249);
+  --grayA9: hsla(0, 0%, 100%, 0.386);
+  --grayA10: hsla(0, 0%, 100%, 0.446);
+  --grayA11: hsla(0, 0%, 100%, 0.592);
+  --grayA12: hsla(0, 0%, 100%, 0.923);
+  --blue1: hsl(212, 35%, 9.2%);
+  --blue2: hsl(216, 50%, 11.8%);
+  --blue3: hsl(214, 59.4%, 15.3%);
+  --blue4: hsl(214, 65.8%, 17.9%);
+  --blue5: hsl(213, 71.2%, 20.2%);
+  --blue6: hsl(212, 77.4%, 23.1%);
+  --blue7: hsl(211, 85.1%, 27.4%);
+  --blue8: hsl(211, 89.7%, 34.1%);
+  --blue9: hsl(206, 100%, 50%);
+  --blue10: hsl(209, 100%, 60.6%);
+  --blue11: hsl(210, 100%, 66.1%);
+  --blue12: hsl(206, 98%, 95.8%);
+}
+div [command-dialog-mask] {
+  background-color: #0000004d;
+  height: 100vh;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 200;
+}
+div [command-dialog-wrapper] {
+  position: relative;
+  background: var(--gray2);
+  border-radius: 6px;
+  box-shadow: none;
+  flex-direction: column;
+  margin: 20vh auto auto;
+  max-width: 560px;
+}
+div [command-dialog-footer] {
+  border-top: 1px solid var(--gray6);
+  align-items: center;
+  background: var(--gray4);
+  color: var(--gray11);
+  border-radius: 0 0 8px 8px;
+  box-shadow: none;
+  display: flex;
+  flex-direction: row-reverse;
+  flex-shrink: 0;
+  height: 44px;
+  justify-content: space-between;
+  padding: 0 12px;
+  position: relative;
+  -webkit-user-select: none;
+  user-select: none;
+  width: 100%;
+  z-index: 300;
+  font-size: 12px;
+}
+.algolia [command-input] {
+  font-family: var(--font-sans);
+  width: 100%;
+  font-size: 18px;
+  padding: 12px;
+  outline: none;
+  background: var(--bg);
+  color: var(--gray12);
+  caret-color: var(--vcp-c-brand);
+  margin: 0;
+}
+.algolia [command-input]::placeholder {
+  color: var(--gray9);
+}
+.algolia [command-list] {
+  height: var(--command-list-height);
+  max-height: 360px;
+  overflow: auto;
+  overscroll-behavior: contain;
+  transition: 0.1s ease;
+  transition-property: height;
+}
+.algolia .detail-list [command-item] {
+  min-height: 56px;
+  max-height: 112px;
+  padding: 10px 16px;
+  height: auto;
+}
+.algolia .detail-list [command-item] .des {
+  word-break: break-all;
+  white-space: wrap;
+  margin-top: 6px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+.algolia [command-item] {
+  position: relative;
+  content-visibility: auto;
+  cursor: pointer;
+  height: 56px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 16px;
+  color: var(--gray12);
+  -webkit-user-select: none;
+  user-select: none;
+  will-change: background, color;
+  transition: all 0.15s ease;
+  transition-property: none;
+  border-radius: 4px;
+  margin-top: 4px;
+  background-color: var(--lowContrast);
+}
+.algolia [command-item]:first-child {
+  margin-top: 0;
+}
+.algolia [command-item][aria-selected="true"],
+.algolia [command-item]:hover {
+  background: var(--vcp-c-brand);
+  color: #fff;
+}
+.algolia [command-item][aria-selected="true"] svg,
+.algolia [command-item]:hover svg {
+  color: #fff;
+}
+.algolia [command-item][aria-selected="true"] [command-linear-shortcuts],
+.algolia [command-item]:hover [command-linear-shortcuts] {
+  display: flex;
+  margin-left: auto;
+  gap: 8px;
+}
+.algolia [command-item][aria-selected="true"] [command-linear-shortcuts] kbd,
+.algolia [command-item]:hover [command-linear-shortcuts] kbd {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--gray11);
+}
+.algolia [command-item]:active {
+  transition-property: background;
+  background: var(--gray4);
+}
+.algolia [command-item] svg {
+  width: 16px;
+  height: 16px;
+  color: var(--gray10);
+}
+.algolia [command-empty=""] {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 64px;
+  white-space: pre-wrap;
+  color: var(--gray11);
+}
+.algolia [command-dialog-mask] {
+  background-color: #4b4b4bcc;
+}
+.algolia [command-dialog-header] {
+  padding: 12px;
+}
+.algolia [command-dialog-body] {
+  padding: 0 12px 12px;
+}
+.algolia [command-dialog-footer] {
+  align-items: center;
+  border-radius: 0 0 8px 8px;
+  box-shadow:
+    0 -1px #e0e3e8,
+    0 -3px 6px #45629b1f;
+  display: flex;
+  flex-direction: row-reverse;
+  flex-shrink: 0;
+  height: 44px;
+  justify-content: space-between;
+  padding: 0 12px;
+  position: relative;
+  -webkit-user-select: none;
+  user-select: none;
+  width: 100%;
+  z-index: 300;
+}
+.algolia [command-group-heading] {
+  color: var(--vcp-c-brand);
+  font-size: 0.85em;
+  font-weight: 600;
+  line-height: 32px;
+  margin: 0 -4px;
+  padding: 0 4px;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+}
+.algolia .command-palette-commands {
+  color: var(--docsearch-muted-color);
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+@media screen and (max-width: 560px) {
+  .algolia .command-palette-commands {
+    display: none;
+  }
+  div [command-dialog-wrapper] {
+    margin: 0;
+    height: 100vh;
+  }
+  .algolia [command-dialog-footer] {
+    justify-content: center;
+  }
+  .algolia [command-input] {
+    padding: 6px 4px;
+  }
+  .algolia [command-list] {
+    max-height: calc(100vh - 120px);
+  }
+}
+.algolia .command-palette-commands li {
+  display: flex;
+  align-items: center;
+}
+.algolia .command-palette-commands li:not(:last-of-type) {
+  margin-right: 0.8em;
+}
+.algolia .command-palette-logo a {
   display: flex;
   align-items: center;
   gap: 8px;
-  height: var(--vp-nav-height);
-  padding: 8px 14px;
-  font-size: 20px;
 }
-.text[data-v-baa3be99],
-.keys[data-v-baa3be99],
-:root.mac .key-ctrl[data-v-baa3be99],
-:root:not(.mac) .key-cmd[data-v-baa3be99] {
-  display: none;
+.dark .algolia .command-palette-logo svg {
+  filter: invert(1) hue-rotate(180deg);
 }
-kbd[data-v-baa3be99] {
-  font-family: inherit;
-  font-weight: 500;
+.algolia .command-palette-logo svg {
+  height: 24px;
+  width: 24px;
 }
-@media (min-width: 768px) {
-  .VPNavBarSearchButton[data-v-baa3be99] {
-    height: auto;
-    padding: 8px 12px;
-    background-color: var(--vp-c-bg-alt);
-    border-radius: 8px;
-    font-size: 14px;
-    line-height: 1;
-    color: var(--vp-c-text-2);
-  }
-  .text[data-v-baa3be99] {
-    display: inline;
-    font-size: 13px;
-  }
-  .keys[data-v-baa3be99] {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    padding: 4px 6px;
-    border: 1px solid var(--vp-c-divider);
-    border-radius: 4px;
-    font-size: 12px;
-  }
-}
-.VPNavBarSearch[data-v-2fc7f2c6] {
-  display: flex;
+.algolia .command-palette-commands-key {
   align-items: center;
+  background: var(--gray3);
+  border-radius: 2px;
+  display: flex;
+  height: 18px;
+  justify-content: center;
+  margin-right: 0.4em;
+  padding: 0 0 1px;
+  color: var(--gray11);
+  border: 0;
+  width: 20px;
 }
-@media (min-width: 768px) {
-  .VPNavBarSearch[data-v-2fc7f2c6] {
-    gap: 8px;
-    flex-grow: 1;
-    padding-left: 24px;
-  }
+.dark .algolia [command-dialog-footer] {
+  box-shadow: none;
 }
-@media (min-width: 960px) {
-  .VPNavBarSearch[data-v-2fc7f2c6] {
-    padding-left: 32px;
-  }
+div[command-group] {
+  display: block !important;
+}
+div[command-item] {
+  display: flex !important;
+}
+.search-dialog div[command-item] > div.link {
+  width: 100%;
+}
+.search-dialog div[command-item] .title {
+  display: flex;
+  justify-content: space-between;
+}
+.search-dialog div[command-item] .title i.prefix {
+  color: var(--vp-c-brand-1);
+}
+.search-dialog div[command-item]:hover .title i.prefix,
+.search-dialog div[command-item][aria-selected="true"] .title i.prefix {
+  color: #fff;
+}
+.search-dialog div[command-item] .des {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-break: keep-all;
+  white-space: nowrap;
+}
+.search-dialog div[command-item] .headings {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+}
+.search-dialog div[command-item] .date {
+  min-width: 86px;
+  text-align: right;
+}
+.search-dialog div[command-item] mark {
+  background: none;
+  color: var(--vp-c-brand-1);
+}
+.search-dialog div[command-item][aria-selected="true"] mark,
+.search-dialog div[command-item]:hover mark {
+  color: inherit;
+  text-decoration: underline;
 }
 .VPNavBarSocialLinks[data-v-0394ad82] {
   display: none;
