@@ -1,3 +1,12 @@
+---
+title: vitepress的md模式样式定义
+description: 详解VitePress中pageClass与body样式的绑定原理，以及全局样式的正确写法
+head:
+  - - meta
+    - name: keywords
+      content: vitepress,pageClass,body样式,前端
+---
+
 # vitepress的md模式样式定义
 
 ## 1.直接在md文件使用style定义局部样式

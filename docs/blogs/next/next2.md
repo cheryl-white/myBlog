@@ -5,9 +5,17 @@ head:
   - - meta
     - name: keywords
       content: Next.js,antd,SSR,水合,hydration,AntdRegistry,CSS-in-JS,Vercel,Neon,全栈开发,踩坑记录
+  - - meta
+    - property: og:title
+      content: Next.js全栈开发踩坑记录：antd样式闪烁与本地请求卡死排查
+  - - meta
+    - property: og:description
+      content: 记录使用Next.js + antd + Vercel + Neon开发小型全栈系统时遇到的两个典型问题及解决方案
+  - - meta
+    - property: og:type
+      content: article
+outline: deep
 ---
-
-# nextjs使用踩坑记录
 
 next是一个基于react的全栈框架，Next.js 诞生于 2016年10月25日，由 Guillermo Rauch创立，可以直接在一个项目中写请求和页面代码，最后通过水合的方式渲染出界面。
 
@@ -15,7 +23,7 @@ next是一个基于react的全栈框架，Next.js 诞生于 2016年10月25日�
 
 本人使用了vscode(IDE)+next(框架)+github(代码托管)+resend（邮件发送）+vercel（代码部署）+neon（数据库管理)+zustand（状态管理）开发了一个小型的系统。说一说大致的开发流程。
 
-## 1.主要安装的库
+1.主要安装的库
 
 ```json
    "@ant-design/nextjs-registry": "^1.3.0",//同步style渲染，这里也是一个坑点
@@ -44,9 +52,9 @@ next是一个基于react的全栈框架，Next.js 诞生于 2016年10月25日�
 
 上面就是我用到的库。因为Next内置了tailwind css支持 ，所以可以直接使用tailwind 样式。
 
-## 2.说一说遇到的坑点
+说一说遇到的坑点。
 
-### 1.页面进入时antd样式出现闪烁后偏移
+## 1.页面进入时antd样式出现闪烁后偏移
 
 首先是我引入了antd的组件，我在next里面使用了items-center样式，但是我发现我引入的antd之中的Result组件在进入界面时从左边偏移到了右边，排除网络问题。
 
@@ -54,7 +62,6 @@ next是一个基于react的全栈框架，Next.js 诞生于 2016年10月25日�
 
 笼统来说，是因为ssr渲染导致antd的样式插入还没执行就已经出现了界面，所以后续水合前端代码，就发现不对。使用AntdRegistry 将样式注入提前就解决了这个问题。
 
-### 2.本地请求卡死
+## 2.本地请求卡死
 
 这是困惑我最大的点，因为当时我的本地服务器请求一直是pending状态，控制台也没有任何报错，最开始以为是我连接的平台比如vercel,resend之类的环境变量过期了，但是检查了一遍发现并不是。是因为缓存问题，我的.next可能在编译过程中产生了错误文件，但是这个错误一直是卡死无法执行下去的，所以才会一直pending,而且这种错误在页面执行过程中不会被捕捉到。只需要删除旧的.next缓存文件然后重新run即可。
-中遇到的坑点。

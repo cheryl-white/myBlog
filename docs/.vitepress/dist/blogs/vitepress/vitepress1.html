@@ -3,8 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>cheryl's blog</title>
-    <meta name="description" content="This is my personal site" />
+    <title>vitepress的md模式样式定义 | cheryl's blog</title>
+    <meta
+      name="description"
+      content="详解VitePress中pageClass与body样式的绑定原理，以及全局样式的正确写法"
+    />
     <meta name="generator" content="VitePress v2.0.0-alpha.17" />
     <link
       rel="preload stylesheet"
@@ -28,7 +31,7 @@
     />
     <link
       rel="modulepreload"
-      href="/myBlog/assets/type_react-question.md.BNbGlcXy.lean.js"
+      href="/myBlog/assets/blogs_vitepress_vitepress1.md.hcD4LLKl.lean.js"
     />
     <script id="check-dark-mode">
       (() => {
@@ -44,6 +47,7 @@
         /Mac|iPhone|iPod|iPad/i.test(navigator.platform),
       );
     </script>
+    <meta name="keywords" content="vitepress,pageClass,body样式,前端" />
     <script>
       const load = () => {
         import("/myBlog/pagefind/pagefind.js")
@@ -341,35 +345,97 @@
             ><!--[--><!--]--><!--[-->
             <div class="no-transition group" data-v-8d50c081>
               <section
-                class="VPSidebarItem level-0"
+                class="VPSidebarItem level-0 has-active"
                 data-v-8d50c081
                 data-v-d81de50c
               >
                 <div class="item" role="button" tabindex="0" data-v-d81de50c>
                   <div class="indicator" data-v-d81de50c></div>
-                  <h2 class="text" data-v-d81de50c>常用链接</h2>
+                  <h2 class="text" data-v-d81de50c>博客文章</h2>
                   <!---->
                 </div>
                 <div class="items" data-v-d81de50c>
                   <!--[-->
-                  <div
-                    class="VPSidebarItem level-1 is-link"
+                  <section
+                    class="VPSidebarItem level-1"
                     data-v-d81de50c
                     data-v-d81de50c
                   >
-                    <div class="item" data-v-d81de50c>
+                    <div
+                      class="item"
+                      role="button"
+                      tabindex="0"
+                      data-v-d81de50c
+                    >
                       <div class="indicator" data-v-d81de50c></div>
-                      <a
-                        class="VPLink link link"
-                        href="/myBlog/"
-                        data-v-d81de50c
-                        ><!--[-->
-                        <p class="text" data-v-d81de50c>首页</p>
-                        <!--]--></a
-                      ><!---->
+                      <h3 class="text" data-v-d81de50c>next踩坑记录</h3>
+                      <!---->
                     </div>
-                    <!---->
-                  </div>
+                    <div class="items" data-v-d81de50c>
+                      <!--[-->
+                      <div
+                        class="VPSidebarItem level-2 is-link"
+                        data-v-d81de50c
+                        data-v-d81de50c
+                      >
+                        <div class="item" data-v-d81de50c>
+                          <div class="indicator" data-v-d81de50c></div>
+                          <a
+                            class="VPLink link link"
+                            href="/myBlog/blogs/next/next1.html"
+                            data-v-d81de50c
+                            ><!--[-->
+                            <p class="text" data-v-d81de50c>
+                              状态偏移和请求卡死
+                            </p>
+                            <!--]--></a
+                          ><!---->
+                        </div>
+                        <!---->
+                      </div>
+                      <!--]-->
+                    </div>
+                  </section>
+                  <section
+                    class="VPSidebarItem level-1 has-active"
+                    data-v-d81de50c
+                    data-v-d81de50c
+                  >
+                    <div
+                      class="item"
+                      role="button"
+                      tabindex="0"
+                      data-v-d81de50c
+                    >
+                      <div class="indicator" data-v-d81de50c></div>
+                      <h3 class="text" data-v-d81de50c>vitepress踩坑记录</h3>
+                      <!---->
+                    </div>
+                    <div class="items" data-v-d81de50c>
+                      <!--[-->
+                      <div
+                        class="VPSidebarItem level-2 is-link"
+                        data-v-d81de50c
+                        data-v-d81de50c
+                      >
+                        <div class="item" data-v-d81de50c>
+                          <div class="indicator" data-v-d81de50c></div>
+                          <a
+                            class="VPLink link link"
+                            href="/myBlog/blogs/vitepress/vitepress1.html"
+                            data-v-d81de50c
+                            ><!--[-->
+                            <p class="text" data-v-d81de50c>
+                              react内部样式使用总结
+                            </p>
+                            <!--]--></a
+                          ><!---->
+                        </div>
+                        <!---->
+                      </div>
+                      <!--]-->
+                    </div>
+                  </section>
                   <div
                     class="VPSidebarItem level-1 is-link"
                     data-v-d81de50c
@@ -379,10 +445,10 @@
                       <div class="indicator" data-v-d81de50c></div>
                       <a
                         class="VPLink link link"
-                        href="/myBlog/api-examples.html"
+                        href="/myBlog/blogs/react.html"
                         data-v-d81de50c
                         ><!--[-->
-                        <p class="text" data-v-d81de50c>API 示例</p>
+                        <p class="text" data-v-d81de50c>react</p>
                         <!--]--></a
                       ><!---->
                     </div>
@@ -453,14 +519,192 @@
                   <main class="main" data-v-7011f0d8>
                     <div
                       style="position: relative"
-                      class="vp-doc _myBlog_type_react-question"
+                      class="vp-doc _myBlog_blogs_vitepress_vitepress1"
                       data-v-7011f0d8
                     >
                       <div
                         data-pagefind-body="true"
                         data-pagefind-meta="date:1783346144000"
                       >
-                        <p>###我是react</p>
+                        <h1 id="vitepress的md模式样式定义" tabindex="-1">
+                          vitepress的md模式样式定义
+                          <a
+                            class="header-anchor"
+                            href="#vitepress的md模式样式定义"
+                            aria-label="Permalink to “vitepress的md模式样式定义”"
+                            >​</a
+                          >
+                        </h1>
+                        <h2
+                          id="_1-直接在md文件使用style定义局部样式"
+                          tabindex="-1"
+                        >
+                          1.直接在md文件使用style定义局部样式
+                          <a
+                            class="header-anchor"
+                            href="#_1-直接在md文件使用style定义局部样式"
+                            aria-label="Permalink to “1.直接在md文件使用style定义局部样式”"
+                            >​</a
+                          >
+                        </h2>
+                        <p>
+                          因为在md里面是支持直接写html的，可以直接使用内置style定义样式，同时这里定义的样式是会应用在全局，提倡使用
+                          <code>&lt;style module&gt;</code> 或者
+                          <code>&lt;style scoped&gt;</code>
+                          隔离样式，避免样式污染。
+                        </p>
+                        <p>
+                          <strong>【注意】</strong>
+                          这里使用的html标签都是编译为html之后的标签。
+                        </p>
+                        <p>
+                          <strong>【延伸】</strong
+                          >：还有一个<strong>值得注意</strong>的点就是，当定义<strong>body</strong>的样式时，因为<strong>body本身不存在于当前md的dom树</strong>里面，所以即使在局内定义body样式，也不会生效，比如下面是docs/index.md
+                        </p>
+                        <div class="language-md">
+                          <button title="Copy Code" class="copy"></button
+                          ><span class="lang">md</span>
+                          <pre
+                            class="shiki shiki-themes github-light github-dark"
+                            style="
+                              --shiki-light: #24292e;
+                              --shiki-dark: #e1e4e8;
+                              --shiki-light-bg: #fff;
+                              --shiki-dark-bg: #24292e;
+                            "
+                            tabindex="0"
+                            dir="ltr"
+                          ><code><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">&lt;div&gt;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">content</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">&lt;/div&gt;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">&lt;style scoped&gt;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">body {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">  background-color: red;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">}</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">&lt;/style&gt;</span></span></code></pre>
+                        </div>
+                        <p>会发现这里的样式完全没有被应用到body。</p>
+                        <p>
+                          为了解决这个问题推荐使用<strong>frontmatter</strong>里面的<strong>pageClass</strong>，它是设计者<strong>专门用在body的class</strong>上的。
+                        </p>
+                        <p>具体使用方法：</p>
+                        <p>
+                          （1）在.vitepress/theme/style.css文件下添加样式定义。
+                        </p>
+                        <p>
+                          比如
+                          <code>.home-page { background-color: red; }</code
+                          >；因为样式覆盖的问题可能还是会存在不生效的问题，可以尝试添加<code>!important</code>直接提升优先级。
+                        </p>
+                        <p>（2）同时在.vitepress/theme/index.js目录下面：</p>
+                        <div class="language-js">
+                          <button title="Copy Code" class="copy"></button
+                          ><span class="lang">js</span>
+                          <pre
+                            class="shiki shiki-themes github-light github-dark"
+                            style="
+                              --shiki-light: #24292e;
+                              --shiki-dark: #e1e4e8;
+                              --shiki-light-bg: #fff;
+                              --shiki-dark-bg: #24292e;
+                            "
+                            tabindex="0"
+                            dir="ltr"
+                          ><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">import</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> DefaultTheme </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">from</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;vitepress/theme&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">;</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">import</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;./style.css&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">;</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">export</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> default</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> DefaultTheme;</span></span></code></pre>
+                        </div>
+                        <p>
+                          （3）在最后需要的的index.md的frontmatter里面添加样式
+                        </p>
+                        <div class="language-md">
+                          <button title="Copy Code" class="copy"></button
+                          ><span class="lang">md</span>
+                          <pre
+                            class="shiki shiki-themes github-light github-dark"
+                            style="
+                              --shiki-light: #24292e;
+                              --shiki-dark: #e1e4e8;
+                              --shiki-light-bg: #fff;
+                              --shiki-dark-bg: #24292e;
+                            "
+                            tabindex="0"
+                            dir="ltr"
+                          ><code><span class="line"><span style="--shiki-light:#005CC5;--shiki-light-font-weight:bold;--shiki-dark:#79B8FF;--shiki-dark-font-weight:bold;">---</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">pageClass: home-page</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-light-font-weight:bold;--shiki-dark:#79B8FF;--shiki-dark-font-weight:bold;">---</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">&lt;div&gt;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">content</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">&lt;/div&gt;</span></span></code></pre>
+                        </div>
+                        <h2
+                          id="_2-在-vitepress-theme里面新建自定义样式"
+                          tabindex="-1"
+                        >
+                          2. 在./vitepress/theme里面新建自定义样式
+                          <a
+                            class="header-anchor"
+                            href="#_2-在-vitepress-theme里面新建自定义样式"
+                            aria-label="Permalink to “2. 在./vitepress/theme里面新建自定义样式”"
+                            >​</a
+                          >
+                        </h2>
+                        <p>这种常常用在修改一些<strong>全局样式</strong>。</p>
+                        <p>
+                          （1）在.vitepress/theme/style.css文件下添加样式定义。
+                        </p>
+                        <p>
+                          比如
+                          <code>.classTest{ width:100%; }</code
+                          >；因为样式覆盖的问题可能还是会存在不生效的问题，可以尝试添加<code>!important</code>直接提升优先级。
+                        </p>
+                        <p>（2）同时在.vitepress/theme/index.js目录下面：</p>
+                        <div class="language-js">
+                          <button title="Copy Code" class="copy"></button
+                          ><span class="lang">js</span>
+                          <pre
+                            class="shiki shiki-themes github-light github-dark"
+                            style="
+                              --shiki-light: #24292e;
+                              --shiki-dark: #e1e4e8;
+                              --shiki-light-bg: #fff;
+                              --shiki-dark-bg: #24292e;
+                            "
+                            tabindex="0"
+                            dir="ltr"
+                          ><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">import</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> DefaultTheme </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">from</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;vitepress/theme&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">;</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">import</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;./style.css&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">;</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">export</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> default</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> DefaultTheme;</span></span></code></pre>
+                        </div>
+                        <p>（3）直接在页面标签使用.classTest：</p>
+                        <div class="language-md">
+                          <button title="Copy Code" class="copy"></button
+                          ><span class="lang">md</span>
+                          <pre
+                            class="shiki shiki-themes github-light github-dark"
+                            style="
+                              --shiki-light: #24292e;
+                              --shiki-dark: #e1e4e8;
+                              --shiki-light-bg: #fff;
+                              --shiki-dark-bg: #24292e;
+                            "
+                            tabindex="0"
+                            dir="ltr"
+                          ><code><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">&lt;div class=&quot;classTest&quot;&gt;content&lt;/div&gt;</span></span></code></pre>
+                        </div>
+                        <p>
+                          <strong>【注】</strong>
+                          其实frontmatter里面的pageClass使用方式和全局样式是相同的，都是全局可访问。只是pageClass专门作用于页面的body。
+                        </p>
+                        <p>
+                          详见：<a
+                            href="https://vitepress.dev/guide/extending-default-theme#customizing-css"
+                            target="_blank"
+                            rel="noreferrer"
+                            >官方链接</a
+                          >
+                        </p>
                       </div>
                     </div>
                   </main>
@@ -493,15 +737,26 @@
                         data-v-e257564d
                         >Pager</span
                       >
-                      <div class="pager" data-v-e257564d><!----></div>
+                      <div class="pager" data-v-e257564d>
+                        <a
+                          class="VPLink link pager-link prev"
+                          href="/myBlog/blogs/next/next1.html"
+                          data-v-e257564d
+                          ><!--[--><span class="desc" data-v-e257564d
+                            >Previous page</span
+                          ><span class="title" data-v-e257564d
+                            >状态偏移和请求卡死</span
+                          ><!--]--></a
+                        >
+                      </div>
                       <div class="pager" data-v-e257564d>
                         <a
                           class="VPLink link pager-link next"
-                          href="/myBlog/"
+                          href="/myBlog/blogs/react.html"
                           data-v-e257564d
                           ><!--[--><span class="desc" data-v-e257564d
                             >Next page</span
-                          ><span class="title" data-v-e257564d>首页</span
+                          ><span class="title" data-v-e257564d>react</span
                           ><!--]--></a
                         >
                       </div>

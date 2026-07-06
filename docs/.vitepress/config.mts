@@ -10,7 +10,9 @@ export default defineConfig({
   title: "cheryl's blog",
   description: "This is my personal site",
   lastUpdated: true,
-
+  sitemap: {
+    hostname: "https://cheryl-white.github.io/myBlog/",
+  },
   //重写路由路径  主要体现在路由访问
   rewrites: {
     // "packages/pkg-a/src/index.md": "pkg-a/index.md",
@@ -29,7 +31,7 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: "首页", link: "/" },
-      { text: "个人博客", link: "/blogs" },
+      { text: "个人博客", link: "/blogs/next/next1" },
       { text: "具体项目", link: "/projects/enterprise-manager" },
     ],
     lastUpdatedText: "最后更新于：",
@@ -52,7 +54,7 @@ export default defineConfig({
               text: "vitepress踩坑记录",
               items: [
                 {
-                  text: "react内部样式使用总结",
+                  text: "vitepress内部样式使用总结",
                   link: "/blogs/vitepress/vitepress1",
                 },
               ],
