@@ -9,5 +9,6 @@ pageClass: home-page
 <div  class='custom-intro'>
 
 <FadeContent/>
+
 </div>
 </body>

@@ -10,6 +10,7 @@ export default defineConfig({
   title: "cheryl's blog",
   description: "This is my personal site",
   lastUpdated: true,
+  head: [["link", { rel: "icon", href: "/myBlog/images/favicon.png" }]],
   sitemap: {
     hostname: "https://cheryl-white.github.io/myBlog/",
   },
@@ -28,6 +29,8 @@ export default defineConfig({
     ],
   },
   themeConfig: {
+    logo: "/images/favicon.png",
+
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: "首页", link: "/" },
