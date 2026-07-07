@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://cheryl-white.github.io/myBlog/sitemap.xml
