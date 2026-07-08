@@ -44,8 +44,11 @@ export default defineConfig({
         {
           text: "博客文章",
           items: [
-            {
+            {    
               text: "next踩坑记录",
+              link: "/blogs/next/next1",
+
+              collapsed: true, // 👈 关键：默认折叠
               items: [
                 {
                   text: "状态偏移和请求卡死",
@@ -55,6 +58,10 @@ export default defineConfig({
             },
             {
               text: "vitepress踩坑记录",
+              link: "/blogs/vitepress/vitepress1",
+
+              collapsed: true, // 👈 关键：默认折叠
+
               items: [
                 {
                   text: "vitepress内部样式使用总结",
@@ -62,7 +69,18 @@ export default defineConfig({
                 },
               ],
             },
-            { text: "react", link: "/blogs/react" },
+            {
+              text: "react",
+              link: "/blogs/react/react1",
+              collapsed: true, // 👈 关键：默认折叠
+
+              items: [
+                {
+                  text: "react中的闭包陷阱",
+                  link: "/blogs/react/react1",
+                },
+              ],
+            },
             // 你的博客文章列表
           ],
         },
